@@ -12,8 +12,7 @@ function success(position) {
 // Error Handler
 function error(msg) {
     var s = document.querySelector('#status');
-    s.innerHTML = typeof msg == 'string' ? msg : "failed";
-    s.className = 'fail';
+    console.log("Could not gain access to User Location");
 }
 
 // Initiate process of receiving user location
