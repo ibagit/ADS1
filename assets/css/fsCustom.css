@@ -1,28 +1,36 @@
+/* --------------------------------------------------
+ * Food Safety Recall
+ * Powered by IBA
+ * http://www.ibacorp.us
+ * Version 1.0
+ * Last Modified: 2015-06-22
+-------------------------------------------------- */
+
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+    /* Margin bottom by footer height */
+    padding-top:50px;
+    margin-bottom: 60px;
 }
 .footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  /* Set the fixed height of the footer here */
-  height: 60px;
-  background-color: #f5f5f5;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 60px;
+    background-color: #f5f5f5;
 }
 
 .container .text-muted {
-  margin: 18px 0;
+    margin: 18px 0;
     color: #fff;
     text-shadow: none;
 }
-
 
 /* utilize myUSCIS color palette */
 .navbar-inverse { 
@@ -55,16 +63,33 @@ body {
     box-shadow: none;
 }
 
+.navbar-nav {
+    float: right;
+}
+
 .footer {
     background-color: #003366;
     background-image: none;
 }
 
+#vmap {
+    width; 800px;
+    height: 600px;
+    margin: 0 auto;
+    margin-bottom: 4em;
+}
 
 /* screen specific queries */
-@media (max-width: @screen-xs-max) { ... }
-@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) { ... }
-@media (min-width: @screen-md-min) and (max-width: @screen-md-max) { ... }
-@media (min-width: @screen-lg-min) { 
-    .navbar-nav { float: right; }
+@media (max-width: 767px) { 
+    .navbar-nav {float:left;} 
+    #vmap { height: 218px; }
+}
+@media (min-width: 768px) and (max-width: 991px) { 
+    #vmap { height: 540px; }
+}
+@media (min-width: 992px) and (max-width: 1199px) { 
+    #vmap { height: 705px; }
+}
+@media (min-width: 1200px) { 
+    
 } 
