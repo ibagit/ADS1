@@ -17,7 +17,7 @@ h1, div {
     color: #003366; 
 }
 
-.menu {
+.state {
     color: #b14943;
 }
 
@@ -49,6 +49,7 @@ a:hover,
 a:active {
     font-weight:bold;
     color:#b14943;
+    text-decoration: none;
 }
 
 /* Header Style */
