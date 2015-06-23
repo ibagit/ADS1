@@ -22,7 +22,8 @@ app.set('view engine', 'ejs');
 //app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(mylogger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded());
+//app.use(bodyParser.urlencoded());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'assets')));
 // files
