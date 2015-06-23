@@ -6,6 +6,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var fs = require('fs');
 
+var http = require('http');
+var https = require('https');
 
 var app = express();
 
@@ -76,4 +78,11 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app; 
-app.listen(5000);
+var httpServer = http.createServer(app);
+//var httpsServer = https.createServer(credentials, app);
+
+
+httpServer.listen(5000);
+
+//httpServer.listen(80);
+//httpsServer.listen(443);
