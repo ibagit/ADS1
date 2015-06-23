@@ -5,15 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Food Safety Recall</title>
+    <title>Starter Template for Bootstrap 3.3.5</title>
     <link rel="shortcut icon" href="">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="assets/css/fsCustom.css">
-    <link rel="stylesheet" href="assets/css/jqvmap.css">
     <!-- Google Geocoding -->
     <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    
+    <!-- Form Styling -->
+	<link rel="stylesheet" type="text/css" href="assets/css/form/component.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/form/default.css" />
+	<script src="assets/js/form/modernizr.custom.js"></script>
+    <!-- End Form Styling -->
 
     <!--[if IE]>
         <script src="https://cdn.jsdelivr.net/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -47,23 +52,46 @@
                     <li><a href="#about">About</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
-            </div><!--.nav-collapse -->
+            </div>
         </div>
     </nav>
 
     <div class="container">
-       <div class="row">
-           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-               <h1>Welcome!</h1>
-                <p class="lead">Please click on your state below to start searching for recalled items near you.</p>
-                <div id="vmap"></div>
-           </div>
-       </div>
+		<div class="container demo-1">
+			<header>
+				<h1>What type of Food Recall are you looking for?</span></h1>	
+			</header>
+			<div class="main clearfix">
+				<form id="nl-form" class="nl-form">
+					I am planning on buying some   
+                    <input class="menu" type="text" value="" placeholder="food" data-subline="For example: <em>Chicken</em> or <em>Eggs</em>"/>
+					from 
+                    <input class="menu" type="text" value="" placeholder="company" data-subline="For example: <em>Whole Foods</em> or <em>Giant</em>"/>
+					in <span class="state">Virginia</span>
+					and worried about 
+					<select>
+						<option value="1" selected class="menu">all</option>
+					 	<option value="1">on-going</option>
+					 	<option value="2">terminated</option>
+					 	<option value="3">pending</option>
+					</select>
+					recalls.
+					<div class="nl-submit-wrap">
+						<button class="nl-submit" type="submit">Show me the Recalls</button>
+					</div>
+					<div class="nl-overlay"></div>
+				</form>
+			</div>
+		</div><!-- /container -->
+		<script src="assets/js/form/nlform.js"></script>
+		<script>
+			var nlform = new NLForm( document.getElementById( 'nl-form' ) );
+		</script>
     </div>
     
     <footer class="footer">
       <div class="container">
-        <p class="text-muted"><a target="_blank" href="http://www.ibacorp.us">Powered by <img src="assets/img/IBA-Logo.png" style="margin-top: -.8em;"/></a></p>
+        <p class="text-muted">Powered by IBA</p>
       </div>
     </footer>
 
@@ -71,19 +99,5 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
     <script src="assets/js/map/location.js"></script>
-    <script src="assets/js/jquery.vmap.min.js"></script>
-    <script src="assets/js/jquery.vmap.usa.js"></script>
-    <script>
-        jQuery('#vmap').vectorMap({
-            map: 'usa_en',
-            backgroundColor: null,
-            color: '#ddd',
-            borderColor: '#003b77',
-            hoverColor: '#003366',
-            selectedColor: '#f00',
-            enableZoom: false,
-            showTooltip: true,
-        });
-    </script>
 </body>
 </html>
