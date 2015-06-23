@@ -11,7 +11,6 @@ router.post('/foodQuery', function(req, res) {
     var qString = '';
     for (var key in qObj)
       qString += key + ':'+ qObj[key] + '+';
-    console.log(qString);
     res.render('query_reports.html', {query_url: qString});
 });
 
