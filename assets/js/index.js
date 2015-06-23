@@ -48,18 +48,20 @@
 
     "recallReason": renderBlock()
       .render(function(selection, data) {
-        console.log(data);
+        console.log(data.results.length);
         var recallTbl = '';
         if (data.results)
         {
-           var keys = Object.keys(data.results[0]);
-           var p = data.results[0];
-           for (var key in p) {
-             if (p.hasOwnProperty(key)) {
-               if (recall_filters.indexOf(key) > -1)
-                  recallTbl += '<strong>' + key + "  : </strong>" + p[key] + "<br/>";
-             }
-           }
+           for (var i in  data.results)
+           {
+               var p = data.results[i];
+               for (var key in p) {
+                  if (p.hasOwnProperty(key)) {
+                     if (recall_filters.indexOf(key) > -1)
+                     recallTbl += '<strong>' + key + "  : </strong>" + p[key] + "<br/>";
+                  }
+               }
+          }
         }
         selection.html(recallTbl);
         }),
