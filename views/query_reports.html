@@ -58,7 +58,7 @@
       <div id="main_data">
         <section id="recall_reason"
           data-block="recallReason"
-          data-source="https://api.fda.gov/food/enforcement.json?search=<%= query_url %>"
+          data-source="https://api.fda.gov/food/enforcement.json?limit=5&search=<%= query_url %>"
           data-refresh="15">
           <p id="current_recalls" class="data" >...</p>
           <div class="chart_subtitle">Reasons for recall </div>
