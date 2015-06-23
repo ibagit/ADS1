@@ -5,7 +5,6 @@ FROM ubuntu:14.04
 MAINTAINER IBACorp
 RUN apt-get update
 RUN apt-get -y install nodejs
-RUn apt-get -y install nmp
 RUN apt-get -y install apache2
 COPY ./src /var/www/html
 RUN cd /src; nmp install
