@@ -12,8 +12,6 @@
  * Light Gray: #dddddd;
 -------------------------------------------------- */
 
-/* Sticky footer styles
--------------------------------------------------- */
 html {
     position: relative;
     min-height: 100%;
@@ -23,6 +21,13 @@ body {
     padding-top:50px;
     margin-bottom: 60px;
 }
+
+.logo {
+    width: 12.5%;
+    float: left;
+    margin-right: .5em;
+}
+
 .footer {
     position: absolute;
     bottom: 0;
@@ -84,17 +89,44 @@ body {
     margin-bottom: 4em;
 }
 
+/* Form override */
+.nl-form { margin-top: 1em; }
+.nl-field-toggle, .nl-form input, .nl-form select, .state { color: #f00; }
+.nl-submit:before { background: #f00; }
+.no-touch .nl-form .nl-submit:hover,
+.no-touch .nl-form .nl-submit:active {
+	background: rgba(0,51,102,0.7);
+}
+
+.no-touch .nl-form .nl-submit:hover:before {
+	background: rgba(255,0,0,0.7);
+}
+
 /* screen specific queries */
+
+@media (max-width: 449px) {
+    .logo { width: 20%; margin-left: .5em; margin-right: -.5em; }
+}
+@media (min-width: 450px) and (max-width: 579px) {
+    .logo { width: 15%; margin-left: .5em; margin-right: -.5em; }
+}
+@media (min-width: 580px) and (max-width: 767px) {
+    .logo { width: 15%; margin-left: .5em; margin-right: -.5em; }
+}
 @media (max-width: 767px) { 
     .navbar-nav {float:left;} 
     #vmap { height: 218px; }
+    
 }
 @media (min-width: 768px) and (max-width: 991px) { 
     #vmap { height: 540px; }
+    .logo { width: 20%; }
+    .navbar-header { width: 50%; }
 }
 @media (min-width: 992px) and (max-width: 1199px) { 
     #vmap { height: 705px; }
+    .form-control { max-width: 40%; }
 }
 @media (min-width: 1200px) { 
-    
+    .form-control { max-width: 40%; }
 } 
