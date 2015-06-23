@@ -125,7 +125,8 @@ body {
 }
 @media (min-width: 992px) and (max-width: 1199px) { 
     #vmap { height: 705px; }
+    .form-control { max-width: 40%; }
 }
 @media (min-width: 1200px) { 
-    
+    .form-control { max-width: 40%; }
 } 
