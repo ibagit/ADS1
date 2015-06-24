@@ -77,7 +77,9 @@ app.post('/foodQuery', function(req, res) {
 
     // Build QueryString
     for (var key in queryObj['params'])
-        queryString += '+' + key + ':'+ "\"" + queryObj['params'][key] + "\"";
+        queryString += '+AND+' + key + ':'+ "\"" + queryObj['params'][key] + "\"";
+
+    console.log(queryString);
 
     request(queryString, function (error, response, body) {
         if (!error && response.statusCode == 200) {
