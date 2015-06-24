@@ -73,7 +73,7 @@ app.post('/foodQuery', function(req, res) {
     var queryObj = qs.parse(req.body);
 
     // Initialize the query
-    queryString = base + 'limit=' + limit + "&search=distribution_pattern:\"" + queryObj['distribution_pattern'] + "\""
+    queryString = base + 'limit=' + limit + "&search=distribution_pattern:\"" + queryObj['distribution_pattern'] + "\"+AND+status:\""+queryObj['status']+"\""
 
     // Build QueryString
     for (var key in queryObj['params'])
