@@ -12,6 +12,8 @@
  * Light Gray: #dddddd;
 -------------------------------------------------- */
 
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+
 html {
     position: relative;
     min-height: 100%;
@@ -19,7 +21,7 @@ html {
 body {
     /* Margin bottom by footer height */
     padding-top:50px;
-    margin-bottom: 60px;
+    margin-bottom: 180px;
 }
 
 .logo {
@@ -108,6 +110,62 @@ body {
 .sep { margin-bottom: .3em; border-bottom: 1px solid #036; }
 .liResults { margin-bottom: 2em; border-bottom: 2px dotted #f00; }
 
+/* IBA footer code */
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-image: url('../img/footer-img.png');
+    background-repeat: repeat-x;
+    padding: 30px 0;
+    font-size: 14px;
+    height: 180px;
+}
+
+footer,
+footer a,
+.footerwidget li a,
+.footer-padd {
+    color: #FFF;
+    list-style: none;
+}
+
+.footerwidget ul { margin: 0;
+  padding: 0;
+  list-style: none; }
+
+.footerwidget ul li a {
+    padding: 4px 0;
+    display: block;
+    font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.footertitle, footer h4 {
+    color: #FFF;
+    text-transform: uppercase;
+    font: 600 14px 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+footer .tagcloud a:hover,
+.tagcloud a,
+.pagination a:hover,
+.hover-link:hover,
+.pagination .current,
+.v_first{
+    color: #FFF;
+    font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.social-icons li {
+    display: block;
+    float: left;
+    padding: 0 5px;
+}
+[class*="span"].v_first {
+    margin-left:0;
+}
+.v_first { clear: both; }
 /* screen specific queries */
 
 @media (max-width: 449px) {
@@ -122,6 +180,14 @@ body {
 @media (max-width: 767px) { 
     .navbar-nav {float:left;} 
     #vmap { height: 218px; }
+    footer {
+        background-image: url('../img/footer-img.png');
+        background-repeat: repeat-y;
+        height: auto;
+    }
+    .footer-padd {
+      padding: 5px 16px;
+    }
     
 }
 @media (min-width: 768px) and (max-width: 991px) { 
