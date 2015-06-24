@@ -28,6 +28,10 @@ body {
     margin-right: .5em;
 }
 
+.ibaLogo {
+    margin-top: -.8em; 
+}
+
 .footer {
     position: absolute;
     bottom: 0;
@@ -97,10 +101,12 @@ body {
 .no-touch .nl-form .nl-submit:active {
 	background: rgba(0,51,102,0.7);
 }
-
 .no-touch .nl-form .nl-submit:hover:before {
 	background: rgba(255,0,0,0.7);
 }
+/* results override */
+.sep { margin-bottom: .3em; border-bottom: 1px solid #036; }
+.liResults { margin-bottom: 2em; border-bottom: 2px dotted #f00; }
 
 /* screen specific queries */
 
