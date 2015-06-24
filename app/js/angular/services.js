@@ -86,3 +86,19 @@ rdServices.factory('Map', function($resource){
         }
     };
 });
+
+rdServices.factory('ClassMap', function($resource){
+	var classifications = {
+		"Severe": "Class I",
+		"Moderate": "Class II",
+		"Minor": "Class III"
+	};
+    return {
+        getData: function () {
+            return classifications;
+        },
+        setData: function(value) {
+            console.log("Why is someone mutating the map...?");
+        }
+    };
+});

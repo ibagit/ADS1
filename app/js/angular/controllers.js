@@ -75,29 +75,63 @@ rdControllers.controller('resultsCtrl', ['$scope', 'Storage', function($scope, S
 // ------------------------------
 // ----- Form Controller --------
 // ------------------------------
-rdControllers.controller('formCtrl', ['$scope', '$routeParams', '$http', 'Storage', function($scope, $routeParams, $http, Storage) {
+rdControllers.controller('formCtrl', ['$scope', '$routeParams', '$http', 'Storage', 'ClassMap', function($scope, $routeParams, $http, Storage, ClassMap) {
     $scope.recalls = "";                
     $scope.state = $routeParams.state;
     $scope.stateCode = $routeParams.stateCode;
-    var data = ['product_description', 'recalling_firm', 'status'];
-    var parms = {}
+    var data = ['product_description', 'recalling_firm', 'classification'];
+    var dataMap = {0: 'food', 1: 'brand', 2: 'all'};
+    var reference = {
+        "food": "product_description",
+        "brand": "recalling_firm",
+        "all": "classification"
+    };
+    var parms = {};
+
+    console.log("Reference: ");
+    console.log(reference);
+    console.log(reference["Food"]);
+
+    /// var c = ((a < b) ? 2 : 3);
+
+    // Initialize text -> classifications
+    var classMap = ClassMap.getData();
 
     // process the form
     $scope.processForm = function() {
         // Find the Form elements
         var e = angular.element(document.querySelectorAll(".nl-field-toggle"));
+        var inputs = [e[0].text, e[1].text, e[2].text];
 
+        for (var i = 0; i<inputs.length; i++) {
+            if (!(inputs[i] in reference)) {
+                console.log("INPUT: " + inputs[i]);
+                console.log("INDEX: " + dataMap[i]);
+                console.log("Parameter: " + reference[dataMap[i]]);
+                parms[reference[dataMap[i]]] = inputs[i];
+            }
+        }
+
+        /*
         // Detect user input
-        for (var i=0; i<e.length; i++) if (e[i].text!=data[i]) parms[data[i]]=e[i].text;
+        for (var i=0; i<e.length; i++) data[i]=e[i].text;
 
         // Delete empty inputs
-        if (parms['product_description']=="food") delete parms['product_description'];
+        for key in parms {
+            parms[key] 
+        }
+
+        parms['product_description'] = data[0] == "food" ? 
         if (parms['recalling_firm']=="brand") delete parms['recalling_firm'];
-        if (parms['status']=="all") delete parms['status'];
+        if (parms['classification']=="all") delete parms['classification'];
+        */
+        console.log("Parameters: ");
+        console.log(parms);
 
         $http.post('/foodQuery', { 
             params: parms,
-            'distribution_pattern': $scope.stateCode
+            'distribution_pattern': $scope.stateCode,
+            'status': "Ongoing"
         })
         .success(function(results) {
             console.log("Success. Parsing data and connecting to service...");
