@@ -1,23 +1,70 @@
-<h1 style="color:blue;text-align: center;"> Results</h1>
-<div>
-	Sort by:
-	<select ng-model="orderProp">
-		<option value="recall_initiation_date" selected="true">Newest</option>
-	</select>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <h1 class="text-center">Results</h1>
+            <p>
+                Sort by:
+                <select ng-model="orderProp">
+                    <option value="recall_initiation_date" selected="true">Newest</option>
+                </select>
+            </p>
+            <ol>
+                <li ng-repeat="recall in recalls | orderBy:orderProp">
+                   <div class="container">
+                    <div class="row sep">
+                        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">Product:</div>
+                        <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11"><a>{{recall.product_description}}</a></div>
+                    </div>
+                    <div class="row sep">
+                        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">Company:</div>
+                        <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11"><a>{{recall.recalling_firm}}</a></div>
+                    </div>
+                    <div class="row sep">
+                        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">Status:</div>
+                        <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11"><a>{{recall.status}}</a></div>
+                    </div>
+                    <div class="row sep">
+                        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"><a href="#" data-toggle="modal" data-target="#classModal">Seriousness</a>:</div>
+                        <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11"><a>{{recall.classification}}</a></div>
+                    </div>
+                    <div class="row sep">
+                        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">Date:</div>
+                        <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11"><a>{{recall.recall_initiation_date}}</a></div>
+                    </div>
+                    <div class="row sep">
+                        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">State:</div>
+                        <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11"><a>{{recall.state}}</a></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">Reason:</div>
+                        <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11"><a href="#/recall/{{recall_number}}">{{recall.reason_for_recall}}</a></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col=sm-12 col-md-12 col-lg-12 liResults">&nbsp;<!--here for spacing--></div>
+                    </div>
+                    </div>
+                </li>
+            </ol>
+        </div>
+    </div>
 </div>
-<div>
-  <!--Body content-->
-	<br>
-	<ol>
-		<li ng-repeat="recall in recalls | orderBy:orderProp">
-			<div> Product: <a>{{recall.product_description}}</a></div>
-			<div> Company: <a>{{recall.recalling_firm}}</a></div>
-			<div> Status: <a>{{recall.status}}</a></div>
-			<div> Seriousness: <a>{{recall.classification}}</a></div>
-			<div> Date: <a>{{recall.recall_initiation_date}}</a></div>
-			<div> State: <a>{{recall.state}}</a></div>
-			<div> Reason: <a href="#/recall/{{recall_number}}">{{recall.reason_for_recall}}</a></div>
-			<br>
-		</li>
-	</ol>
-</div>
+<div class="modal fade bs-example-modal-sm" id="classModal" tabindex="-1" role="dialog" aria-labelledby="classModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="classModalLabel">Classification</h4>
+            </div>
+            <div class="modal-body">
+                <p>Classification is the numerical designation (I, II, or III) that is assigned by FDA to a particular product recall that indicates the relative degree of health hazard.</p>
+                <p>Class I = Dangerous or defective products that predictably could cause serious health problems or death. Examples include: food found to contain botulinum toxin, food with undeclared allergens, a label mix-up on a lifesaving drug, or a defective artificial heart valve.</p>
+                <p>Class II = Products that might cause a temporary health problem, or pose only a slight threat of a serious nature. Example: a drug that is under-strength but that is not used to treat life-threatening situations.</p>
+                <p>Class III = Products that are unlikely to cause any adverse health reaction, but that violate FDA labeling or manufacturing laws. Examples include: a minor container defect and lack of English labeling in a retail food.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
