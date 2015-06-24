@@ -8,6 +8,16 @@ var bodyParser = require('body-parser');
 var fs = require('fs');
 var request = require('request');
 
+//HTTPS credentials
+var http = require('http');
+var https = require('https');
+
+var privateKey  = fs.readFileSync('certificates/server.key', 'utf8');
+var certificate = fs.readFileSync('certificates/server.crt', 'utf8');
+
+var credentials = {key: privateKey, cert: certificate};
+
+
 // Routing & API
 var qs = require('qs');
 var router = express.Router();
@@ -22,6 +32,7 @@ var query_reports = require('./routes/query_reports');
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.engine('html', require('ejs').renderFile);
+app.engine('htm', require('ejs').renderFile);
 app.set('view engine', 'ejs');
 
 // ==================configuration =================
@@ -125,5 +136,14 @@ app.use(function(err, req, res, next) {
 
 // listen (start app with node food_safety_recall.js)
 module.exports = app; 
-app.listen(80);
-console.log("App listening on port 80");
+
+var httpServer = http.createServer(app);
+var httpsServer = https.createServer(credentials, app);
+
+
+httpServer.listen(5001);
+
+//httpServer.listen(80);
+httpsServer.listen(5002);
+
+console.log("App listening on port 5000(http) and 5001(https)");
