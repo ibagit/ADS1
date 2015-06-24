@@ -79,6 +79,7 @@ rdControllers.controller('formCtrl', ['$scope', '$routeParams', '$http', 'Storag
     $scope.recalls = "";                
     $scope.state = $routeParams.state;
     $scope.stateCode = $routeParams.stateCode;
+    var parms = {};
     var data = ['product_description', 'recalling_firm', 'classification'];
     var dataMap = {0: 'food', 1: 'brand', 2: 'all'};
     var reference = {
@@ -86,13 +87,6 @@ rdControllers.controller('formCtrl', ['$scope', '$routeParams', '$http', 'Storag
         "brand": "recalling_firm",
         "all": "classification"
     };
-    var parms = {};
-
-    console.log("Reference: ");
-    console.log(reference);
-    console.log(reference["Food"]);
-
-    /// var c = ((a < b) ? 2 : 3);
 
     // Initialize text -> classifications
     var classMap = ClassMap.getData();
@@ -105,10 +99,7 @@ rdControllers.controller('formCtrl', ['$scope', '$routeParams', '$http', 'Storag
 
         for (var i = 0; i<inputs.length; i++) {
             if (!(inputs[i] in reference)) {
-                console.log("INPUT: " + inputs[i]);
-                console.log("INDEX: " + dataMap[i]);
-                console.log("Parameter: " + reference[dataMap[i]]);
-                parms[reference[dataMap[i]]] = inputs[i];
+                parms[reference[dataMap[i]]] = (reference[dataMap[i]] == 'classification') ? classMap[inputs[i]] : inputs[i];
             }
         }
 
@@ -125,7 +116,7 @@ rdControllers.controller('formCtrl', ['$scope', '$routeParams', '$http', 'Storag
         if (parms['recalling_firm']=="brand") delete parms['recalling_firm'];
         if (parms['classification']=="all") delete parms['classification'];
         */
-        console.log("Parameters: ");
+        console.log("New Parameters: ");
         console.log(parms);
 
         $http.post('/foodQuery', { 

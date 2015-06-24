@@ -79,12 +79,11 @@ app.post('/foodQuery', function(req, res) {
     for (var key in queryObj['params'])
         queryString += '+AND+' + key + ':'+ "\"" + queryObj['params'][key] + "\"";
 
-    console.log('QueryString: ' + queryString);
-
     request(queryString, function (error, response, body) {
         if (!error && response.statusCode == 200) {
             console.log("Success");
             console.log(body);
+            console.log('QueryString: ' + queryString);
             res.json(body);
         } else {
             res.json(body);
