@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+    <link rel="stylesheet" href="css/food_recall_safety.css">
+
+    <meta property="og:type" content="website" />
+    <title>Food Safety</title>
+    <meta property="og:title" content="Food Safety" />
+    <meta property="og:site_name" content="Food Safety" />
+    <meta name="description" content="Food recalls details">
+    <meta property="og:description" content="Food Recalls" />
+
+
+
+
+    <!--[if lte IE 9]>
+    <script src="/js/vendor/aight.v2.min.js"></script>
+    <![endif]-->
+    <script src="/js/vendor/d3.v3.min.js"></script>
+    <script src="/js/vendor/q.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+
+  <body>
+
+    <header id="food_safety_header">
+      <div class="header_container">
+        <h1>Food Safety Portal </h1>
+      </div>
+      <div id="color_bar"></div>
+    </header>
+    <div class="container">
+      <!--
+      JavaScript block hooks look for any element with both data-block and
+      data-source attributes:
+
+      <section data-block="users" data-source="path/to/data.json">
+        The "loading", "loaded", and "error" classes are set on this element
+        the data-source URL is loaded. Then the renderer is called on the first
+        child of the block with the "data" class:
+
+        <div class="data">
+        </div>
+
+        Some renderers expect to be called on HTML tables, in which
+        case you would use:
+
+        <table class="data">
+        </table>
+
+      </section>
+      -->
+
+      <div id="main_data">
+        <section id="recall_reason"
+          data-block="recallReason"
+          data-source="https://api.fda.gov/food/enforcement.json?limit=5&search=<%= query_url %>"
+          data-refresh="15">
+          <p id="current_recalls" class="data" >...</p>
+          <div class="chart_subtitle">Reasons for recall </div>
+        </section>
+         <section class="section_headline current_recalls">
+          <h3> recalls during recent times</h3>
+        </section>
+        <section id="time_series"
+          data-block="recallHistory"
+          data-source="https://api.fda.gov/food/enforcement.json?search=<%= query_url %>&count=report_date"
+          data-refresh="15">
+          <svg class="data time-series">
+          </svg>
+        </section>
+       </div>
+ </div>
+ </body>
+
+
+  <!--
+    IE detection, used to guide console formatting in subsequent include.
+  -->
+  <script type="text/javascript">window._ie9 = false;</script>
+
+  <!--[if IE 9 ]>
+    <script type="text/javascript">window._ie9 = true;</script>
+  <![endif]-->
+
+  <!--
+   IE10 JS targeting: https://stackoverflow.com/a/17099988
+   IE11 JS targeting: https://stackoverflow.com/a/17447695
+  -->
+  <script type="text/javascript">
+    window._ie10 = ("onpropertychange" in document && !!window.matchMedia);
+    window._ie11 = !!navigator.userAgent.match(/Trident\/7.0; rv 11/);
+    window._ie = window._ie9 || window._ie10 || window._ie11;
+  </script>
+
+  <script src="/js/index.js"></script>
+
+  <!-- report to oneself -->
+  <script id="_fed_an_ua_tag" src="https://analytics.usa.gov/dap/dap.min.js"></script>
+</html>
+
+

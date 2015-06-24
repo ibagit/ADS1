@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="rdApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Food Safety Recall</title>
+    <link rel="shortcut icon" href="">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <!-- Form Styling -->
+    <link rel="stylesheet" type="text/css" href="css/form/component.css" />
+    <link rel="stylesheet" type="text/css" href="css/form/default.css" />
+    <script src="js/form/modernizr.custom.js"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/fsCustom.css">
+
+    <!-- jQuery -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+
+    <!-- Anuglar -->
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+
+    <!-- App Logic -->
+    <script type="text/javascript" src="js/angular/app.js"></script>
+
+    <!-- Google Geocoding -->
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <img class="logo" src="img/foodsafetylogo.png" />
+                <a class="navbar-brand" href="#">Food Recall Safety</a>
+            </div>
+
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="default.htm">Home</a></li>
+                    <li><a href="about.htm">About</a></li>
+                    <li><a href="contact.htm">Contact</a></li>
+                </ul>
+            </div><!--.nav-collapse -->
+        </div>
+    </nav>
+
+    <!-- Angular Template -->
+    <div ng-view></div>
+    
+    <footer class="footer">
+      <div class="container">
+        <p class="text-muted"><a target="_blank" href="http://www.ibacorp.us">Powered by <img src="img/IBA-Logo.png" style="margin-top: -.8em;"/></a></p>
+      </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+    <!-- Boostrap -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <!-- D3.js -->
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+    <!-- Location -->
+    <script src="js/map/location.js"></script>
+</body>
+</html>

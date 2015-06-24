@@ -1,0 +1,23 @@
+<h1 style="color:blue;text-align: center;"> Results</h1>
+<div>
+	Sort by:
+	<select ng-model="orderProp">
+		<option value="recall_initiation_date" selected="true">Newest</option>
+	</select>
+</div>
+<div>
+  <!--Body content-->
+	<br>
+	<ol>
+		<li ng-repeat="recall in recalls | orderBy:orderProp">
+			<div> Product: <a>{{recall.product_description}}</a></div>
+			<div> Company: <a>{{recall.recalling_firm}}</a></div>
+			<div> Status: <a>{{recall.status}}</a></div>
+			<div> Seriousness: <a>{{recall.classification}}</a></div>
+			<div> Date: <a>{{recall.recall_initiation_date}}</a></div>
+			<div> State: <a>{{recall.state}}</a></div>
+			<div> Reason: <a href="#/recall/{{recall_number}}">{{recall.reason_for_recall}}</a></div>
+			<br>
+		</li>
+	</ol>
+</div>

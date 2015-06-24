@@ -1,0 +1,132 @@
+/* --------------------------------------------------
+ * Food Safety Recall
+ * Powered by IBA
+ * http://www.ibacorp.us
+ * Version 1.0
+ * Last Modified: 2015-06-22
+ *
+ *
+ * Color Palette
+ * Red: #ff0000;
+ * Blue: #003366;
+ * Light Gray: #dddddd;
+-------------------------------------------------- */
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+body {
+    /* Margin bottom by footer height */
+    padding-top:50px;
+    margin-bottom: 60px;
+}
+
+.logo {
+    width: 12.5%;
+    float: left;
+    margin-right: .5em;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 60px;
+    /* background-color: #f5f5f5; */
+    background-color: #003366;
+    background-image: none;
+}
+
+.container .text-muted, .text-muted a {
+    margin: 18px 0;
+    color: #fff;
+    text-shadow: none;
+    text-decoration: none;
+   
+}
+
+.navbar-inverse { 
+    background-color: #003366; /* Old browsers */
+    /* IE9 SVG, needs conditional override of 'filter' to 'none' */
+    background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzAwM2I3NyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwMDMzNjYiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+    background-image: -moz-linear-gradient(top,  #003b77 0%, #003366 100%); /* FF3.6+ */
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#003b77), color-stop(100%,#003366)); /* Chrome,Safari4+ */
+    background-image: -webkit-linear-gradient(top,  #003b77 0%,#003366 100%); /* Chrome10+,Safari5.1+ */
+    background-image: -o-linear-gradient(top,  #003b77 0%,#003366 100%); /* Opera 11.10+ */
+    background-image: -ms-linear-gradient(top,  #003b77 0%,#003366 100%); /* IE10+ */
+    background-image: linear-gradient(to bottom,  #003b77 0%,#003366 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#003b77', endColorstr='#003366',GradientType=0 ); /* IE6-8 */
+    color: lightgray;
+}
+
+.navbar-inverse .navbar-brand, .navbar-inverse .navbar-nav>li>a,  {
+    color: red;
+    text-shadow: none;
+}
+
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.open>a {
+    background-image: none;
+    background-color: red;
+    box-shadow: none;
+}
+
+.navbar-inverse .navbar-nav>.active>a:hover {
+    background-image: none;
+    background-color: lightcoral;
+    box-shadow: none;
+}
+
+.navbar-nav {
+    float: right;
+}
+
+#vmap {
+    width; 800px;
+    height: 600px;
+    margin: 0 auto;
+    margin-bottom: 4em;
+}
+
+/* Form override */
+.nl-form { margin-top: 1em; }
+.nl-field-toggle, .nl-form input, .nl-form select, .state { color: #f00; }
+.nl-submit:before { background: #f00; }
+.no-touch .nl-form .nl-submit:hover,
+.no-touch .nl-form .nl-submit:active {
+	background: rgba(0,51,102,0.7);
+}
+
+.no-touch .nl-form .nl-submit:hover:before {
+	background: rgba(255,0,0,0.7);
+}
+
+/* screen specific queries */
+
+@media (max-width: 449px) {
+    .logo { width: 20%; margin-left: .5em; margin-right: -.5em; }
+}
+@media (min-width: 450px) and (max-width: 579px) {
+    .logo { width: 15%; margin-left: .5em; margin-right: -.5em; }
+}
+@media (min-width: 580px) and (max-width: 767px) {
+    .logo { width: 15%; margin-left: .5em; margin-right: -.5em; }
+}
+@media (max-width: 767px) { 
+    .navbar-nav {float:left;} 
+    #vmap { height: 218px; }
+    
+}
+@media (min-width: 768px) and (max-width: 991px) { 
+    #vmap { height: 540px; }
+    .logo { width: 20%; }
+    .navbar-header { width: 50%; }
+}
+@media (min-width: 992px) and (max-width: 1199px) { 
+    #vmap { height: 705px; }
+    .form-control { max-width: 40%; }
+}
+@media (min-width: 1200px) { 
+    .form-control { max-width: 40%; }
+} 

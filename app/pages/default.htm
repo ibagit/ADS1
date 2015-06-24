@@ -1,0 +1,28 @@
+<div class="container">
+   <div class="row">
+       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+           <h1>Welcome!</h1>
+            <p class="lead">Please click on your state below to start searching for recalled items near you.</p>
+            <div id="vmap"></div>
+       </div>
+   </div>
+</div>
+
+<script src="js/jquery.vmap.min.js"></script>
+<script src="js/jquery.vmap.usa.js"></script>
+<script>
+    jQuery('#vmap').vectorMap({
+        map: 'usa_en',
+        backgroundColor: null,
+        color: '#ddd',
+        borderColor: '#003b77',
+        hoverColor: '#003366',
+        selectedColor: '#f00',
+        enableZoom: false,
+        showTooltip: true,
+        onRegionClick: function(element, code, region) {
+          window.location = '/#/form/'+region + '/' + code;
+        }
+    });  
+    $( ".jqvmap-label" ).remove();
+</script>
