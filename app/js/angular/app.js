@@ -1,7 +1,9 @@
 'use strict';
 
 // Modules 
-var rdApp = angular.module('rdApp', ['ngRoute']);
+var rdApp = angular.module('rdApp', [
+    'ngRoute'
+]);
 
 rdApp.config(function($routeProvider) {
     console.log("Configging")
