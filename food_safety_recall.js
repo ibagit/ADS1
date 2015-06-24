@@ -73,13 +73,13 @@ app.post('/foodQuery', function(req, res) {
     var queryObj = qs.parse(req.body);
 
     // Initialize the query
-    queryString = base + 'limit=' + limit + "&search=state:\"" + queryObj['state'] + "\""
+    queryString = base + 'limit=' + limit + "&search=distribution_pattern:\"" + queryObj['distribution_pattern'] + "\""
 
     // Build QueryString
     for (var key in queryObj['params'])
         queryString += '+AND+' + key + ':'+ "\"" + queryObj['params'][key] + "\"";
 
-    console.log(queryString);
+    console.log('QueryString: ' + queryString);
 
     request(queryString, function (error, response, body) {
         if (!error && response.statusCode == 200) {
@@ -87,7 +87,6 @@ app.post('/foodQuery', function(req, res) {
             console.log(body);
             res.json(body);
         } else {
-            console.log(body);
             res.json(body);
             console.log("Error: " + error);
         }

@@ -3,7 +3,9 @@ function success(position) {
 
     // Get the Latitude & Longitude
     var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-    console.log(latlng.toString());
+
+    // Logging
+    console.log("The user's location is: " + latlng.toString());
 
     // Convert the LatLong to String
     codeLatLng(latlng);
@@ -31,6 +33,7 @@ function codeLatLng(coordinate) {
             if (results[1]) {
                 console.log("Full Address: " + results[0].formatted_address);
                 console.log("State: " + results[5].formatted_address.split(",")[0]);
+
             } else {
                 alert('No results found');
             }
