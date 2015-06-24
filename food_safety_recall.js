@@ -87,6 +87,8 @@ app.post('/foodQuery', function(req, res) {
             console.log(body);
             res.json(body);
         } else {
+            console.log(body);
+            res.json(body);
             console.log("Error: " + error);
         }
     });

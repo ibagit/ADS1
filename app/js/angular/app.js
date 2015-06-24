@@ -85,12 +85,14 @@ rdApp.controller('formCtrl', ['$scope', '$routeParams', '$http', 'storage', func
             'state': $scope.stateCode
         })
         .success(function(results) {
+            console.log("Success?!?!?");
             var data = JSON.parse(results);
             storage.setData(data['results']);
             window.location = '/#/recalls/';
         })
         .error(function(data){
             console.log("Error making request: " + data);
+            window.location = '/#/recalls/';
         });
     };
 }]);
