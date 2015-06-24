@@ -9,6 +9,11 @@ var fs = require('fs');
 var http = require('http');
 var https = require('https');
 
+var privateKey  = fs.readFileSync('certificates/server.key', 'utf8');
+var certificate = fs.readFileSync('certificates/server.crt', 'utf8');
+
+var credentials = {key: privateKey, cert: certificate};
+
 var app = express();
 
 // Attach the routes.
@@ -79,10 +84,10 @@ app.use(function(err, req, res, next) {
 
 module.exports = app; 
 var httpServer = http.createServer(app);
-//var httpsServer = https.createServer(credentials, app);
+var httpsServer = https.createServer(credentials, app);
 
 
 httpServer.listen(5000);
 
 //httpServer.listen(80);
-//httpsServer.listen(443);
+httpsServer.listen(5001);
