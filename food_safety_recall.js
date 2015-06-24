@@ -125,5 +125,5 @@ app.use(function(err, req, res, next) {
 
 // listen (start app with node food_safety_recall.js)
 module.exports = app; 
-app.listen(5000);
-console.log("App listening on port 5000");
+app.listen(80);
+console.log("App listening on port 80");
