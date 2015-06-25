@@ -7,4 +7,6 @@ apt-get update
 apt-get -y install nodejs 
 apt-get -y install node npm
 apt-get npm install
+sudo npm install bower --allow-root
+sudo nohup npm start &
 popd
