@@ -9,7 +9,7 @@
                 </select>
             </p>
             <ol>
-                <li ng-repeat="recall in recalls | orderBy:orderProp">
+                <li ng-repeat="recall in recalls | orderBy:orderProp" ng-bind-html-unsafe="recall.classification">
                    <div class="container">
                     <div class="row sep">
                         <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">Product:</div>
@@ -30,10 +30,6 @@
                     <div class="row sep">
                         <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">Date:</div>
                         <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11"><a>{{recall.recall_initiation_date}}</a></div>
-                    </div>
-                    <div class="row sep">
-                        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">State:</div>
-                        <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11"><a>{{recall.state}}</a></div>
                     </div>
                     <div class="row">
                         <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">Reason:</div>
