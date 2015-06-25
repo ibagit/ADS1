@@ -95,7 +95,6 @@ rdControllers.controller('formCtrl', ['$scope', '$routeParams', '$http', 'Storag
 
     // Highlight Search Keywords
     var highlight = function(parameters, data) {
-        console.log("HighLighting");
         if ('classification' in parameters) {
             for(var i=0; i<data['results'].length; i++) {
                 var recall = data['results'][i];
