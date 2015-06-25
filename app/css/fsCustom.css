@@ -2,8 +2,8 @@
  * Food Safety Recall
  * Powered by IBA
  * http://www.ibacorp.us
- * Version 1.0
- * Last Modified: 2015-06-22
+ * Version 1.1
+ * Last Modified: 2015-06-25
  *
  *
  * Color Palette
@@ -157,6 +157,7 @@ footer .tagcloud a:hover,
     font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
+.iba:hover { color: #fff; font-weight:normal; text-decoration:none;}
 .social-icons li {
     display: block;
     float: left;
@@ -166,6 +167,7 @@ footer .tagcloud a:hover,
     margin-left:0;
 }
 .v_first { clear: both; }
+
 /* screen specific queries */
 
 @media (max-width: 449px) {
@@ -178,12 +180,15 @@ footer .tagcloud a:hover,
     .logo { width: 15%; margin-left: .5em; margin-right: -.5em; }
 }
 @media (max-width: 767px) { 
+    body { margin-bottom: 0; }
     .navbar-nav {float:left;} 
     #vmap { height: 218px; }
     footer {
         background-image: url('../img/footer-img.png');
         background-repeat: repeat-y;
         height: auto;
+        position: relative;
+        
     }
     .footer-padd {
       padding: 5px 16px;

@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <h1 class="text-center">Results</h1>
+            <h1 class="text-center">Recalls in </h1>
             <p>
                 Sort by:
                 <select ng-model="orderProp">
@@ -24,7 +24,7 @@
                         <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11"><a>{{recall.status}}</a></div>
                     </div>
                     <div class="row sep">
-                        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"><a href="#" data-toggle="modal" data-target="#classModal">Seriousness</a>:</div>
+                        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"><a data-toggle="modal" data-target="#classModal">Seriousness</a>:</div>
                         <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11"><a>{{recall.classification}}</a></div>
                     </div>
                     <div class="row sep">
@@ -58,9 +58,9 @@
             </div>
             <div class="modal-body">
                 <p>Classification is the numerical designation (I, II, or III) that is assigned by FDA to a particular product recall that indicates the relative degree of health hazard.</p>
-                <p>Class I = Dangerous or defective products that predictably could cause serious health problems or death. Examples include: food found to contain botulinum toxin, food with undeclared allergens, a label mix-up on a lifesaving drug, or a defective artificial heart valve.</p>
-                <p>Class II = Products that might cause a temporary health problem, or pose only a slight threat of a serious nature. Example: a drug that is under-strength but that is not used to treat life-threatening situations.</p>
-                <p>Class III = Products that are unlikely to cause any adverse health reaction, but that violate FDA labeling or manufacturing laws. Examples include: a minor container defect and lack of English labeling in a retail food.</p>
+                <p><b>Class I</b> = Dangerous or defective products that predictably could cause serious health problems or death. Examples include: food found to contain botulinum toxin, food with undeclared allergens, a label mix-up on a lifesaving drug, or a defective artificial heart valve.</p>
+                <p><b>Class II</b> = Products that might cause a temporary health problem, or pose only a slight threat of a serious nature. Example: a drug that is under-strength but that is not used to treat life-threatening situations.</p>
+                <p><b>Class III</b> = Products that are unlikely to cause any adverse health reaction, but that violate FDA labeling or manufacturing laws. Examples include: a minor container defect and lack of English labeling in a retail food.</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

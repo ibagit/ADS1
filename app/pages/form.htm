@@ -5,8 +5,9 @@
 
             <form id="nl-form" class="nl-form" ng-submit="processForm()">
                 <p>I am planning on buying some
-                <input class="menu" type="text" value="" placeholder="food" data-subline="For example: <em>Steak Rub</em> or <em>Yogurt</em>" /> from
-                <input class="menu" type="text" value="" placeholder="brand" data-subline="For example: <em>Kraft</em> or <em>Del Monte</em>" /> in <span class="state">{{state}}</span> and worried about
+                <input class="menu" type="text" value="" placeholder="food" data-subline="For example: <em>Cheese</em> or <em>Yogurt</em>" /> from
+                <input class="menu" type="text" value="" placeholder="brand" data-subline="For example: <em>Kraft</em> or <em>Del Monte</em>" /> in 
+                <span class="state"><a href="#/force/">{{state}}</a></span> and worried about
                 <select>
                     <option value="1" selected class="menu">all</option>
                     <option value="1">Severe</option>
@@ -18,8 +19,7 @@
                     <button class="nl-submit" type="submit" href="#/recalls/">Show me the Recalls</button>
                 </div>
                 <div class="nl-overlay"></div>
-            </form>
-        
+            </form>       
         </div>
     </div>
     <script src="js/form/nlform.js"></script>
