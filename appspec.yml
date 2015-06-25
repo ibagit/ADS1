@@ -23,7 +23,7 @@ os: linux
 #   may cause associated deployments to fail..
 files:
   - source: /
-    destination: /home/cookec/public/server 
+    destination: /var/www/foodsafety 
 #  - source: ./test/
 #    destination: /home/ubuntu/public/test
 # For deployments to Amazon Linux and Ubuntu Server instances,
