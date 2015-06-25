@@ -6,6 +6,7 @@ cd /var/ibagit/ADS1/
 apt-get update
 apt-get -y install nodejs npm
 apt-get -y install nodejs-legacy
+sudo npm config set prefix /usr/local
 sudo npm install bower --allow-root
 sudo npm install body-parser
 sudo npm install cookie-parser
