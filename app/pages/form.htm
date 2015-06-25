@@ -29,18 +29,14 @@
         var nlform = new NLForm(document.getElementById('nl-form'));
         $(document).ready(function(){
             $( "button" ).on( "click", function() {
-                console.log( "BUTTON was FOCUSED" );
                 setTimeout(function() {
                    $('[data-toggle="popover"]').popover({
                             "placement":'left',
                     }).popover('show');
                   }, 500);
                 setTimeout(function() {
-                    console.log("Going...");
                     $('[data-toggle="popover"]').popover('hide');
-                    console.log("Gone.");
-                  }, 3000);                
-               console.log("Popover should have been triggered");
+                  }, 3000);
             });
         });
     </script>
