@@ -17,6 +17,13 @@ rdControllers.controller('tempCtrl', ['$scope', function($scope) {
 rdControllers.controller('mapCtrl', ['$scope', 'Map', function($scope, Map) {
     console.log("Map Controller!");
 
+    // Initiate process of receiving user location
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(success, error);
+    } else {
+        error('not supported');
+    }
+
     // Get User's Latitude & Longitude
     function success(position) {
         var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
@@ -28,13 +35,6 @@ rdControllers.controller('mapCtrl', ['$scope', 'Map', function($scope, Map) {
     function error(msg) {
         var s = document.querySelector('#status');
         console.log("Could not gain access to User Location");
-    }
-
-    // Initiate process of receiving user location
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(success, error);
-    } else {
-        error('not supported');
     }
 
     // Covert Lat & Long coordinates into State            

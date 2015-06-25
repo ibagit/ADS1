@@ -14,6 +14,10 @@ rdApp.config(function($routeProvider) {
             templateUrl : 'pages/default.htm',
             controller  : 'mapCtrl'
         })
+        .when('/force', {
+            templateUrl : 'pages/default.htm',
+            controller  : 'tempCtrl'
+        })        
         .when('/contact', {
             templateUrl : 'pages/contact.htm',
             controller  : 'tempCtrl'

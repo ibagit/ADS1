@@ -25,7 +25,7 @@ h1, div {
 .nl-form .nl-submit {
      background: #003366;
 }
-/* 
+ 
 *, *:after, *:before { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
 body, html { font-size: 100%; padding: 0; margin: 0;}
 
@@ -41,7 +41,7 @@ body {
 }
 
 a {
-    color: #888;
+    color: #f00;
     text-decoration: none;
 }
 
@@ -81,7 +81,7 @@ Header Style
 Main Content
 .main {
     max-width: 50em;
-} */
+}
 
 /* To Navigation Style */
 .codrops-top {
