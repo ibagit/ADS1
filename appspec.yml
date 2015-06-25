@@ -23,7 +23,7 @@ os: linux
 #   may cause associated deployments to fail.
 files:
   - source: ./app/
-    destination:/var/www 
+    destination:/home/cookec/public/server 
 #  - source: ./test/
 #    destination: /home/ubuntu/public/test
 # For deployments to Amazon Linux and Ubuntu Server instances,
