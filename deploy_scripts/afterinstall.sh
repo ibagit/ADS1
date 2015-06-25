@@ -7,8 +7,8 @@ apt-get update
 apt-get -y install nodejs 
 apt-get -y install node npm
 apt-get -y install nodejs-legacy
-sudo npm install
-sudo npm install express --allow-root
-sudo npm install bower --allow-root
-sudo nohup npm start &
+npm install
+npm install express
+npm install bower
+npm start &
 popd
