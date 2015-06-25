@@ -23,9 +23,9 @@ os: linux
 #   may cause associated deployments to fail..
 files:
   - source: /
-    destination: /var/www/foodsafety 
-  - source: /views/index.html
-    destination: /var/www/html
+    destination: /var/ibagit/ADS1 
+#  - source: /views/index.html
+#    destination: /var/www/html
 # For deployments to Amazon Linux and Ubuntu Server instances,
 #   you can specify a "permissions" 
 #   section here that describes special permissions to apply to the files 
