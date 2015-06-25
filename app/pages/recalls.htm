@@ -3,41 +3,46 @@
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <h1 class="text-center">Recalls in </h1>
             <p>
-                Sort by:
-                <select ng-model="orderProp">
-                    <option value="recall_initiation_date" selected="true">Newest</option>
-                </select>
+               <div style="float:left; width:50%;">
+                    Sort by:
+                    <select ng-model="orderProp">
+                        <option value="recall_initiation_date" selected="true">Newest</option>
+                    </select>
+                </div>
+                <div class="pull-right">
+                    <a href="javascript:window.history.go(-1);">Go Back</a>
+                </div>
             </p>
-            <ol>
+            <ol style="clear:both;padding-top:2em;">
                 <li ng-repeat="recall in recalls | orderBy:orderProp">
                    <div class="container">
                     <div class="row sep">
-                        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">Product:</div>
-                        <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11"><a>{{recall.product_description}}</a></div>
+                        <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">Product:</div>
+                        <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">{{recall.product_description}}</div>
                     </div>
                     <div class="row sep">
-                        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">Company:</div>
-                        <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11"><a>{{recall.recalling_firm}}</a></div>
+                        <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">Company:</div>
+                        <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">{{recall.recalling_firm}}</div>
                     </div>
                     <div class="row sep">
-                        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">Status:</div>
-                        <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11"><a>{{recall.status}}</a></div>
+                        <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">Status:</div>
+                        <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">{{recall.status}}</div>
                     </div>
                     <div class="row sep">
-                        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"><a data-toggle="modal" data-target="#classModal">Seriousness</a>:</div>
-                        <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11"><a>{{recall.classification}}</a></div>
+                        <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2"><a data-toggle="modal" data-target="#classModal">Seriousness</a>:</div>
+                        <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">{{recall.classification}}</div>
                     </div>
                     <div class="row sep">
-                        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">Date:</div>
-                        <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11"><a>{{recall.recall_initiation_date}}</a></div>
+                        <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">Date:</div>
+                        <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">{{recall.recall_initiation_date}}</div>
                     </div>
                     <div class="row sep">
-                        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">State:</div>
-                        <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11"><a>{{recall.state}}</a></div>
+                        <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">Distribution State:</div>
+                        <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">{{recall.state}}</div>
                     </div>
                     <div class="row">
-                        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">Reason:</div>
-                        <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11"><a href="#/recall/{{recall_number}}">{{recall.reason_for_recall}}</a></div>
+                        <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">Reason:</div>
+                        <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10"><!--<a href="#/recall/{{recall_number}}">-->{{recall.reason_for_recall}}<!--</a>--></div>
                     </div>
                     <div class="row">
                         <div class="col-xs-12 col=sm-12 col-md-12 col-lg-12 liResults">&nbsp;<!--here for spacing--></div>
@@ -45,6 +50,9 @@
                     </div>
                 </li>
             </ol>
+            <p class="pull-right">
+                <a href="javascript:window.history.go(-1);">Go Back</a>
+            </p>
         </div>
     </div>
 </div>
@@ -58,9 +66,9 @@
             </div>
             <div class="modal-body">
                 <p>Classification is the numerical designation (I, II, or III) that is assigned by FDA to a particular product recall that indicates the relative degree of health hazard.</p>
-                <p><b>Class I</b> = Dangerous or defective products that predictably could cause serious health problems or death. Examples include: food found to contain botulinum toxin, food with undeclared allergens, a label mix-up on a lifesaving drug, or a defective artificial heart valve.</p>
-                <p><b>Class II</b> = Products that might cause a temporary health problem, or pose only a slight threat of a serious nature. Example: a drug that is under-strength but that is not used to treat life-threatening situations.</p>
-                <p><b>Class III</b> = Products that are unlikely to cause any adverse health reaction, but that violate FDA labeling or manufacturing laws. Examples include: a minor container defect and lack of English labeling in a retail food.</p>
+                <p><span class="classTitle">Class I</span> = Dangerous or defective products that predictably could cause serious health problems or death. Examples include: food found to contain botulinum toxin, food with undeclared allergens, a label mix-up on a lifesaving drug, or a defective artificial heart valve.</p>
+                <p><span class="classTitle">Class II</span> = Products that might cause a temporary health problem, or pose only a slight threat of a serious nature. Example: a drug that is under-strength but that is not used to treat life-threatening situations.</p>
+                <p><span class="classTitle">Class III</span> = Products that are unlikely to cause any adverse health reaction, but that violate FDA labeling or manufacturing laws. Examples include: a minor container defect and lack of English labeling in a retail food.</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
