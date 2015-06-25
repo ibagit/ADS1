@@ -166,6 +166,7 @@ footer .tagcloud a:hover,
     margin-left:0;
 }
 .v_first { clear: both; }
+
 /* screen specific queries */
 
 @media (max-width: 449px) {
@@ -178,12 +179,15 @@ footer .tagcloud a:hover,
     .logo { width: 15%; margin-left: .5em; margin-right: -.5em; }
 }
 @media (max-width: 767px) { 
+    body { margin-bottom: 0; }
     .navbar-nav {float:left;} 
     #vmap { height: 218px; }
     footer {
         background-image: url('../img/footer-img.png');
         background-repeat: repeat-y;
         height: auto;
+        position: relative;
+        
     }
     .footer-padd {
       padding: 5px 16px;
