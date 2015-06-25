@@ -145,16 +145,27 @@ rdControllers.controller('formCtrl', ['$scope', '$routeParams', '$http', 'Storag
             console.log("Success. Parsing data and connecting to service...");
             var data = JSON.parse(results);
             
-            // HighLight Results
-            //data = (isEmpty(parms)) ? data : highlight(parms, data);
+            if ('error' in data) {
+                console.log("Empty response");
 
-            Storage.setData('state', $scope.state);
-            Storage.setData('results', data['results']);
-            window.location = '/#/recalls/';
+                // PopOver
+                var button = angular.element(document.querySelector(".Bam"));
+                button.triggerHandler("click");
+
+                console.log("Did it work?");
+            } else {
+            
+                // HighLight Results
+                //data = (isEmpty(parms)) ? data : highlight(parms, data);
+
+                Storage.setData('state', $scope.state);
+                Storage.setData('results', data['results']);
+                window.location = '/#/recalls/';
+            }
         })
         .error(function(data){
-            console.log("Error making request: " + data);
-            window.location = '/#/recalls/';
+            console.log("Error making request: " + data);       
+            //window.location = '/#/recalls/';
         });
     };
 }]);

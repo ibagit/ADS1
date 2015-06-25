@@ -16,7 +16,9 @@
                 </select>
                     recalls.</p>
                 <div class="nl-submit-wrap text-center">
-                    <button class="nl-submit" type="submit" href="#/recalls/">Show me the Recalls</button>
+                    <button class="nl-submit" type="submit" href="#/recalls/"><span class="Bam" data-toggle="popover" title="You're Safe!" data-content="No Results, try another search?"></span>
+                        Show me the Recalls
+                    </button>
                 </div>
                 <div class="nl-overlay"></div>
             </form>       
@@ -25,5 +27,20 @@
     <script src="js/form/nlform.js"></script>
     <script>
         var nlform = new NLForm(document.getElementById('nl-form'));
+        $(document).ready(function(){
+            $( "button" ).on( "click", function() {
+                console.log( "BUTTON was FOCUSED" );
+                setTimeout(function() {
+                    //do something special
+                  }, 1000);                
+
+               $('[data-toggle="popover"]').popover({
+                        "trigger": 'focus',
+                        "placement":'left',
+                }).popover('show');
+
+               console.log("Popover should have been triggered");
+            });
+        });
     </script>
 </div>
