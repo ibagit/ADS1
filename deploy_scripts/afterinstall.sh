@@ -16,5 +16,12 @@ sudo npm install morgan
 sudo npm install serve-favicon
 sudo npm install request
 sudo npm install ejs
+sudo npm install angular
+sudo npm install angular-mocks
+sudo npm install jquery
+sudo npm install bootstrap
+sudo npm install angular-route
+sudo npm install angular-resource
+sudo npm install angular-animate
 sudo npm start &
 popd
