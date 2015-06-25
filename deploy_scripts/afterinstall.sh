@@ -6,6 +6,7 @@ cd /var/ibagit/ADS1
 apt-get update
 apt-get -y install nodejs 
 apt-get -y install node npm
+apt-get -y install nodejs-legacy
 apt-get npm install
 sudo npm install bower --allow-root
 sudo nohup npm start &
