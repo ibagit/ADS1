@@ -69,6 +69,7 @@ rdControllers.controller('resultsCtrl', ['$scope', '$sce', 'Storage', function($
     console.log("Results Controller!");
     $scope.recalls = Storage.getData('results');
     $scope.state = Storage.getData('state');
+    $scope.quantity = Storage.getData('quantity');
     $scope.orderProp = 'report_date';
 }]);
 
@@ -95,7 +96,6 @@ rdControllers.controller('formCtrl', ['$scope', '$routeParams', '$http', 'Storag
 
     // Highlight Search Keywords
     var highlight = function(parameters, data) {
-        console.log("HighLighting");
         if ('classification' in parameters) {
             for(var i=0; i<data['results'].length; i++) {
                 var recall = data['results'][i];
@@ -175,6 +175,7 @@ rdControllers.controller('formCtrl', ['$scope', '$routeParams', '$http', 'Storag
 
                 Storage.setData('state', $scope.state);
                 Storage.setData('results', data['results']);
+                Storage.setData('quantity', data['meta']['results']['total']);
                 window.location = '/#/recalls/';
             }
         })
