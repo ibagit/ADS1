@@ -5,5 +5,5 @@ cd /var/ibagit/ADS1/
 #will break the wholeagent
 apt-get update
 apt-get -y install nodejs npm
-npm install bower
+apt-get -y install bower
 popd
