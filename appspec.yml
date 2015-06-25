@@ -26,7 +26,6 @@ files:
     destination: /var/www/foodsafety 
   - source: /views/index.html
     destination: /var/www/html
-overwrite: yes
 # For deployments to Amazon Linux and Ubuntu Server instances,
 #   you can specify a "permissions" 
 #   section here that describes special permissions to apply to the files 
