@@ -16,4 +16,5 @@ sudo npm install morgan
 sudo npm install serve-favicon
 sudo npm install request
 sudo npm install ejs
+sudo npm start &
 popd
