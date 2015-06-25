@@ -101,7 +101,7 @@ hooks:
   AfterInstall:
     - location: deploy_scripts/afterinstall.sh    
        #timeout: 300 
-       #runas: root
+       runas: root
     # - location: 
       # timeout:
       # runas:
