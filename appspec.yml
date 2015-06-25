@@ -23,9 +23,9 @@ os: linux
 #   may cause associated deployments to fail..
 files:
   - source: /
-    destination: /var/www/foodsafety 
-  - source: /views/index.html
-    destination: /var/www/html
+    destination: /var/ibagit/ADS1 
+#  - source: /views/index.html
+#    destination: /var/www/html
 # For deployments to Amazon Linux and Ubuntu Server instances,
 #   you can specify a "permissions" 
 #   section here that describes special permissions to apply to the files 
@@ -99,9 +99,9 @@ hooks:
 # During the AfterInstall deployment lifecycle event, run the commands 
 #   in the script specified in "location".
   AfterInstall:
-    - location: deploy/afterinstall.sh    
+    - location: deploy_scripts/afterinstall.sh    
        #timeout: 300 
-       #runas: root
+     #  runas: root
     # - location: 
       # timeout:
       # runas:
