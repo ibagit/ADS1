@@ -3,6 +3,7 @@
 /* Services */
 var rdServices = angular.module('rdServices', ['ngResource']);
 
+// For passing data between controllers
 rdServices.factory('Storage', function($resource){
     var recalls = {};
 
@@ -16,6 +17,7 @@ rdServices.factory('Storage', function($resource){
     };
 });
 
+// State names ---> State Codes
 rdServices.factory('Map', function($resource){
     var map = {
 		"Alabama": "AL",
@@ -88,6 +90,7 @@ rdServices.factory('Map', function($resource){
     };
 });
 
+// Mapping of classifications
 rdServices.factory('ClassMap', function($resource){
 	var classifications = {
 		"Severe": "Class I",
@@ -97,6 +100,32 @@ rdServices.factory('ClassMap', function($resource){
     return {
         getData: function () {
             return classifications;
+        },
+        setData: function(value) {
+            console.log("Why is someone mutating the map...?");
+        }
+    };
+});
+
+// Month Index ---> Month Name
+rdServices.factory('MonthMap', function($resource){
+	var months = {
+		"01": "January",
+		"02": "February",
+		"03": "March",
+		"04": "April",
+		"05": "May",
+		"06": "June",
+		"07": "July",
+		"08": "August",
+		"09": "September",
+		"10": "October",
+		"11": "November",
+		"12": "December"
+	};
+    return {
+        getData: function () {
+            return months;
         },
         setData: function(value) {
             console.log("Why is someone mutating the map...?");
