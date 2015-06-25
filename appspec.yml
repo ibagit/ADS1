@@ -90,27 +90,27 @@ hooks:
 # During the BeforeInstall deployment lifecycle event, run the commands 
 #   in the script specified in "location".
 #  BeforeInstall:
-#    - location: ./deploy/beforeinstall.sh
-      # timeout:
-      # runas: 
+ #   - location: deploy/beforeinstall.sh
+  #     timeout: 300
+   #    runas: root
     # - location: ./deploy/start.sh
       # timeout:
       # runas:
 # During the AfterInstall deployment lifecycle event, run the commands 
 #   in the script specified in "location".
- # AfterInstall:
- #   - location: ./deploy/afterinstall.sh    
-      # timeout: 
-      # runas:
+  AfterInstall:
+    - location: deploy/afterinstall.sh    
+       timeout: 300 
+       runas: root
     # - location: 
       # timeout:
       # runas:
 # During the ApplicationInstall deployment lifecycle event, run the commands 
 #   in the script specified in "location".
  # ApplicationStart:
-  #  - location: ./deploy/start.sh    
-      # timeout: 
-      # runas:
+  #  - location: deploy/applicationstart.sh    
+   #    timeout: 300 
+    #   runas: root
     # - location: 
       # timeout:
       # runas:
