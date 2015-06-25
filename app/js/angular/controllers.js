@@ -66,10 +66,10 @@ rdControllers.controller('mapCtrl', ['$scope', 'Map', function($scope, Map) {
 // ------------------------------
 // ----- Results Controller -----
 // ------------------------------
-rdControllers.controller('resultsCtrl', ['$scope', 'Storage', function($scope, Storage) {
+rdControllers.controller('resultsCtrl', ['$scope', '$sce', 'Storage', function($scope, $sce, Storage) {
     console.log("Results Controller!");
-    $scope.recalls = Storage.getData();
-    console.log($scope.recalls);
+    $scope.recalls = Storage.getData('results');
+    $scope.state = Storage.getData('state');
 }]);
 
 // ------------------------------
@@ -80,7 +80,6 @@ rdControllers.controller('formCtrl', ['$scope', '$routeParams', '$http', 'Storag
     $scope.state = $routeParams.state;
     $scope.stateCode = $routeParams.stateCode;
     var parms = {};
-    var data = ['product_description', 'recalling_firm', 'classification'];
     var dataMap = {0: 'food', 1: 'brand', 2: 'all'};
     var reference = {
         "food": "product_description",
@@ -90,6 +89,37 @@ rdControllers.controller('formCtrl', ['$scope', '$routeParams', '$http', 'Storag
 
     // Initialize text -> classifications
     var classMap = ClassMap.getData();
+
+    var highlight = function(parameters, data) {
+        console.log("HighLighting");
+        if ('classification' in parameters) {
+            for(var i=0; i<data['results'].length; i++) {
+                var recall = data['results'][i];
+                recall['classification'] = '<b>'+recall['classification'] + '</b>';
+            }
+        }
+        return data;
+    }
+
+    function isEmpty(obj) {
+
+        // null and undefined are "empty"
+        if (obj == null) return true;
+
+        // Assume if it has a length property with a non-zero value
+        // that that property is correct.
+        if (obj.length > 0)    return false;
+        if (obj.length === 0)  return true;
+
+        // Otherwise, does it have any properties of its own?
+        for (var key in obj) {
+            if (hasOwnProperty.call(obj, key)) return false;
+        }
+
+        // Default
+        return true;
+    }
+
 
     // process the form
     $scope.processForm = function() {
@@ -103,19 +133,6 @@ rdControllers.controller('formCtrl', ['$scope', '$routeParams', '$http', 'Storag
             }
         }
 
-        /*
-        // Detect user input
-        for (var i=0; i<e.length; i++) data[i]=e[i].text;
-
-        // Delete empty inputs
-        for key in parms {
-            parms[key] 
-        }
-
-        parms['product_description'] = data[0] == "food" ? 
-        if (parms['recalling_firm']=="brand") delete parms['recalling_firm'];
-        if (parms['classification']=="all") delete parms['classification'];
-        */
         console.log("New Parameters: ");
         console.log(parms);
 
@@ -127,7 +144,12 @@ rdControllers.controller('formCtrl', ['$scope', '$routeParams', '$http', 'Storag
         .success(function(results) {
             console.log("Success. Parsing data and connecting to service...");
             var data = JSON.parse(results);
-            Storage.setData(data['results']);
+            
+            // HighLight Results
+            //data = (isEmpty(parms)) ? data : highlight(parms, data);
+
+            Storage.setData('state', $scope.state);
+            Storage.setData('results', data['results']);
             window.location = '/#/recalls/';
         })
         .error(function(data){

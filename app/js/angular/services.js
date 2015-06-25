@@ -4,13 +4,14 @@
 var rdServices = angular.module('rdServices', ['ngResource']);
 
 rdServices.factory('Storage', function($resource){
-    var recalls = 'Blank';
+    var recalls = {};
+
     return {
-        getData: function () {
-            return recalls;
+        getData: function (key) {
+            return recalls[key];
         },
-        setData: function(value) {
-            recalls = value;
+        setData: function(key, value) {
+            recalls[key] = value;
         }
     };
 });
