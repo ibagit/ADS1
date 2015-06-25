@@ -9,6 +9,6 @@ apt-get -y install node npm
 apt-get -y install nodejs-legacy
 npm install
 #npm install express
-npm install bower
+#npm install bower
 #npm start &
 popd
