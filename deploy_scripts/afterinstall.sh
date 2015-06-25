@@ -5,14 +5,14 @@ cd /var/ibagit/ADS1/
 #will break the wholeagent
 apt-get update
 apt-get -y install nodejs npm
-npm install bower
-npm install body-parser
-npm install cookie-parser
-npm install debug
-npm install express
-npm install jade
-npm install morgan
-npm install serve-favicon
-npm install request
-npm install ejs
+sudo npm install bower
+sudo npm install body-parser
+sudo npm install cookie-parser
+sudo npm install debug
+sudo npm install express
+sudo npm install jade
+sudo npm install morgan
+sudo npm install serve-favicon
+sudo npm install request
+sudo npm install ejs
 popd
