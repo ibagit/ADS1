@@ -140,12 +140,12 @@ app.use(function(err, req, res, next) {
 module.exports = app; 
 
 var httpServer = http.createServer(app);
-var httpsServer = https.createServer(credentials, app);
+//var httpsServer = https.createServer(credentials, app);
 
 
-httpServer.listen(5001);
-
+//httpServer.listen(5001);
 //httpServer.listen(80);
-httpsServer.listen(5002);
-
-console.log("App listening on port 5000(http) and 5001(https)");
+//httpsServer.listen(5002);
+httpSever.listen(80);
+//console.log("App listening on port 5000(http) and 5001(https)");
+console.log("App listening on port 80(http)");
