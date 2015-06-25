@@ -5,6 +5,7 @@ cd /var/ibagit/ADS1/
 #will break the wholeagent
 apt-get update
 apt-get -y install nodejs npm
+apt-get -y install nodejs-legacy
 sudo npm install bower
 sudo npm install body-parser
 sudo npm install cookie-parser
