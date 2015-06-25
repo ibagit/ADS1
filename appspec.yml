@@ -100,8 +100,8 @@ hooks:
 #   in the script specified in "location".
   AfterInstall:
     - location: deploy/afterinstall.sh    
-       timeout: 300 
-       runas: root
+       #timeout: 300 
+       #runas: root
     # - location: 
       # timeout:
       # runas:
