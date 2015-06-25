@@ -70,6 +70,7 @@ rdControllers.controller('resultsCtrl', ['$scope', '$sce', 'Storage', function($
     console.log("Results Controller!");
     $scope.recalls = Storage.getData('results');
     $scope.state = Storage.getData('state');
+    $scope.orderProp = 'report_date';
 }]);
 
 // ------------------------------
