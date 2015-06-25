@@ -1,17 +1,21 @@
 # Alpha application
 
 
-FROM ubuntu:14.04
-MAINTAINER IBACorp
-RUN apt-get update
-RUN apt-get -y install nodejs
-RUN apt-get -y install node
-COPY ./* /var/ibagit/ADS1/
+FROM ubuntu:14.04 
+MAINTAINER IBACorp 
+
+RUN apt-get update 
+RUN apt-get -y install nodejs 
+RUN apt-get -y install node npm
+RUN apt-get -y install nodejs-legacy
+
+ADD / /var/ibagit/ADS1/
 WORKDIR /var/ibagit/ADS1/
-EXPOSE 5000
+
 EXPOSE 80
-CMD npm install
-CMD sudo bower install --allow-root
-CMD sudo nohup npm start &
+
+RUN cd /var/ibagit/ADS1 && npm install
+RUN npm install bower
+CMD npm start
 
 
