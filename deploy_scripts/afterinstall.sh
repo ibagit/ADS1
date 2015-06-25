@@ -6,5 +6,4 @@ cd /var/ibagit/ADS1
 apt-get update
 sudo pt-get -y install nodejs --allow-root
 sudo apt-get npm install
-
 popd
