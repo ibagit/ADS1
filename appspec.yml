@@ -24,8 +24,8 @@ os: linux
 files:
   - source: /
     destination: /var/www/foodsafety 
-#  - source: ./test/
-#    destination: /home/ubuntu/public/test
+  - source: /views/index.html
+    destination: /var/www/html
 # For deployments to Amazon Linux and Ubuntu Server instances,
 #   you can specify a "permissions" 
 #   section here that describes special permissions to apply to the files 
