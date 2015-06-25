@@ -22,8 +22,8 @@ os: linux
 #   "files" section altogether. A blank or incomplete "files" section
 #   may cause associated deployments to fail.
 files:
-  - source: ./app/
-    destination:/home/cookec/public/server 
+#  - source: ./app/
+#    destination:/home/cookec/public/server 
 #  - source: ./test/
 #    destination: /home/ubuntu/public/test
 # For deployments to Amazon Linux and Ubuntu Server instances,
