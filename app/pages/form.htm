@@ -31,13 +31,12 @@
             $( "button" ).on( "click", function() {
                 console.log( "BUTTON was FOCUSED" );
                 setTimeout(function() {
-                    //do something special
-                  }, 1000);                
-
-               $('[data-toggle="popover"]').popover({
-                        "trigger": 'focus',
-                        "placement":'left',
-                }).popover('show');
+                    console.log("waiting???");
+                   $('[data-toggle="popover"]').popover({
+                            "trigger": 'focus',
+                            "placement":'left',
+                    }).popover('show');
+                  }, 500);
 
                console.log("Popover should have been triggered");
             });
