@@ -99,7 +99,6 @@ hooks:
 # During the AfterInstall deployment lifecycle event, run the commands 
 #   in the script specified in "location".
   AfterInstall:
-    #- location: deploy_scripts/npmpkgs.sh
     #- location: deploy_scripts/afterinstall.sh    
        #timeout: 300 
      #  runas: root
