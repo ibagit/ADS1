@@ -4,11 +4,11 @@ pushd .
 #will break the wholeagent
 apt-get update
 export PATH=/var/ibagit/ADS1/node_modules/bower/bin:$PATH
-bower install angular
-bower install angular-mocks
-bower install jquery
-bower install bootstrap
-bower install angular-route
-bower install angular-resource
-bower install angular-animate
+bower install angular#1.3
+bower install angular-mocks#1.3
+bower install jquery#2.1.1
+bower install bootstrap#3.1.1
+bower install angular-route#1.3
+bower install angular-resource#1.3
+bower install angular-animate#1.3
 popd
