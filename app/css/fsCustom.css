@@ -64,7 +64,7 @@ body {
     background-image: -ms-linear-gradient(top,  #003b77 0%,#003366 100%); /* IE10+ */
     background-image: linear-gradient(to bottom,  #003b77 0%,#003366 100%); /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#003b77', endColorstr='#003366',GradientType=0 ); /* IE6-8 */
-    color: lightgray;
+    color: #ddd;
 }
 
 .navbar-inverse .navbar-brand, .navbar-inverse .navbar-nav>li>a,  {
@@ -74,13 +74,13 @@ body {
 
 .navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.open>a {
     background-image: none;
-    background-color: red;
+    background-color: #f00;
     box-shadow: none;
 }
 
 .navbar-inverse .navbar-nav>.active>a:hover {
     background-image: none;
-    background-color: lightcoral;
+    background-color: #f08080;
     box-shadow: none;
 }
 
@@ -170,6 +170,8 @@ footer .tagcloud a:hover,
 }
 .v_first { clear: both; }
 
+.curPoint { cursor:pointer;}
+
 /* screen specific queries */
 
 @media (max-width: 449px) {
@@ -192,8 +194,25 @@ footer .tagcloud a:hover,
         position: relative;
         
     }
-    .footer-padd {
-      padding: 5px 16px;
+    .footer-padd { padding: 5px 16px; }
+    .nl-form { font-size: 2em; }
+    .nl-field ul {
+        position: absolute;
+        visibility: hidden;
+        background: #76C3BD;
+        left: -120%;
+        top: 50%;
+        width: 200px;
+        min-width: 200px;
+        margin: 0 auto;
+        font-size: 80%;
+        opacity: 0;
+        -webkit-transform: translateY(-40%) scale(0.9);
+        -moz-transform: translateY(-40%) scale(0.9);
+        transform: translateY(-40%) scale(0.9);
+        -webkit-transition: visibility 0s 0.3s, opacity 0.3s, -webkit-transform 0.3s;
+        -moz-transition: visibility 0s 0.3s, opacity 0.3s, -moz-transform 0.3s;
+        transition: visibility 0s 0.3s, opacity 0.3s, transform 0.3s;
     }
     
 }
@@ -201,10 +220,12 @@ footer .tagcloud a:hover,
     #vmap { height: 540px; }
     .logo { width: 20%; }
     .navbar-header { width: 50%; }
+    .nl-form { font-size: 2.5em; }
 }
 @media (min-width: 992px) and (max-width: 1199px) { 
     #vmap { height: 705px; }
     .form-control { max-width: 40%; }
+    .nl-form { font-size: 3em; }
 }
 @media (min-width: 1200px) { 
     .form-control { max-width: 40%; }

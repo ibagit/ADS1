@@ -17,8 +17,8 @@ EXPOSE 80
 
 RUN cd /var/ibagit/ADS1 && npm install
 #RUN export PATH=/var/ibagit/ADS1/node_modules/bower/bin:$PATH
-ENV PATH /var/ibagit/ADS1:$PATH
-RUN cd /var/ibagit/ADS1 && sudo bower install angular#1.3 --allow-root
+#ENV PATH /var/ibagit/ADS1/node_modules/bower/bin:$PATH
+RUN cd /var/ibagit/ADS1 && sudo ./node_modules/bower/bin/bower install angular#1.3 --allow-root
 CMD cd /var/ibagit/ADS1 && npm start
 
 
