@@ -109,7 +109,7 @@ hooks:
 #   in the script specified in "location".
   ApplicationStart:
     - location: deploy_scripts/npmstart.sh    
-       timeout: 60 
+      timeout: 60 
     #   runas: root
     # - location: 
     #   timeout: 60
