@@ -112,7 +112,7 @@ hooks:
    #    timeout: 300 
     #   runas: root
     # - location: 
-      # timeout:
+       timeout: 60
       # runas:
 # During the ValidateService deployment lifecycle event, run the commands 
 #   in the script specified in "location".
