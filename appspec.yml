@@ -102,7 +102,7 @@ hooks:
      - location: deploy_scripts/npmpkgs.sh    
        #timeout: 300 
      #  runas: root
-    # - location: 
+     - location: deploy_scripts/bowerpkgs.sh 
       # timeout:
       # runas:
 # During the ApplicationInstall deployment lifecycle event, run the commands 
