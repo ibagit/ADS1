@@ -16,7 +16,7 @@
                 </select>
                     recalls.</p>
                 <div class="nl-submit-wrap text-center">
-                    <button class="nl-submit" type="submit" href="#/recalls/"><span class="Bam" data-trigger="focus" data-toggle="popover" title="You're Safe!" data-content="No Results, try another search?"></span>
+                    <button class="nl-submit" type="submit" href="#/recalls/" id="submit"><span class="Bam" data-trigger="focus" data-toggle="popover" title="You're Safe!" data-content="No Results, try another search?"></span>
                         Show me the Recalls
                     </button>
                 </div>
@@ -28,7 +28,7 @@
     <script>
         var nlform = new NLForm(document.getElementById('nl-form'));
         $(document).ready(function(){
-            $( "button" ).on( "click", function() {
+            $( "#submit" ).on( "click", function() {
                 setTimeout(function() {
                    $('[data-toggle="popover"]').popover({
                             "placement":'center',
