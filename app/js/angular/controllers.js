@@ -27,7 +27,6 @@ rdControllers.controller('mapCtrl', ['$scope', 'Map', function($scope, Map) {
     // Get User's Latitude & Longitude
     function success(position) {
         var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-        console.log("The user's location is: " + latlng.toString());
         codeLatLng(latlng);
     }
 
@@ -65,18 +64,63 @@ rdControllers.controller('mapCtrl', ['$scope', 'Map', function($scope, Map) {
 // ------------------------------
 // ----- Results Controller -----
 // ------------------------------
-rdControllers.controller('resultsCtrl', ['$scope', '$sce', 'Storage', function($scope, $sce, Storage) {
+rdControllers.controller('resultsCtrl', ['$scope', '$sce', 'Storage', 'MonthMap', function($scope, $sce, Storage, MonthMap) {
     console.log("Results Controller!");
-    $scope.recalls = Storage.getData('results');
+
+    // Initialize number -> month
+    var monthMap = MonthMap.getData();
+
+    // Convert UTC dates to User-Friendly one
+    var prettyDates = function (data) {
+        // Initialize out of the for loop
+        var date="";
+        var newDate="";
+        for(var i=0; i<data.length; i++) {
+            date = data[i]['report_date'];
+            newDate = monthMap[date.substring(4,6)] + " " + date.substring(6) + ", " + date.substring(0,4);
+            data[i]['report_date']= newDate;
+        }
+        return data;
+    }
+
+    // Grab results
+    $scope.totalRecalls = Storage.getData('results');
+
+    // Sort by date
+    $scope.totalRecalls.sort(function(a, b) {
+        if (a.report_date > b.report_date) {
+            return -1;
+        }
+        if (a.report_date < b.report_date) {
+            return 1;
+        }
+        // a must be equal to b
+        return 0;        
+    });
+
+    // Convert UTC dates to User-Friendly one
+    $scope.totalRecalls = prettyDates($scope.totalRecalls);
+
+    // Bind Results to front-end HTML elements
     $scope.state = Storage.getData('state');
     $scope.quantity = Storage.getData('quantity');
     $scope.orderProp = 'report_date';
+
+    // Infinite Scroll
+    var index = 10;
+    var appendedItems = []
+    $scope.recalls = $scope.totalRecalls.slice(0,10);
+    $scope.loadMore = function() {
+        appendedItems = $scope.totalRecalls.slice(index, index+10);
+        $scope.recalls = $scope.recalls.concat(appendedItems);
+        index+=10;
+    }
 }]);
 
 // ------------------------------
 // ----- Form Controller --------
 // ------------------------------
-rdControllers.controller('formCtrl', ['$scope', '$routeParams', '$http', 'Storage', 'ClassMap', 'MonthMap', function($scope, $routeParams, $http, Storage, ClassMap, MonthMap) {
+rdControllers.controller('formCtrl', ['$scope', '$routeParams', '$http', 'Storage', 'ClassMap', function($scope, $routeParams, $http, Storage, ClassMap) {
     $scope.recalls = "";                
     $scope.state = $routeParams.state;
     $scope.stateCode = $routeParams.stateCode;
@@ -91,9 +135,6 @@ rdControllers.controller('formCtrl', ['$scope', '$routeParams', '$http', 'Storag
     // Initialize text -> classifications
     var classMap = ClassMap.getData();
 
-    // Initialize number -> month
-    var monthMap = MonthMap.getData();
-
     // Highlight Search Keywords
     var highlight = function(parameters, data) {
         if ('classification' in parameters) {
@@ -104,21 +145,6 @@ rdControllers.controller('formCtrl', ['$scope', '$routeParams', '$http', 'Storag
         }
         return data;
     }
-
-    // Convert UTC dates to User-Friendly one
-    var prettyDates = function (data) {
-        // Initialize out of the for loop
-        var date="";
-        var newDate="";
-        for(var i=0; i<data['results'].length; i++) {
-            date = data['results'][i]['report_date'];
-            newDate = monthMap[date.substring(4,6)] + " " + date.substring(6) + ", " + date.substring(0,4);
-            console.log(newDate);
-            data['results'][i]['report_date']= newDate;
-        }
-        return data;
-    }
-
 
     // Check for Empty Object
     function isEmpty(obj) {
@@ -169,9 +195,6 @@ rdControllers.controller('formCtrl', ['$scope', '$routeParams', '$http', 'Storag
             
                 // HighLight Results
                 //data = (isEmpty(parms)) ? data : highlight(parms, data);
-
-                // Convert UTC dates to User-Friendly one
-                data = prettyDates(data);
 
                 Storage.setData('state', $scope.state);
                 Storage.setData('results', data['results']);

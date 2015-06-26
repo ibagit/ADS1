@@ -1,6 +1,7 @@
 'use strict';
 
 /* Services */
+
 var rdServices = angular.module('rdServices', ['ngResource']);
 
 // For passing data between controllers
