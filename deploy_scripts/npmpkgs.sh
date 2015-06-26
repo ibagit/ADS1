@@ -1,7 +1,7 @@
 #!/bin/bash
 pushd .
 #need the pushd and popd because codedeploy with cd
-#will break the wholeagent
+#will break the wholeagent.
 apt-get update
 apt-get -y install git
 cd /var/ibagit/ADS1
