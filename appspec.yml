@@ -1,6 +1,6 @@
 # This is an appspec.yml template file for use with AWS CodeDeploy.
 # The lines in this template starting with the hashtag symbol are 
-#   instructional comments and can be safely left in the file or 
+#  instructional comments and can be safely left in the file or 
 #   ignored.
 # For help completing this file, see the "AppSpec File Reference" in the  
 #   "AWS CodeDeploy User Guide" at
@@ -99,20 +99,20 @@ hooks:
 # During the AfterInstall deployment lifecycle event, run the commands 
 #   in the script specified in "location".
   AfterInstall:
-    - location: deploy_scripts/afterinstall.sh    
+     - location: deploy_scripts/npmpkgs.sh    
        #timeout: 300 
      #  runas: root
-    # - location: 
+     - location: deploy_scripts/bowerpkgs.sh 
       # timeout:
       # runas:
 # During the ApplicationInstall deployment lifecycle event, run the commands 
 #   in the script specified in "location".
- # ApplicationStart:
-  #  - location: deploy/applicationstart.sh    
-   #    timeout: 300 
+  ApplicationStart:
+    - location: deploy_scripts/npmstart.sh    
+      timeout: 60 
     #   runas: root
     # - location: 
-      # timeout:
+    #   timeout: 60
       # runas:
 # During the ValidateService deployment lifecycle event, run the commands 
 #   in the script specified in "location".
