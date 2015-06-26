@@ -16,7 +16,8 @@ WORKDIR /var/ibagit/ADS1/
 EXPOSE 80
 
 RUN cd /var/ibagit/ADS1 && npm install
-RUN cd /var/ibagit/ADS1 && sudo bower install --allow-root
+RUN export PATH=/var/ibagit/ADS1/node_modules/bower/bin:$PATH
+RUN cd /var/ibagit/ADS1 && sudo bower install angular#1.3 --allow-root
 CMD cd /var/ibagit/ADS1 && npm start
 
 
