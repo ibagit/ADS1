@@ -271,6 +271,7 @@ input:focus::-ms-input-placeholder {
 	transition-delay: 0s;
 }
 
+/*
 @media screen and (max-width: 45em) {
 	.nl-form {
 		font-size: 3em;
@@ -281,4 +282,4 @@ input:focus::-ms-input-placeholder {
 	.nl-form {
 		font-size: 2em;
 	}
-}
+}*/
