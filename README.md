@@ -24,7 +24,7 @@ npm start (Starts the server, to change the hosted port, look at the bottom of t
 npm test ( test the service site)
 
 #Testing with Selenium:
-Selenium IDE 2.8.0
+Selenium IDE 2.8.0<br/>
 (1) Go to Options 
 (2) Select General
 (3) Select Remember Base URL
