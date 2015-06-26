@@ -65,7 +65,7 @@ app.get('/', function(req, res) {
 // JSON API
 app.post('/foodQuery', function(req, res) {
     // Declarations
-    var limit='10';
+    var limit='100';
     var queryString = '';
     var base = 'https://api.fda.gov/food/enforcement.json?'
 
@@ -143,7 +143,6 @@ module.exports = app;
 
 var httpServer = http.createServer(app);
 //var httpsServer = https.createServer(credentials, app);
-
 
 //httpServer.listen(5001);
 //httpServer.listen(80);
