@@ -15,7 +15,7 @@ WORKDIR /var/ibagit/ADS1/
 EXPOSE 80
 
 RUN cd /var/ibagit/ADS1 && npm install
-RUN npm install bower
-CMD sudo nohup npm start &
+RUN cd /var/ibagit/ADS1 && bower install
+CMD cd /var/ibagit/ADS1 && npm start
 
 
