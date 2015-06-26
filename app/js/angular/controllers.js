@@ -44,7 +44,6 @@ rdControllers.controller('mapCtrl', ['$scope', 'Map', function($scope, Map) {
         var state = '', address = '', code = '';
         var states = Map.getData();
 
-        console.log("Successfully initialized Geocoder...");
         geocoder.geocode({'latLng': coordinate}, function(results, status) {
             if (status == google.maps.GeocoderStatus.OK) {
                 if (results[1]) {
@@ -70,12 +69,14 @@ rdControllers.controller('resultsCtrl', ['$scope', '$sce', 'Storage', function($
     console.log("Results Controller!");
     $scope.recalls = Storage.getData('results');
     $scope.state = Storage.getData('state');
+    $scope.quantity = Storage.getData('quantity');
+    $scope.orderProp = 'report_date';
 }]);
 
 // ------------------------------
 // ----- Form Controller --------
 // ------------------------------
-rdControllers.controller('formCtrl', ['$scope', '$routeParams', '$http', 'Storage', 'ClassMap', function($scope, $routeParams, $http, Storage, ClassMap) {
+rdControllers.controller('formCtrl', ['$scope', '$routeParams', '$http', 'Storage', 'ClassMap', 'MonthMap', function($scope, $routeParams, $http, Storage, ClassMap, MonthMap) {
     $scope.recalls = "";                
     $scope.state = $routeParams.state;
     $scope.stateCode = $routeParams.stateCode;
@@ -90,8 +91,11 @@ rdControllers.controller('formCtrl', ['$scope', '$routeParams', '$http', 'Storag
     // Initialize text -> classifications
     var classMap = ClassMap.getData();
 
+    // Initialize number -> month
+    var monthMap = MonthMap.getData();
+
+    // Highlight Search Keywords
     var highlight = function(parameters, data) {
-        console.log("HighLighting");
         if ('classification' in parameters) {
             for(var i=0; i<data['results'].length; i++) {
                 var recall = data['results'][i];
@@ -101,6 +105,22 @@ rdControllers.controller('formCtrl', ['$scope', '$routeParams', '$http', 'Storag
         return data;
     }
 
+    // Convert UTC dates to User-Friendly one
+    var prettyDates = function (data) {
+        // Initialize out of the for loop
+        var date="";
+        var newDate="";
+        for(var i=0; i<data['results'].length; i++) {
+            date = data['results'][i]['report_date'];
+            newDate = monthMap[date.substring(4,6)] + " " + date.substring(6) + ", " + date.substring(0,4);
+            console.log(newDate);
+            data['results'][i]['report_date']= newDate;
+        }
+        return data;
+    }
+
+
+    // Check for Empty Object
     function isEmpty(obj) {
 
         // null and undefined are "empty"
@@ -116,7 +136,6 @@ rdControllers.controller('formCtrl', ['$scope', '$routeParams', '$http', 'Storag
             if (hasOwnProperty.call(obj, key)) return false;
         }
 
-        // Default
         return true;
     }
 
@@ -133,33 +152,30 @@ rdControllers.controller('formCtrl', ['$scope', '$routeParams', '$http', 'Storag
             }
         }
 
-        console.log("New Parameters: ");
-        console.log(parms);
-
         $http.post('/foodQuery', { 
             params: parms,
             'distribution_pattern': $scope.stateCode,
             'status': "Ongoing"
         })
         .success(function(results) {
-            console.log("Success. Parsing data and connecting to service...");
             var data = JSON.parse(results);
             
             if ('error' in data) {
-                console.log("Empty response");
-
                 // PopOver
                 var button = angular.element(document.querySelector(".Bam"));
                 button.triggerHandler("click");
 
-                console.log("Did it work?");
             } else {
             
                 // HighLight Results
                 //data = (isEmpty(parms)) ? data : highlight(parms, data);
 
+                // Convert UTC dates to User-Friendly one
+                data = prettyDates(data);
+
                 Storage.setData('state', $scope.state);
                 Storage.setData('results', data['results']);
+                Storage.setData('quantity', data['meta']['results']['total']);
                 window.location = '/#/recalls/';
             }
         })

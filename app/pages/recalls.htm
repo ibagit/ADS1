@@ -1,20 +1,14 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <h1 class="text-center">Recalls in {{ state }}</h1>
+            <h1 class="text-center">{{quantity }} Recalls in {{ state }}</h1>
             <p>
-               <div style="float:left; width:50%;">
-                    Sort by:
-                    <select ng-model="orderProp">
-                        <option value="recall_initiation_date" selected="true">Newest</option>
-                    </select>
-                </div>
                 <div class="pull-right">
                     <a href="javascript:window.history.go(-1);">Go Back</a>
                 </div>
             </p>
             <ol style="clear:both;padding-top:2em;">
-                <li ng-repeat="recall in recalls | orderBy:orderProp" ng-bind-html-unsafe="recall.classification">
+                <li ng-repeat="recall in recalls | orderBy:'-recall_initiation_date'">
                    <div class="container">
                     <div class="row sep">
                         <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">Product:</div>
@@ -34,7 +28,7 @@
                     </div>
                     <div class="row sep">
                         <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">Date:</div>
-                        <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">{{recall.recall_initiation_date}}</div>
+                        <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">{{recall.report_date}}</div>
                     </div>
                     <!--
                     <div class="row sep">
