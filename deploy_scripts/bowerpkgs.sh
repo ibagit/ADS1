@@ -4,5 +4,5 @@ pushd .
 #will break the wholeagent
 apt-get update
 cd /var/ibagit/ADS1
-npm install -g bower
+apt-get -y install bower
 popd
