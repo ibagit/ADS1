@@ -5,4 +5,5 @@ pushd .
 apt-get update
 cd /var/ibagit/ADS1
 apt-get -y install nodejs npm
+apt-get -y install nodejs-legacy
 popd
