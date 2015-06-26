@@ -22,3 +22,20 @@ npm start (Starts the server, to change the hosted port, look at the bottom of t
 
 #Start test
 npm test ( test the service site)
+
+#Testing with Selenium:
+Selenium IDE 2.8.0
+(1) Go to Options 
+(2) Select General
+(3) Select Remember Base URL
+(4) Select Record absolute URL
+(5) Select Enable Experimental Features
+(6) Select Disable format Change Warning messages
+(7) Select Format 
+(8) Select Ruby
+(9) Select "ADD"
+(10)Add the "Ruby IDE Source Code" ruby_ide_src.txt located in selenium_test_scripts/ruby/
+(11)Click OK 
+(12) Go to Options 
+(13)Select Format and select Ruby
+(14)Add FoodRecallSafety.rb located in selenium_test_scripts/ 
