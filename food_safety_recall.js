@@ -73,7 +73,9 @@ app.post('/foodQuery', function(req, res) {
     var queryObj = qs.parse(req.body);
 
     // Initialize the query
-    queryString = base + 'limit=' + limit + "&search=distribution_pattern:\"" + queryObj['distribution_pattern'] + "\"+AND+status:\""+queryObj['status']+"\""
+    // https://api.fda.gov/food/enforcement.json?search=date=%222015%22+AND+distribution_pattern:%22VA%22&limit=10
+    // https://api.fda.gov/food/enforcement.json?search=date=%222015%22+AND+distribution_pattern:%22VA%22+product_description:(%22nuts%22+%22steak%22)&limit=10    
+    queryString = base + 'limit=' + limit + "&search=report_date=\"2015\"+AND+distribution_pattern:\"" + queryObj['distribution_pattern'] + "\"+AND+status:\""+queryObj['status']+"\""
 
     // Build QueryString
     for (var key in queryObj['params'])
