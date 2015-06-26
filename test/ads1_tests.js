@@ -113,7 +113,7 @@ describe('Routing', function() {
             throw err;
           }
           // this is should.js syntax, very clear
-          console.log(res.body);
+          //console.log(res.body);
           res.should.have.status(200);
           done();
         });
