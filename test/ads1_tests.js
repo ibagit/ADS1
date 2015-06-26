@@ -24,7 +24,7 @@ describe('Routing', function() {
       
        // once we have specified the info we want to send to the server via POST verb,
        // we need to actually perform the action on the resource, in this case we want to 
-       // POST on /api/profiles and we want to send some info
+       // GET and we want to send some info
        // We do this using the request object, requiring supertest!
             request(url)
  	      .get('/')
@@ -92,7 +92,7 @@ describe('Routing', function() {
                res.should.have.status(200);
            });
       });
-      it('should return error trying to save duplicate username', function(done) {
+      it('should return error trying to post and get data from openFDA', function(done) {
       var profile = {
           params:  { 
             product_description: 'Cheese',
