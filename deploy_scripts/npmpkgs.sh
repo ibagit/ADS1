@@ -4,5 +4,5 @@ pushd .
 #will break the wholeagent
 apt-get update
 cd /var/ibagit/ADS1
-apt-get -y install npm
+apt-get -y install nodejs npm
 popd
