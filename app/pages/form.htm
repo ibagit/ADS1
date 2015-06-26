@@ -20,7 +20,7 @@
                 </select>
                     recalls.</p>
                 <div class="nl-submit-wrap text-center">
-                    <button class="nl-submit" type="submit" href="#/recalls/" id="submit"><span class="Bam" data-trigger="focus" data-toggle="popover" title="You're Safe!" data-content="No Results, try another search?"></span>
+                    <button class="nl-submit Bam" type="submit" href="#/recalls/" id="submit" data-trigger="focus" data-toggle="popover" title="You're Safe!" data-content="No Results, try another search?">
                         Show me the Recalls
                     </button>
                 </div>
@@ -35,8 +35,8 @@
             // No Results PopOver
             $( "#submit" ).on( "click", function() {
                 setTimeout(function() {
-                   $('[data-toggle="popover"]').popover({
-                            "placement":'center',
+                   $('#submit').popover({
+                        "placement":'top',
                     }).popover('show');
                   }, 750);
                 setTimeout(function() {
