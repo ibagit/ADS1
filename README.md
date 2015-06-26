@@ -26,16 +26,16 @@ npm test ( test the service site)
 #Testing with Selenium:
 Selenium IDE 2.8.0<br/>
 (1) Go to Options<br/> 
-(2) Select General<br/>
+(2) Select General tab<br/>
 (3) Select Remember Base URL<br/>
 (4) Select Record absolute URL<br/>
 (5) Select Enable Experimental Features<br/>
 (6) Select Disable format Change Warning messages<br/>
-(7) Select Format <br/>
-(8) Select Ruby<br/>
-(9) Select "ADD"<br/>
-(10)Add the "Ruby IDE Source Code" ruby_ide_src.txt located in selenium_test_scripts/ruby/<br/>
+(7) Select Formats tab <br/>
+(8) Select "ADD"<br/>
+(9) Add the "Ruby IDE Source Code" ruby_ide_src.txt located in selenium_test_scripts/ruby/<br/>
+(10)Name of the format:  Ruby
 (11)Click OK <br/>
-(12) Go to Options<br/> 
+(12)Go to Options<br/> 
 (13)Select Format and select Ruby<br/>
 (14)Add FoodRecallSafety.rb located in selenium_test_scripts/ 
