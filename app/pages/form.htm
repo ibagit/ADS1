@@ -1,7 +1,11 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <h1 class="text-center">What type of Food Recall are you looking for?</span></h1>
+            <h1 class="text-center" id="hint" data-toggle="popover" title="Need Help!" data-content="Fill in the red words">
+                What type of Food Recall are you looking for?
+            </h1>
+            <div ></div>
+
 
             <form id="nl-form" class="nl-form" ng-submit="processForm()">
                 <p>I am planning on buying some
@@ -28,6 +32,7 @@
     <script>
         var nlform = new NLForm(document.getElementById('nl-form'));
         $(document).ready(function(){
+            // No Results PopOver
             $( "#submit" ).on( "click", function() {
                 setTimeout(function() {
                    $('[data-toggle="popover"]').popover({
@@ -38,6 +43,21 @@
                     $('[data-toggle="popover"]').popover('hide');
                   }, 3000);
             });
+
+            // Helpful Hint  
+            window.onload = function () {
+                console.log("Leggooo");
+
+                // Visible
+                $('#hint').popover({
+                    "placement":'bottom',
+                }).popover('show');
+
+                // Remove
+                setTimeout(function() {
+                    $('#hint').popover().popover('hide');
+                }, 3000);
+            };
         });
     </script>
 </div>
