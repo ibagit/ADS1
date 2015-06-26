@@ -10,6 +10,10 @@ describe('Routing', function() {
   // when you are  done, call done().
   before(function(done) {
     // do the pre test setup
+    var date =new Date().toISOString().
+                    replace(/T/, ' ').      // replace T with a space
+                    replace(/\..+/, '')  
+                    console.log('* Test Started at ' + date)
     done();
   });
   // use describe to give a title to your test suite, in this case the tile is "FoodREcallTests"
@@ -41,7 +45,7 @@ describe('Routing', function() {
        it('should return error if can not fecth the deafult page', function(done){
 	var body = { };
         request(url)
-           .get('/pages/default.htm')
+           .get('/#/default.htm')
 	   .end(function(err,res) {
 	      if (err) {
 	         throw err;
@@ -54,7 +58,7 @@ describe('Routing', function() {
       it('should return error if can not fecth the contact page', function(done){
         var body = { };
         request(url)
-           .get('/pages/contact.htm')
+           .get('/#/contact.htm')
            .end(function(err,res) {
               if (err) {
                  throw err;
@@ -68,7 +72,7 @@ describe('Routing', function() {
       it('should return error if can not fecth the about page', function(done){
         var body = { };
         request(url)
-           .get('/pages/about.htm')
+           .get('/#/about.htm')
            .end(function(err,res) {
               if (err) {
                  throw err;
