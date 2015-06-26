@@ -7,45 +7,47 @@
                     <a href="javascript:window.history.go(-1);">Go Back</a>
                 </div>
             </p>
-            <ol style="clear:both;padding-top:2em;">
-                <li ng-repeat="recall in recalls | orderBy:'-recall_initiation_date'">
-                   <div class="container">
-                    <div class="row sep">
-                        <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">Product:</div>
-                        <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">{{recall.product_description}}</div>
-                    </div>
-                    <div class="row sep">
-                        <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">Company:</div>
-                        <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">{{recall.recalling_firm}}</div>
-                    </div>
-                    <div class="row sep">
-                        <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">Status:</div>
-                        <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">{{recall.status}}</div>
-                    </div>
-                    <div class="row sep">
-                        <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2"><a data-toggle="modal" data-target="#classModal">Seriousness</a>:</div>
-                        <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">{{recall.classification}}</div>
-                    </div>
-                    <div class="row sep">
-                        <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">Date:</div>
-                        <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">{{recall.report_date}}</div>
-                    </div>
-                    <!--
-                    <div class="row sep">
-                        <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">Distribution State:</div>
-                        <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">{{recall.state}}</div>
-                    </div>
-                    -->
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">Reason:</div>
-                        <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10"><!--<a href="#/recall/{{recall_number}}">-->{{recall.reason_for_recall}}<!--</a>--></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12 col=sm-12 col-md-12 col-lg-12 liResults">&nbsp;<!--here for spacing--></div>
-                    </div>
-                    </div>
-                </li>
-            </ol>
+            <div infinite-scroll='loadMore()' infinite-scroll-distance='0'>
+                <ol style="clear:both;padding-top:2em;">
+                    <li ng-repeat="recall in recalls | orderBy:'-recall_initiation_date'">
+                       <div class="container">
+                        <div class="row sep">
+                            <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">Product:</div>
+                            <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">{{recall.product_description}}</div>
+                        </div>
+                        <div class="row sep">
+                            <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">Company:</div>
+                            <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">{{recall.recalling_firm}}</div>
+                        </div>
+                        <div class="row sep">
+                            <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">Status:</div>
+                            <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">{{recall.status}}</div>
+                        </div>
+                        <div class="row sep">
+                            <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2"><a data-toggle="modal" data-target="#classModal">Seriousness</a>:</div>
+                            <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">{{recall.classification}}</div>
+                        </div>
+                        <div class="row sep">
+                            <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">Date:</div>
+                            <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">{{recall.report_date}}</div>
+                        </div>
+                        <!--
+                        <div class="row sep">
+                            <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">Distribution State:</div>
+                            <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">{{recall.state}}</div>
+                        </div>
+                        -->
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">Reason:</div>
+                            <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10"><!--<a href="#/recall/{{recall_number}}">-->{{recall.reason_for_recall}}<!--</a>--></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col=sm-12 col-md-12 col-lg-12 liResults">&nbsp;<!--here for spacing--></div>
+                        </div>
+                        </div>
+                    </li>
+                </ol>
+            </div>
             <p class="pull-right">
                 <a href="javascript:window.history.go(-1);">Go Back</a>
             </p>

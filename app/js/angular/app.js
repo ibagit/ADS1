@@ -1,14 +1,15 @@
 'use strict';
 
-// Modules 
+/* Modules */
+
 var rdApp = angular.module('rdApp', [
     'ngRoute',
     'rdServices',
-    'rdControllers'
+    'rdControllers',
+    'infinite-scroll'
 ]);
 
 rdApp.config(function($routeProvider) {
-    console.log("Configging")
     $routeProvider
         .when('/', {
             templateUrl : 'pages/default.htm',

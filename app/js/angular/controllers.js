@@ -27,7 +27,6 @@ rdControllers.controller('mapCtrl', ['$scope', 'Map', function($scope, Map) {
     // Get User's Latitude & Longitude
     function success(position) {
         var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-        console.log("The user's location is: " + latlng.toString());
         codeLatLng(latlng);
     }
 
@@ -67,10 +66,28 @@ rdControllers.controller('mapCtrl', ['$scope', 'Map', function($scope, Map) {
 // ------------------------------
 rdControllers.controller('resultsCtrl', ['$scope', '$sce', 'Storage', function($scope, $sce, Storage) {
     console.log("Results Controller!");
-    $scope.recalls = Storage.getData('results');
+
+    // Bind Results to front-end HTML elements
+    $scope.totalRecalls = Storage.getData('results');
     $scope.state = Storage.getData('state');
     $scope.quantity = Storage.getData('quantity');
     $scope.orderProp = 'report_date';
+
+    // Infinite Scroll
+    var index = 10;
+    var appendedItems = []
+    $scope.recalls = $scope.totalRecalls.slice(0,10);
+    $scope.loadMore = function() {
+        appendedItems = $scope.totalRecalls.slice(index, index+10);
+        $scope.recalls = $scope.recalls.concat(appendedItems);
+        index+=10;
+    }
+
+    /*
+    var last = $scope.images[$scope.images.length - 1];
+    for(var i = 1; i <= 8; i++) {
+        $scope.images.push(last + i);
+    }*/
 }]);
 
 // ------------------------------
@@ -113,7 +130,6 @@ rdControllers.controller('formCtrl', ['$scope', '$routeParams', '$http', 'Storag
         for(var i=0; i<data['results'].length; i++) {
             date = data['results'][i]['report_date'];
             newDate = monthMap[date.substring(4,6)] + " " + date.substring(6) + ", " + date.substring(0,4);
-            console.log(newDate);
             data['results'][i]['report_date']= newDate;
         }
         return data;
