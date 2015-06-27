@@ -35,7 +35,7 @@ Selenium IDE 2.8.0<br/>
 (8) Select "ADD"<br/>
 (9) Add the "Ruby IDE Source Code" ruby_ide_src.txt located in selenium_test_scripts/ruby/<br/>
 (10)Name of the format:  Ruby
-(11)Click OK<br/>
+(11)Click OK <br/>
 (12)Go to Options<br/> 
 (13)Select Format and select Ruby<br/>
 (14)Add FoodRecallSafety.rb located in selenium_test_scripts/ 
