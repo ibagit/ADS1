@@ -1,7 +1,11 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <h1 class="text-center">What type of Food Recall are you looking for?</span></h1>
+            <h1 class="text-center" id="hint" data-toggle="popover" title="Need Help!" data-content="Fill in the red words">
+                What type of Food Recall are you looking for?
+            </h1>
+            <div ></div>
+
 
             <form id="nl-form" class="nl-form" ng-submit="processForm()">
                 <p>I am planning on buying some
@@ -15,9 +19,8 @@
                     <option value="3">Minor</option>
                 </select>
                     recalls.</p>
-                    <p style="font-size:x-small;color:#f00;">*Click on the red items to change to meet your needs.</p>
                 <div class="nl-submit-wrap text-center">
-                    <button class="nl-submit" type="submit" href="#/recalls/" id="submit"><span class="Bam" data-trigger="focus" data-toggle="popover" title="You're Safe!" data-content="No Results, try another search?"></span>
+                    <button class="nl-submit Bam" type="submit" href="#/recalls/" id="submit" data-trigger="focus" data-toggle="popover" title="You're Safe!" data-content="No Results? Update the red fields above and try again.">
                         Show me the Recalls
                     </button>
                 </div>
@@ -29,16 +32,30 @@
     <script>
         var nlform = new NLForm(document.getElementById('nl-form'));
         $(document).ready(function(){
+            // No Results PopOver
             $( "#submit" ).on( "click", function() {
                 setTimeout(function() {
-                   $('[data-toggle="popover"]').popover({
-                            "placement":'center',
+                   $('#submit').popover({
+                        "placement":'top',
                     }).popover('show');
                   }, 750);
                 setTimeout(function() {
                     $('[data-toggle="popover"]').popover('hide');
                   }, 3000);
             });
+
+            // Helpful Hint  
+            console.log("Leggooo");
+
+            // Visible
+            $('#hint').popover({
+                "placement":'bottom',
+            }).popover('show');
+
+            // Remove
+            setTimeout(function() {
+                $('#hint').popover().popover('hide');
+            }, 2000);            
         });
     </script>
 </div>
