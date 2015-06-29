@@ -1,4 +1,5 @@
-# Alpha application
+# Alpha IBA application
+# www.ibacorp.us
 
 
 FROM ubuntu:14.04 
@@ -16,8 +17,6 @@ WORKDIR /var/ibagit/ADS1/
 EXPOSE 80
 
 RUN cd /var/ibagit/ADS1 && npm install
-#RUN export PATH=/var/ibagit/ADS1/node_modules/bower/bin:$PATH
-#ENV PATH /var/ibagit/ADS1/node_modules/bower/bin:$PATH
 RUN cd /var/ibagit/ADS1 && sudo ./node_modules/bower/bin/bower install --allow-root
 CMD cd /var/ibagit/ADS1 && npm start
 
