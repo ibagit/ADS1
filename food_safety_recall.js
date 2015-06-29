@@ -92,6 +92,7 @@ var highlight= function(data, parameters) {
                     }
                 }
                 data[j][key] = text;
+                data[j]['sort'] = parameters[key][i];
             }
         }
     }
@@ -114,7 +115,7 @@ app.post('/foodQuery', function(req, res) {
 
     // Build QueryString
     for (var key in queryObj['params'])
-        queryString += '+AND+' + key + ':'+ "(\"" + queryObj['params'][key].join("\"+\"") + "\")";
+        queryString += '+AND+' + key + ':'+ "(" + queryObj['params'][key].join("\"+\"") + ")";
 
     // Logging
     console.log('QueryString: ' +queryString);
