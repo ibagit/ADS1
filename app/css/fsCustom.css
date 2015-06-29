@@ -89,10 +89,6 @@ body {
     float: right;
 }
 
-.redText {
-    color: #f00;
-}
-
 /* US Map Overrides */
 #vmap {
     width; 800px;
