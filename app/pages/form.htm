@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <h1 class="text-center" id="hint" data-toggle="popover" title="Need Help!" data-content="Fill in the red words">
+            <h1 class="text-center" id="hint" data-toggle="popover" title="Need Help?" data-content="Change the <span class='redText;'red</span> words to suit your needs.">
                 What type of Food Recall are you looking for?
             </h1>
             <div ></div>
@@ -10,7 +10,7 @@
             <form id="nl-form" class="nl-form" ng-submit="processForm()">
                 <p>I am planning on buying some
                 <input class="menu" type="text" value="" placeholder="food" data-subline="For example: <em>Cheese</em> or <em>Yogurt</em>" /> from
-                <input class="menu" type="text" value="" placeholder="brand" data-subline="For example: <em>Kraft</em> or <em>Del Monte</em>" /> in 
+                <input class="menu" type="text" value="" placeholder="brand" data-subline="For example: <em>Kraft</em> or <em>Del Monte</em>" /><br>in 
                 <span class="state"><a href="#/force/">{{state}}</a></span> and worried about
                 <select>
                     <option value="1" selected class="menu">all</option>
@@ -40,7 +40,7 @@
                     }).popover('show');
                   }, 750);
                 setTimeout(function() {
-                    $('[data-toggle="popover"]').popover('hide');
+                    $('#submit').popover('hide');
                   }, 3000);
             });
 
@@ -50,6 +50,7 @@
             // Visible
             $('#hint').popover({
                 "placement":'bottom',
+                html: true
             }).popover('show');
 
             // Remove
