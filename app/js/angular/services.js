@@ -116,9 +116,9 @@ rdServices.factory('Map', function($resource){
 // Mapping of classifications
 rdServices.factory('ClassMap', function($resource){
 	var classifications = {
-		"Severe": "Class I",
-		"Moderate": "Class II",
-		"Minor": "Class III"
+		"Severe": "\"Class I\"",
+		"Moderate": "\"Class II\"",
+		"Minor": "\"Class III\""
 	};
     return {
         getData: function () {
