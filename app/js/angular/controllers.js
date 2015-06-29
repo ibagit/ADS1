@@ -64,42 +64,40 @@ rdControllers.controller('mapCtrl', ['$scope', 'Map', function($scope, Map) {
 // ------------------------------
 // ----- Results Controller -----
 // ------------------------------
-rdControllers.controller('resultsCtrl', ['$scope', '$sce', 'Storage', 'MonthMap', function($scope, $sce, Storage, MonthMap) {
+rdControllers.controller('resultsCtrl', ['$scope', 'Storage', 'MonthMap', 'Validation', function($scope, Storage, MonthMap, Validation) {
     console.log("Results Controller!");
 
-    // Initialize number -> month
-    var monthMap = MonthMap.getData();
-
-    // Convert UTC dates to User-Friendly one
-    var prettyDates = function (data) {
-        // Initialize out of the for loop
-        var date="";
-        var newDate="";
-        for(var i=0; i<data.length; i++) {
-            date = data[i]['report_date'];
-            newDate = monthMap[date.substring(4,6)] + " " + date.substring(6) + ", " + date.substring(0,4);
-            data[i]['report_date']= newDate;
-        }
-        return data;
-    }
+    // Grab Search Parameters
+    if (Storage.getData('classification')) $scope.classification = Storage.getData('classification')[0];
+    if (Storage.getData('recalling_firm')) $scope.recalling_firm = Storage.getData('recalling_firm').join(" and ");
+    if (Storage.getData('product_description')) $scope.product_description = Storage.getData('product_description').join(" and ");
 
     // Grab results
     $scope.totalRecalls = Storage.getData('results');
 
+    // If empty go to home page
+    if(Validation.isEmpty($scope.totalRecalls)) window.location = '/#/';
+
+    // Initialize number -> month
+    var monthMap = MonthMap.getData();
+
+    // Format Output
+    function prettify(element, index, array) {
+        // Make Date pretty
+        var date = element['report_date'];
+        date = monthMap[date.substring(4,6)] + " " + date.substring(6) + ", " + date.substring(0,4);
+        element['report_date']= date;
+    }
+
     // Sort by date
     $scope.totalRecalls.sort(function(a, b) {
-        if (a.report_date > b.report_date) {
-            return -1;
-        }
-        if (a.report_date < b.report_date) {
-            return 1;
-        }
-        // a must be equal to b
+        if (a.report_date > b.report_date) return -1;
+        if (a.report_date < b.report_date) return 1;
         return 0;        
     });
 
     // Convert UTC dates to User-Friendly one
-    $scope.totalRecalls = prettyDates($scope.totalRecalls);
+    $scope.totalRecalls.forEach(prettify);
 
     // Bind Results to front-end HTML elements
     $scope.state = Storage.getData('state');
@@ -120,63 +118,36 @@ rdControllers.controller('resultsCtrl', ['$scope', '$sce', 'Storage', 'MonthMap'
 // ------------------------------
 // ----- Form Controller --------
 // ------------------------------
-rdControllers.controller('formCtrl', ['$scope', '$routeParams', '$http', 'Storage', 'ClassMap', function($scope, $routeParams, $http, Storage, ClassMap) {
+rdControllers.controller('formCtrl', ['$scope', '$routeParams', '$http', 'Storage', 'ClassMap', 'Validation', function($scope, $routeParams, $http, Storage, ClassMap, Validation) {
     $scope.recalls = "";                
     $scope.state = $routeParams.state;
     $scope.stateCode = $routeParams.stateCode;
     var parms = {};
-    var dataMap = {0: 'food', 1: 'brand', 2: 'all'};
+    var dataMap = {0: 'food', 1: 'brand', 2: 'all', 3: 'anything'};
     var reference = {
         "food": "product_description",
         "brand": "recalling_firm",
-        "all": "classification"
+        "all": "classification",
+        "anything": "reason_for_recall"
     };
 
     // Initialize text -> classifications
     var classMap = ClassMap.getData();
 
-    // Highlight Search Keywords
-    var highlight = function(parameters, data) {
-        if ('classification' in parameters) {
-            for(var i=0; i<data['results'].length; i++) {
-                var recall = data['results'][i];
-                recall['classification'] = '<b>'+recall['classification'] + '</b>';
-            }
-        }
-        return data;
-    }
-
-    // Check for Empty Object
-    function isEmpty(obj) {
-
-        // null and undefined are "empty"
-        if (obj == null) return true;
-
-        // Assume if it has a length property with a non-zero value
-        // that that property is correct.
-        if (obj.length > 0)    return false;
-        if (obj.length === 0)  return true;
-
-        // Otherwise, does it have any properties of its own?
-        for (var key in obj) {
-            if (hasOwnProperty.call(obj, key)) return false;
-        }
-
-        return true;
-    }
-
-
     // process the form
     $scope.processForm = function() {
         // Find the Form elements
         var e = angular.element(document.querySelectorAll(".nl-field-toggle"));
-        var inputs = [e[0].text, e[1].text, e[2].text];
+        var inputs = [e[0].text, e[1].text, e[2].text, e[3].text];
 
         for (var i = 0; i<inputs.length; i++) {
             if (!(inputs[i] in reference)) {
-                parms[reference[dataMap[i]]] = (reference[dataMap[i]] == 'classification') ? classMap[inputs[i]] : inputs[i];
+                parms[reference[dataMap[i]]] = (reference[dataMap[i]] == 'classification') ? classMap[inputs[i]].split(" and ") : inputs[i].split(" and ");
             }
         }
+
+        // Parse out Food input    
+        console.log(parms);
 
         $http.post('/foodQuery', { 
             params: parms,
@@ -191,12 +162,17 @@ rdControllers.controller('formCtrl', ['$scope', '$routeParams', '$http', 'Storag
                 var button = angular.element(document.querySelector(".Bam"));
                 button.triggerHandler("click");
 
-            } else {
-            
-                // HighLight Results
-                //data = (isEmpty(parms)) ? data : highlight(parms, data);
+            } else {                          
 
+                console.log(data['results']);
+
+                // Search Criteria
                 Storage.setData('state', $scope.state);
+                if ('classification' in parms) Storage.setData('classification', parms['classification']);                
+                if ('product_description' in parms) Storage.setData('product_description', parms['product_description']);
+                if ('recalling_firm' in parms) Storage.setData('recalling_firm', parms['recalling_firm']);
+
+                // Results
                 Storage.setData('results', data['results']);
                 Storage.setData('quantity', data['meta']['results']['total']);
                 window.location = '/#/recalls/';
@@ -204,7 +180,6 @@ rdControllers.controller('formCtrl', ['$scope', '$routeParams', '$http', 'Storag
         })
         .error(function(data){
             console.log("Error making request: " + data);       
-            //window.location = '/#/recalls/';
         });
     };
 }]);

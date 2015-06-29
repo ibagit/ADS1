@@ -38,7 +38,6 @@ body {
 label, input[type=text], input[type=file], input[type=password] { margin: 1em 0; }
 input[type=submit] { display: block; margin: 0 auto; }
 
-
 #food_safety_header a, #food_safety_header a:visited {
   color: #fff; }
 

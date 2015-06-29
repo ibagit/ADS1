@@ -6,7 +6,9 @@ var rdApp = angular.module('rdApp', [
     'ngRoute',
     'rdServices',
     'rdControllers',
-    'infinite-scroll'
+    'infinite-scroll',
+    'ngSanitize',
+    'rdFilters'
 ]);
 
 rdApp.config(function($routeProvider) {

@@ -1,59 +1,58 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <h1 class="text-center">{{quantity }} Recalls in {{ state }}</h1>
+            <h1 class="text-center">{{quantity}} recalls in {{ state }}</h1>
             <p>
                 <div class="pull-right">
                     <a href="javascript:window.history.go(-1);">Go Back</a>
                 </div>
             </p>
             <div infinite-scroll='loadMore()' infinite-scroll-distance='0'>
-                <ol style="clear:both;padding-top:2em;">
+                <ul style="clear:both;padding-top:2em; list-style-type:none">
                     <li ng-repeat="recall in recalls">
                        <div class="container">
-                        <div class="row sep">
-                            <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">Product:</div>
-                            <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">{{recall.product_description}}</div>
-                        </div>
-                        <div class="row sep">
-                            <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">Company:</div>
-                            <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">{{recall.recalling_firm}}</div>
-                        </div>
-                        <div class="row sep">
-                            <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">Status:</div>
-                            <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">{{recall.status}}</div>
-                        </div>
-                        <div class="row sep">
-                            <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2"><a class="curPoint" data-toggle="modal" data-target="#classModal">Seriousness</a>:</div>
-                            <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">{{recall.classification}}</div>
-                        </div>
-                        <div class="row sep">
-                            <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">Date:</div>
-                            <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">{{recall.report_date}}</div>
-                        </div>
-                        <!--
-                        <div class="row sep">
-                            <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">Distribution State:</div>
-                            <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">{{recall.state}}</div>
-                        </div>
-                        -->
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">Reason:</div>
-                            <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10"><!--<a href="#/recall/{{recall_number}}">-->{{recall.reason_for_recall}}<!--</a>--></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-12 col=sm-12 col-md-12 col-lg-12 liResults">&nbsp;<!--here for spacing--></div>
-                        </div>
+                            <div class="row sep">
+                                <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 label">Product:</div>
+                                <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10 text more" id="PD"
+                                    ng-bind-html="recall.product_description | unsafe">
+                                </div>
+
+                            </div>
+                            <div class="row sep">
+                                <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 label">Company:</div>
+                                <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10 text">
+                                    <span class="more" ng-bind-html="recall.recalling_firm | unsafe"></span>
+                                </div>
+                            </div>
+                            <div class="row sep">
+                                <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 label">Status:</div>
+                                <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10 text">{{recall.status}}</div>
+                            </div>
+                            <div class="row sep">
+                                <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 label">Seriousness:</div>
+                                <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10 text">
+                                    <a class="curPoint" data-toggle="modal" data-target="#classModal"><p ng-bind-html="recall.classification"></p></a>
+                                </div>
+                            </div>
+                            <div class="row sep">
+                                <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 label">Date:</div>
+                                <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10 more">{{recall.report_date}}</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 label">Reason:</div>
+                                <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10 text" ng-bind-html="recall.reason_for_recall | unsafe"></div>
+                            </div>
+                            <br>
+                            <hr class="featurette-divider">
+                            <br>
                         </div>
                     </li>
-                </ol>
+                </ul>
             </div>
-            <p class="pull-right">
-                <a href="javascript:window.history.go(-1);">Go Back</a>
-            </p>
         </div>
     </div>
 </div>
+
 <div class="modal fade bs-example-modal-sm" id="classModal" tabindex="-1" role="dialog" aria-labelledby="classModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
