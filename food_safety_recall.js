@@ -1,3 +1,11 @@
+// For insert html tags
+String.prototype.insert = function (index, string) {
+    if (index > 0)
+        return this.substring(0, index) + string + this.substring(index, this.length);
+    else
+        return string + this;
+};
+
 // Initialize
 var express = require('express');
 var path = require('path');
@@ -11,10 +19,8 @@ var request = require('request');
 //HTTPS credentials
 var http = require('http');
 var https = require('https');
-
 var privateKey  = fs.readFileSync('certificates/server.key', 'utf8');
 var certificate = fs.readFileSync('certificates/server.crt', 'utf8');
-
 var credentials = {key: privateKey, cert: certificate};
 
 
@@ -62,8 +68,39 @@ app.get('/', function(req, res) {
     res.sendfile('app/template.htm'); 
 });
 
+var insert = function(start, length, str) {
+    var end = start + length+3;
+    return str.insert(start, '<b>').insert(end, '</b>');
+}
+
+// Highlight matched terms
+var highlight= function(data, parameters) {
+    for (var key in parameters) {
+        if (key === 'classification') continue;
+        for (var i =0; i<parameters[key].length; i++) {
+            var string = parameters[key][i].toLowerCase();
+            for (var j=0; j<data.length; j++) {
+                var text = data[j][key];
+                var index = -1;
+                while (true) {
+                    index = text.toLowerCase().indexOf(string, index+4);
+                    if (index === -1) {
+                        break;
+                    }
+                    else {
+                        text = insert(index, string.length, text);
+                    }
+                }
+                data[j][key] = text;
+            }
+        }
+    }
+}
+
 // JSON API
 app.post('/foodQuery', function(req, res) {
+    console.log("Posting UP");
+
     // Declarations
     var limit='100';
     var queryString = '';
@@ -73,22 +110,31 @@ app.post('/foodQuery', function(req, res) {
     var queryObj = qs.parse(req.body);
 
     // Initialize the query
-    // https://api.fda.gov/food/enforcement.json?search=date=%222015%22+AND+distribution_pattern:%22VA%22&limit=10
-    // https://api.fda.gov/food/enforcement.json?search=date=%222015%22+AND+distribution_pattern:%22VA%22+product_description:(%22nuts%22+%22steak%22)&limit=10    
-    queryString = base + 'limit=' + limit + "&search=report_date=\"2015\"+AND+distribution_pattern:\"" + queryObj['distribution_pattern'] + "\"+AND+status:\""+queryObj['status']+"\""
+    queryString = base + 'limit=' + limit + "&search=report_date=2015+AND+distribution_pattern:" + queryObj['distribution_pattern'] + "+AND+status:"+queryObj['status'];
 
     // Build QueryString
     for (var key in queryObj['params'])
-        queryString += '+AND+' + key + ':'+ "\"" + queryObj['params'][key] + "\"";
+        queryString += '+AND+' + key + ':'+ "(\"" + queryObj['params'][key].join("\"+\"") + "\")";
+
+    // Logging
+    console.log('QueryString: ' +queryString);
 
     request(queryString, function (error, response, body) {
         if (!error && response.statusCode == 200) {
-            console.log("Success");
+            // Logging
             console.log(body);
             console.log('QueryString: ' + queryString);
-            res.json(body);
+
+            // Data
+            var data = JSON.parse(body);
+
+            // Highlight matched terms
+            highlight(data['results'], queryObj['params']);
+
+            res.json(JSON.stringify(data));
         } else {
             res.json(body);
+            console.log('QueryString: ' + queryString);            
             console.log("Error: " + error);
         }
     });

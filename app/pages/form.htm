@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <h1 class="text-center" id="hint" data-toggle="popover" title="Need Help!" data-content="Fill in the red words">
+            <h1 class="text-center" id="hint" data-toggle="popover" title="Need Help?" data-content="Change the <span style='color:#f00;'>red</span> words to suit your needs.">
                 What type of Food Recall are you looking for?
             </h1>
             <div ></div>
@@ -9,18 +9,34 @@
 
             <form id="nl-form" class="nl-form" ng-submit="processForm()">
                 <p>I am planning on buying some
-                <input class="menu" type="text" value="" placeholder="food" data-subline="For example: <em>Cheese</em> or <em>Yogurt</em>" /> from
-                <input class="menu" type="text" value="" placeholder="brand" data-subline="For example: <em>Kraft</em> or <em>Del Monte</em>" /> in 
-                <span class="state"><a href="#/force/">{{state}}</a></span> and worried about
-                <select>
-                    <option value="1" selected class="menu">all</option>
-                    <option value="1">Severe</option>
-                    <option value="2">Moderate</option>
-                    <option value="3">Minor</option>
-                </select>
-                    recalls.</p>
+                    <input class="menu" type="text" value="" 
+                        placeholder="food" 
+                        data-subline="For example: <em>Cheese</em> or <em>Yogurt</em" 
+                        data-aboveline="Search Multiple: <em>Steak  and  Salsa</em>"
+                    /> from
+                    <input class="menu" type="text" value="" 
+                        placeholder="brand" 
+                        data-subline="Examples: <em>Kraft</em> or <em>Del Monte</em>"
+                        data-aboveline="Search Multiple: <em>Dannon  and  Goya</em>"
+                    /> in 
+                    <span class="state"><a href="#/force/">{{state}}</a></span> and worried about
+                    <select>
+                        <option value="1" selected class="menu">all</option>
+                        <option value="1">Severe</option>
+                        <option value="2">Moderate</option>
+                        <option value="3">Minor</option>
+                    </select>
+                   recalls involving 
+                    <select>
+                        <option value="1" selected class="menu">anything</option>
+                        <option value="1">nut</option>
+                        <option value="2">salmonella</option>
+                        <option value="3">listeria</option>
+                        <option value="3">allergen</option>                        
+                    </select>
+                .</p>
                 <div class="nl-submit-wrap text-center">
-                    <button class="nl-submit Bam" type="submit" href="#/recalls/" id="submit" data-trigger="focus" data-toggle="popover" title="You're Safe!" data-content="No Results? Update the red fields above and try again.">
+                    <button class="nl-submit Bam" type="submit" href="#/recalls/" id="submit" data-trigger="focus" data-toggle="popover" title="You're Safe!" data-content="No Results? Update the <span style='color:#f00;'>red</span> fields above and try again.">
                         Show me the Recalls
                     </button>
                 </div>
@@ -37,19 +53,20 @@
                 setTimeout(function() {
                    $('#submit').popover({
                         "placement":'top',
+                       html: true
                     }).popover('show');
                   }, 750);
                 setTimeout(function() {
-                    $('[data-toggle="popover"]').popover('hide');
+                    $('#submit').popover('hide');
                   }, 3000);
             });
 
-            // Helpful Hint  
-            console.log("Leggooo");
+            $(this).scrollTop(0);            
 
             // Visible
             $('#hint').popover({
                 "placement":'bottom',
+                html: true
             }).popover('show');
 
             // Remove

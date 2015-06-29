@@ -2,8 +2,8 @@
  * Food Safety Recall
  * Powered by IBA
  * http://www.ibacorp.us
- * Version 1.1
- * Last Modified: 2015-06-25
+ * Version 1.2
+ * Last Modified: 2015-06-29
  *
  *
  * Color Palette
@@ -11,8 +11,6 @@
  * Blue: #003366;
  * Light Gray: #dddddd;
 -------------------------------------------------- */
-
-@import url(http://fonts.googleapis.com/css?family=Open+Sans);
 
 html {
     position: relative;
@@ -23,6 +21,34 @@ body {
     padding-top:50px;
     margin-bottom: 180px;
 }
+
+
+/* ------------ */
+/* Results Page */
+/* ------------ */
+    B {
+        background-color: #FFFF00
+    }
+
+    .featurette-divider {
+        border-top: 1px solid #ff0000;
+        width: 100%;
+        border-width: 100%;
+    }
+
+    .label {
+        text-align: left;
+        font-size: 1.25em;
+        color: #003366;
+        font-weight: bold;
+    }
+
+    .text {
+        /*#676767*/
+        color: #194775;
+    }
+
+/* End of Results */
 
 .logo {
     width: 12.5%;
@@ -67,6 +93,9 @@ body {
     color: #ddd;
 }
 
+.navbar-inverse .navbar-brand,
+.navbar-inverse .navbar-nav>li>a { color: #ddd; }
+
 .navbar-inverse .navbar-brand, .navbar-inverse .navbar-nav>li>a,  {
     color: red;
     text-shadow: none;
@@ -88,12 +117,22 @@ body {
     float: right;
 }
 
+/* US Map Overrides */
 #vmap {
     width; 800px;
     height: 600px;
     margin: 0 auto;
     margin-bottom: 4em;
 }
+
+.jqvmap-zoomin, .jqvmap-zoomout {
+    background: #003366;
+    color: #fff;
+    width: 20px;
+    height: 20px;
+}
+
+.jqvmap-zoomout { top: 40px; line-height: 12.5px;}
 
 /* Form override */
 .nl-form { margin-top: 1em; }
@@ -107,12 +146,14 @@ body {
 	background: rgba(255,0,0,0.7);
 }
 .nl-submit-wrap { margin-bottom: 2em; }
+
 /* results override */
 .sep { margin-bottom: .3em; border-bottom: 1px solid #036; }
 .liResults { margin-bottom: 2em; border-bottom: 2px dotted #f00; }
 .classTitle { font-weight: bold; color: #f00; }
 
 /* IBA footer code */
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
 
 footer {
     position: absolute;
@@ -159,15 +200,20 @@ footer .tagcloud a:hover,
     font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-.iba:hover { color: #fff; font-weight:normal; text-decoration:none;}
+.iba:hover { 
+    color: #fff; 
+    font-weight:normal; 
+    text-decoration:none;
+}
+
 .social-icons li {
     display: block;
     float: left;
     padding: 0 5px;
 }
-[class*="span"].v_first {
-    margin-left:0;
-}
+
+[class*="span"].v_first { margin-left:0; }
+
 .v_first { clear: both; }
 
 .curPoint { cursor:pointer;}
