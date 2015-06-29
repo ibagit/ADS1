@@ -105,7 +105,7 @@ hooks:
      - location: deploy_scripts/bowerpkgs.sh 
       # timeout:
       # runas:
-     - location: deploy_scripts/test.sh
+     #- location: deploy_scripts/test.sh
 
 # During the ApplicationInstall deployment lifecycle event, run the commands 
 #   in the script specified in "location".
