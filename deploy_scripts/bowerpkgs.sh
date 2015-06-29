@@ -5,5 +5,5 @@ pushd .
 apt-get update
 export PATH=/var/ibagit/ADS1/node_modules/bower/bin:$PATH
 cd /var/ibagit/ADS1
-sudo bower install angular#1.3 --allow-root
+bower install angular#1.3.x
 popd
