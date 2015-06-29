@@ -1,4 +1,4 @@
-# This is an appspec.yml template file for use with AWS CodeDeploy.
+# This is an appspec.yml template file for use with AWS CodeDeploy
 # The lines in this template starting with the hashtag symbol are 
 #  instructional comments and can be safely left in the file or 
 #   ignored.
