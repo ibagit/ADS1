@@ -8,18 +8,23 @@
 
 
             <form id="nl-form" class="nl-form" ng-submit="processForm()">
-                <p id="0">I am planning on buying some
+                <div class="formy">
+                    I am planning on buying some
                     <input class="menu" type="text" value="" 
                         placeholder="{{(food) ? food : 'food'}}"
                         data-subline="For example: <em>Cheese</em> or <em>Yogurt</em" 
                         data-aboveline="Search Multiple: <em>Steak  and  Salsa</em>"
-                    /> <p id='1'> from
+                    />
+
+                    from
                     <input class="menu" type="text" value="" 
                         placeholder="{{(brand) ? brand : 'brand'}}" 
                         data-subline="Examples: <em>Kraft</em> or <em>Del Monte</em>"
                         data-aboveline="Search Multiple: <em>Dannon  and  Goya</em>"
                     /> in 
-                    <span class="state"><a href="#/force/">{{state}}</a></span> and worried about
+                    <span class="state"><a href="#/force/">{{state}}</a></span>
+
+                    and worried about
                     <select>
                         <option value="1" selected class="menu">all</option>
                         <option value="1">Severe</option>
@@ -33,8 +38,8 @@
                         <option value="2">salmonella</option>
                         <option value="3">listeria</option>
                         <option value="3">allergen</option>                        
-                    </select>
-                .</p>
+                    </select>.
+                </div>
                 <div class="nl-submit-wrap text-center">
                     <button class="nl-submit Bam" type="submit" href="#/recalls/" id="submit" data-trigger="focus" data-toggle="popover" title="You're Safe!" data-content="No Results? Update the <span style='color:#f00;'>red</span> fields above and try again.">
                         Show me the Recalls
