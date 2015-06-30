@@ -34,6 +34,10 @@ rdControllers.controller('mapCtrl', ['$scope', 'Map', function($scope, Map) {
     function error(msg) {
         var s = document.querySelector('#status');
         console.log("Could not gain access to User Location");
+
+            // End Loading animation and render the page 
+            var body = angular.element(document.querySelector("body"));
+            body.addClass('loaded');
     }
 
     // Covert Lat & Long coordinates into State            
@@ -50,6 +54,10 @@ rdControllers.controller('mapCtrl', ['$scope', 'Map', function($scope, Map) {
                 	address = results[0].formatted_address;
                 	code = states[state];
                     window.location = '/#/form/'+state + '/' + code;
+
+                    // End Loading animation and render the page 
+                    var body = angular.element(document.querySelector("body"));
+                    body.addClass('loaded');
                 } else {
                     alert('No results found');
                 }
