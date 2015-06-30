@@ -67,7 +67,7 @@ rdControllers.controller('mapCtrl', ['$scope', 'Map', '$sessionStorage', functio
     // Initiate process of receiving user location
     if (navigator.geolocation) {
         console.log("Getting Location.");
-        navigator.geolocation.getCurrentPosition(success, error, {timeout:3000});
+        navigator.geolocation.getCurrentPosition(success, error);
         console.log("Location got");
 
         // FailSafe for IE Firefox
@@ -75,7 +75,7 @@ rdControllers.controller('mapCtrl', ['$scope', 'Map', '$sessionStorage', functio
             console.log("Moving along");
             var body = angular.element(document.querySelector("body"));
             body.addClass('loaded');           
-        }, 3000);
+        }, 4500);
     } else {
         error('not supported');
     }
