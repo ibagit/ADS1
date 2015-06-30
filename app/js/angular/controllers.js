@@ -155,10 +155,10 @@ rdControllers.controller('formCtrl', ['$scope', '$sessionStorage', '$routeParams
                 "placement":'bottom',
                 html: true
             }).popover('show');
-        }, 500);
+        }, 250);
         setTimeout(function() {
             button.popover('hide');
-        }, 3000);
+        }, 2500);
     }
 
     // PAGE READY
