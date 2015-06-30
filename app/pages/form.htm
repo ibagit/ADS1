@@ -47,20 +47,10 @@
     <script src="js/form/nlform.js"></script>
     <script>
         var nlform = new NLForm(document.getElementById('nl-form'));
+
+        // Reset to top of page?
         $(document).ready(function(){
-            // Reset to top of page?
-            $(this).scrollTop(0);            
-
-            // Visible
-            $('#hint').popover({
-                "placement":'bottom',
-                html: true
-            }).popover('show');
-
-            // Remove
-            setTimeout(function() {
-                $('#hint').popover().popover('hide');
-            }, 2000);            
+            $(this).scrollTop(0);                
         });
     </script>
 </div>

@@ -142,15 +142,32 @@ rdControllers.controller('formCtrl', ['$scope', '$sessionStorage', '$routeParams
     if (!Validation.isEmpty(previousParams)) {
         $scope.food = (previousParams['product_description'] ? previousParams['product_description'].join(' and ') : 'food');
         $scope.brand = (previousParams['recalling_firm'] ? previousParams['recalling_firm'].join(' and ') : 'brand');
-    }
+    }  
 
     // Initialize text -> classifications
     var classMap = ClassMap.getData();
+
+    // Helpful Tooltip displays only if not already seen
+    if (!$sessionStorage.seen) {
+        var button = angular.element(document.querySelector("#hint"));
+        setTimeout(function() {
+            button.popover({
+                "placement":'bottom',
+                html: true
+            }).popover('show');
+        }, 500);
+        setTimeout(function() {
+            button.popover('hide');
+        }, 3000);
+    }
 
     // PAGE READY
 
     // process the form
     $scope.processForm = function() {
+        // User has figured it out
+        $sessionStorage.seen = true;
+
         // Find the Form elements
         var parms = {};
         var e = angular.element(document.querySelectorAll(".nl-field-toggle"));
@@ -174,6 +191,7 @@ rdControllers.controller('formCtrl', ['$scope', '$sessionStorage', '$routeParams
         .success(function(results) {
             var data = JSON.parse(results);
             
+            // No Results
             if ('error' in data) {
                 // PopOver
                 var button = angular.element(document.querySelector(".Bam"));
