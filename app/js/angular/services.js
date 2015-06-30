@@ -82,8 +82,6 @@ rdServices.factory('Browser', function($resource){
           			browserName = navigator.appName;
 				}
 			}
-			browserName = 'Safari';
-	        console.log(browserName);
 	        return browserName === 'Safari';
 	    }
 	};
