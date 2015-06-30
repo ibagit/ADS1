@@ -79,6 +79,7 @@ var highlight= function(data, parameters) {
         if (key === 'classification') continue;
         for (var i =0; i<parameters[key].length; i++) {
             var string = parameters[key][i].toLowerCase();
+            if (string.length < 3) continue;
             for (var j=0; j<data.length; j++) {
                 var text = data[j][key];
                 var index = -1;
@@ -115,7 +116,7 @@ app.post('/foodQuery', function(req, res) {
 
     // Build QueryString
     for (var key in queryObj['params'])
-        queryString += '+AND+' + key + ':'+ "(" + queryObj['params'][key].join("\"+\"") + ")";
+        queryString += '+AND+' + key + ':'+ "(" + queryObj['params'][key].join("+") + ")";
 
     // Logging
     console.log('QueryString: ' +queryString);
@@ -130,9 +131,12 @@ app.post('/foodQuery', function(req, res) {
             var data = JSON.parse(body);
 
             // Highlight matched terms
+            console.log("Highlighting...");
             highlight(data['results'], queryObj['params']);
 
+            console.log("Returning the response...");
             res.json(JSON.stringify(data));
+            console.log("Returned");
         } else {
             res.json(body);
             console.log('QueryString: ' + queryString);            
@@ -191,9 +195,9 @@ module.exports = app;
 var httpServer = http.createServer(app);
 //var httpsServer = https.createServer(credentials, app);
 
-//httpServer.listen(5001);
+httpServer.listen(5001);
 //httpServer.listen(80);
 //httpsServer.listen(5002);
-httpServer.listen(80);
-//console.log("App listening on port 5000(http) and 5001(https)");
-console.log("App listening on port 80(http)");
+//httpServer.listen(80);
+console.log("App listening on port 5000(http) and 5001(https)");
+//console.log("App listening on port 80(http)");
