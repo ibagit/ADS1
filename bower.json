@@ -14,7 +14,8 @@
     "angular-resource": "1.3.x",
     "angular-animate": "1.3.x",
     "angular-sanitize": "*.*.*",
-    "ngInfiniteScroll": "1.x.x"
+    "ngInfiniteScroll": "1.x.x",
+    "ngstorage": "*.*.*"
   },
   "resolutions": {
     "angular": "~1.3.x"

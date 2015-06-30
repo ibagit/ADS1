@@ -4,20 +4,6 @@
 
 var rdServices = angular.module('rdServices', ['ngResource']);
 
-// For passing data between controllers
-rdServices.factory('Storage', function($resource){
-    var recalls = {};
-
-    return {
-        getData: function (key) {
-            return recalls[key];
-        },
-        setData: function(key, value) {
-            recalls[key] = value;
-        }
-    };
-});
-
 // For checking if object is empty
 rdServices.factory('Validation', function($resource){
     return {

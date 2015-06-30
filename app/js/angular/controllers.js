@@ -7,14 +7,17 @@ var rdControllers = angular.module('rdControllers', []);
 // ------------------------------
 // ----- Temp Controller --------
 // ------------------------------
-rdControllers.controller('tempCtrl', ['$scope', function($scope) {
+rdControllers.controller('tempCtrl', ['$scope', '$sessionStorage', function($scope, $sessionStorage) {
     console.log("Temp Controller!");
+
+    // Clear local Storage
+    $sessionStorage.$reset();
 }]);
 
 // ------------------------------
 // ------ Map Controller --------
 // ------------------------------
-rdControllers.controller('mapCtrl', ['$scope', 'Map', function($scope, Map) {
+rdControllers.controller('mapCtrl', ['$scope', 'Map', '$sessionStorage', function($scope, Map, $sessionStorage) {
     console.log("Map Controller!");
 
     // Initiate process of receiving user location
@@ -72,19 +75,16 @@ rdControllers.controller('mapCtrl', ['$scope', 'Map', function($scope, Map) {
 // ------------------------------
 // ----- Results Controller -----
 // ------------------------------
-rdControllers.controller('resultsCtrl', ['$scope', 'Storage', 'MonthMap', 'Validation', function($scope, Storage, MonthMap, Validation) {
+rdControllers.controller('resultsCtrl', ['$scope', '$sessionStorage', 'MonthMap', 'Validation', function($scope, $sessionStorage, MonthMap, Validation) {
     console.log("Results Controller!");
 
     // Grab Search Parameters
-    if (Storage.getData('classification')) $scope.classification = Storage.getData('classification')[0];
-    if (Storage.getData('recalling_firm')) $scope.recalling_firm = Storage.getData('recalling_firm').join(" and ");
-    if (Storage.getData('product_description')) $scope.product_description = Storage.getData('product_description').join(" and ");
+    if ($sessionStorage.classification) $scope.classification = $sessionStorage.classification[0];
+    if ($sessionStorage.recalling_firm) $scope.recalling_firm = $sessionStorage.recalling_firm.join(" and ");
+    if ($sessionStorage.product_description) $scope.product_description = $sessionStorage.product_description.join(" and ");
 
     // Grab results
-    $scope.totalRecalls = Storage.getData('results');
-
-    // If empty go to home page
-    if(Validation.isEmpty($scope.totalRecalls)) window.location = '/#/';
+    $scope.totalRecalls = $sessionStorage.results;
 
     // Initialize number -> month
     var monthMap = MonthMap.getData();
@@ -108,8 +108,8 @@ rdControllers.controller('resultsCtrl', ['$scope', 'Storage', 'MonthMap', 'Valid
     $scope.totalRecalls.forEach(prettify);
 
     // Bind Results to front-end HTML elements
-    $scope.state = Storage.getData('state');
-    $scope.quantity = Storage.getData('quantity');
+    $scope.state = $sessionStorage.state;
+    $scope.quantity = $sessionStorage.quantity;
     $scope.orderProp = 'report_date';
 
     // Infinite Scroll
@@ -126,11 +126,11 @@ rdControllers.controller('resultsCtrl', ['$scope', 'Storage', 'MonthMap', 'Valid
 // ------------------------------
 // ----- Form Controller --------
 // ------------------------------
-rdControllers.controller('formCtrl', ['$scope', '$routeParams', '$http', 'Storage', 'ClassMap', 'Validation', function($scope, $routeParams, $http, Storage, ClassMap, Validation) {
+rdControllers.controller('formCtrl', ['$scope', '$sessionStorage', '$routeParams', '$http', 'ClassMap', 'Validation', function($scope, $sessionStorage, $routeParams, $http, ClassMap, Validation) {
     $scope.recalls = "";                
     $scope.state = $routeParams.state;
     $scope.stateCode = $routeParams.stateCode;
-    var parms = {};
+    var previousParams = $sessionStorage.params;
     var dataMap = {0: 'food', 1: 'brand', 2: 'all', 3: 'anything'};
     var reference = {
         "food": "product_description",
@@ -139,12 +139,20 @@ rdControllers.controller('formCtrl', ['$scope', '$routeParams', '$http', 'Storag
         "anything": "reason_for_recall"
     };
 
+    if (!Validation.isEmpty(previousParams)) {
+        $scope.food = (previousParams['product_description'] ? previousParams['product_description'].join(' and ') : 'food');
+        $scope.brand = (previousParams['recalling_firm'] ? previousParams['recalling_firm'].join(' and ') : 'brand');
+    }
+
     // Initialize text -> classifications
     var classMap = ClassMap.getData();
+
+    // PAGE READY
 
     // process the form
     $scope.processForm = function() {
         // Find the Form elements
+        var parms = {};
         var e = angular.element(document.querySelectorAll(".nl-field-toggle"));
         var inputs = [e[0].text, e[1].text, e[2].text, e[3].text];
 
@@ -154,8 +162,9 @@ rdControllers.controller('formCtrl', ['$scope', '$routeParams', '$http', 'Storag
             }
         }
 
-        // Parse out Food input    
+        // Store Parameters   
         console.log(parms);
+        $sessionStorage.params = parms;
 
         $http.post('/foodQuery', { 
             params: parms,
@@ -172,17 +181,15 @@ rdControllers.controller('formCtrl', ['$scope', '$routeParams', '$http', 'Storag
 
             } else {                          
 
-                console.log(data['results']);
-
                 // Search Criteria
-                Storage.setData('state', $scope.state);
-                if ('classification' in parms) Storage.setData('classification', parms['classification']);                
-                if ('product_description' in parms) Storage.setData('product_description', parms['product_description']);
-                if ('recalling_firm' in parms) Storage.setData('recalling_firm', parms['recalling_firm']);
+                $sessionStorage.state = $scope.state;
+                if ('classification' in parms) $sessionStorage.classification = parms['classification'];                
+                if ('product_description' in parms) $sessionStorage.product_description = parms['product_description'];
+                if ('recalling_firm' in parms) $sessionStorage.recalling_firm = parms['recalling_firm'];
 
                 // Results
-                Storage.setData('results', data['results']);
-                Storage.setData('quantity', data['meta']['results']['total']);
+                $sessionStorage.results = data['results'];
+                $sessionStorage.quantity = data['meta']['results']['total'];
                 window.location = '/#/recalls/';
             }
         })

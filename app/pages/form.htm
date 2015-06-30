@@ -10,12 +10,12 @@
             <form id="nl-form" class="nl-form" ng-submit="processForm()">
                 <p>I am planning on buying some
                     <input class="menu" type="text" value="" 
-                        placeholder="food" 
+                        placeholder="{{(food) ? food : 'food'}}"
                         data-subline="For example: <em>Cheese</em> or <em>Yogurt</em" 
                         data-aboveline="Search Multiple: <em>Steak  and  Salsa</em>"
                     /> from
                     <input class="menu" type="text" value="" 
-                        placeholder="brand" 
+                        placeholder="{{(brand) ? brand : 'brand'}}" 
                         data-subline="Examples: <em>Kraft</em> or <em>Del Monte</em>"
                         data-aboveline="Search Multiple: <em>Dannon  and  Goya</em>"
                     /> in 
