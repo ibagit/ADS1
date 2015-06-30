@@ -9,35 +9,44 @@
 
             <form id="nl-form" class="nl-form" ng-submit="processForm()">
                 <div class="formy">
-                    <p id='0'> I am planning on buying some
-                    <input class="menu" type="text" value="" 
-                        placeholder="{{(food) ? food : 'food'}}"
-                        data-subline="For example: <em>Cheese</em> or <em>Yogurt</em" 
-                        data-aboveline="Search Multiple: <em>Steak  and  Salsa</em>"
-                    /> <p id='1'>
+                    I am planning on buying some
+                    <div id="food">
+                        <input class="menu" type="text" value="" 
+                            placeholder="{{(food) ? food : 'food'}}"
+                            data-subline="For example: <em>Cheese</em> or <em>Yogurt</em" 
+                            data-aboveline="Search Multiple: <em>Steak  and  Salsa</em>"
+                        />
+                    </div>
+
                     from
-                    <input class="menu" type="text" value="" 
-                        placeholder="{{(brand) ? brand : 'brand'}}" 
-                        data-subline="Examples: <em>Kraft</em> or <em>Del Monte</em>"
-                        data-aboveline="Search Multiple: <em>Dannon  and  Goya</em>"
-                    /> in 
+                    <div id="brand">
+                        <input class="menu" type="text" value="" 
+                            placeholder="{{(brand) ? brand : 'brand'}}" 
+                            data-subline="Examples: <em>Kraft</em> or <em>Del Monte</em>"
+                            data-aboveline="Search Multiple: <em>Dannon  and  Goya</em>"
+                        />
+                    </div> in 
                     <span class="state"><a href="#/force/">{{state}}</a></span>
 
                     and worried about
-                    <select>
-                        <option value="1" selected class="menu">all</option>
-                        <option value="1">Severe</option>
-                        <option value="2">Moderate</option>
-                        <option value="3">Minor</option>
-                    </select>
+                    <div id="classification">
+                        <select>
+                            <option value="1" selected class="menu">all</option>
+                            <option value="1">Severe</option>
+                            <option value="2">Moderate</option>
+                            <option value="3">Minor</option>
+                        </select>
+                    </div>
                    recalls involving 
-                    <select>
-                        <option value="1" selected class="menu">anything</option>
-                        <option value="1">nut</option>
-                        <option value="2">salmonella</option>
-                        <option value="3">listeria</option>
-                        <option value="3">allergen</option>                        
-                    </select>.
+                    <div id="allergy">
+                        <select>
+                            <option value="1" selected class="menu">anything</option>
+                            <option value="1">nut</option>
+                            <option value="2">salmonella</option>
+                            <option value="3">listeria</option>
+                            <option value="3">allergen</option>                        
+                        </select>.
+                    </div>
                 </div>
                 <div class="nl-submit-wrap text-center">
                     <button class="nl-submit Bam" type="submit" href="#/recalls/" id="submit" data-trigger="focus" data-toggle="popover" title="You're Safe!" data-content="No Results? Update the <span style='color:#f00;'>red</span> fields above and try again.">
@@ -54,26 +63,14 @@
 
         // Reset to top of page
         $(document).ready(function(){
+            $(".nl-field-toggle").find('li').find('button').on('click', function() {
+                console.log("Getting clicked");
+                $(this).attr("placeholder", "food");
+            });
 
             $('.nl-field-go').click(function(){
-                // Grab text and placeholder values type (Food || Brand)
-                var text = $(this).parent().parent().parent().find('a').text();
-                var placeholder = $(this).parent().find('input');
-                var type = ($(this).parent().parent().parent().parent().attr('id')) === '0' ? 'food' : 'brand';
-
-
-                // If a change has been made
-                if (placeholder.attr('placeholder') !== text) {
-                    if (type == placeholder.attr('placeholder')) {
-                        console.log("Initial search, not going to do anything");
-                    } else {
-                        console.log("This is a returned search");
-                        placeholder.attr('placeholder', type);
-                    }
-                } else {
-                    placeholder.attr('placeholder', type);
-                    var text = $(this).parent().parent().parent().find('a').text(type);
-                }
+                var text = ($(this).parent().parent().parent().parent().attr('id')) === '0' ? 'food' : 'brand';
+                $(this).parent().parent().parent().find('a').text(text);
             });
 
             $(this).scrollTop(0);                

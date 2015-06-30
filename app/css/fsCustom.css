@@ -154,6 +154,11 @@ body {
 .nl-submit-wrap { margin-bottom: 2em; }
 .nl-form .nl-field-go { overflow: hidden; }
 
+#food, 
+#brand,
+#classification,
+#allergy { display: inline-block; }
+
 /* results override */
 .sep { margin-bottom: .3em; border-bottom: 1px solid #036; }
 .liResults { margin-bottom: 2em; border-bottom: 2px dotted #f00; }
@@ -248,7 +253,7 @@ footer .tagcloud a:hover,
         
     }
     .footer-padd { padding: 5px 16px; }
-    .nl-form { font-size: 1.5em; }
+    .nl-form { font-size: 1.75em; }
     .nl-field ul {
         position: absolute;
         visibility: hidden;
@@ -267,6 +272,8 @@ footer .tagcloud a:hover,
         width: 80%;
         margin: 0 auto;
     }
+    #classification ul { left: -200%; }
+    #allergy ul { left: 0; }
     
 }
 @media (min-width: 768px) and (max-width: 991px) { 
