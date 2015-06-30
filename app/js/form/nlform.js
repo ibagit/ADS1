@@ -114,6 +114,38 @@
 			this.fld.appendChild( this.optionsList );
 			this.elOriginal.parentNode.insertBefore( this.fld, this.elOriginal );
 			this.elOriginal.style.display = 'none';
+
+			// ----------------------------- Second -------------------------------
+			// Input Wrapper
+			this.getinputWrapper = document.createElement( 'li' );
+			this.getinputWrapper.className = 'nl-ti-input';
+
+			// Input Submit
+			this.inputsubmit = document.createElement( 'button' );
+			this.inputsubmit.className = 'nl-field-go';
+			this.inputsubmit.innerHTML = 'Go';
+
+			// Input Wrapper
+			this.getinputWrapper.appendChild( this.getinput );
+			this.getinputWrapper.appendChild( this.inputsubmit );
+
+			// Example
+			this.example = document.createElement( 'li' );
+			this.example.className = 'nl-ti-example';
+			this.example.innerHTML = this.elOriginal.getAttribute( 'data-subline' );
+			this.example.innerHTML = this.elOriginal.getAttribute( 'data-aboveline' );
+
+			// Option List
+			this.optionsList.appendChild( this.getinputWrapper );
+			this.optionsList.appendChild( this.example );
+
+			// Field
+			this.fld.appendChild( this.toggle );
+			this.fld.appendChild( this.optionsList );
+
+			// Original
+			this.elOriginal.parentNode.insertBefore( this.fld, this.elOriginal );
+			this.elOriginal.style.display = 'none';
 		},
 		_initEvents : function() {
 			var self = this;

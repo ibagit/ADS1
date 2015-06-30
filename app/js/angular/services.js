@@ -4,17 +4,25 @@
 
 var rdServices = angular.module('rdServices', ['ngResource']);
 
-// For passing data between controllers
-rdServices.factory('Storage', function($resource){
-    var recalls = {};
-
+// For checking if object is empty
+rdServices.factory('Validation', function($resource){
     return {
-        getData: function (key) {
-            return recalls[key];
-        },
-        setData: function(key, value) {
-            recalls[key] = value;
-        }
+        isEmpty: function (obj) {
+          
+	        // null and undefined are "empty"
+	        if (obj == null) return true;
+
+	        // Assume if it has a length property with a non-zero value
+	        // that that property is correct.
+	        if (obj.length > 0)    return false;
+	        if (obj.length === 0)  return true;
+
+	        // Otherwise, does it have any properties of its own?
+	        for (var key in obj) {
+	            if (hasOwnProperty.call(obj, key)) return false;
+	        }
+	        return true;
+		}
     };
 });
 
@@ -94,9 +102,9 @@ rdServices.factory('Map', function($resource){
 // Mapping of classifications
 rdServices.factory('ClassMap', function($resource){
 	var classifications = {
-		"Severe": "Class I",
-		"Moderate": "Class II",
-		"Minor": "Class III"
+		"Severe": "\"Class I\"",
+		"Moderate": "\"Class II\"",
+		"Minor": "\"Class III\""
 	};
     return {
         getData: function () {

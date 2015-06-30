@@ -7,14 +7,17 @@ var rdControllers = angular.module('rdControllers', []);
 // ------------------------------
 // ----- Temp Controller --------
 // ------------------------------
-rdControllers.controller('tempCtrl', ['$scope', function($scope) {
+rdControllers.controller('tempCtrl', ['$scope', '$sessionStorage', function($scope, $sessionStorage) {
     console.log("Temp Controller!");
+
+    // Clear local Storage
+    $sessionStorage.$reset();
 }]);
 
 // ------------------------------
 // ------ Map Controller --------
 // ------------------------------
-rdControllers.controller('mapCtrl', ['$scope', 'Map', function($scope, Map) {
+rdControllers.controller('mapCtrl', ['$scope', 'Map', '$sessionStorage', function($scope, Map, $sessionStorage) {
     console.log("Map Controller!");
 
     // Initiate process of receiving user location
@@ -34,6 +37,10 @@ rdControllers.controller('mapCtrl', ['$scope', 'Map', function($scope, Map) {
     function error(msg) {
         var s = document.querySelector('#status');
         console.log("Could not gain access to User Location");
+
+            // End Loading animation and render the page 
+            var body = angular.element(document.querySelector("body"));
+            body.addClass('loaded');
     }
 
     // Covert Lat & Long coordinates into State            
@@ -50,6 +57,10 @@ rdControllers.controller('mapCtrl', ['$scope', 'Map', function($scope, Map) {
                 	address = results[0].formatted_address;
                 	code = states[state];
                     window.location = '/#/form/'+state + '/' + code;
+
+                    // End Loading animation and render the page 
+                    var body = angular.element(document.querySelector("body"));
+                    body.addClass('loaded');
                 } else {
                     alert('No results found');
                 }
@@ -64,46 +75,41 @@ rdControllers.controller('mapCtrl', ['$scope', 'Map', function($scope, Map) {
 // ------------------------------
 // ----- Results Controller -----
 // ------------------------------
-rdControllers.controller('resultsCtrl', ['$scope', '$sce', 'Storage', 'MonthMap', function($scope, $sce, Storage, MonthMap) {
+rdControllers.controller('resultsCtrl', ['$scope', '$sessionStorage', 'MonthMap', 'Validation', function($scope, $sessionStorage, MonthMap, Validation) {
     console.log("Results Controller!");
+
+    // Grab Search Parameters
+    if ($sessionStorage.classification) $scope.classification = $sessionStorage.classification[0];
+    if ($sessionStorage.recalling_firm) $scope.recalling_firm = $sessionStorage.recalling_firm.join(" and ");
+    if ($sessionStorage.product_description) $scope.product_description = $sessionStorage.product_description.join(" and ");
+
+    // Grab results
+    $scope.totalRecalls = $sessionStorage.results;
 
     // Initialize number -> month
     var monthMap = MonthMap.getData();
 
-    // Convert UTC dates to User-Friendly one
-    var prettyDates = function (data) {
-        // Initialize out of the for loop
-        var date="";
-        var newDate="";
-        for(var i=0; i<data.length; i++) {
-            date = data[i]['report_date'];
-            newDate = monthMap[date.substring(4,6)] + " " + date.substring(6) + ", " + date.substring(0,4);
-            data[i]['report_date']= newDate;
-        }
-        return data;
+    // Format Output
+    function prettify(element, index, array) {
+        // Make Date pretty
+        var date = element['report_date'];
+        date = monthMap[date.substring(4,6)] + " " + date.substring(6) + ", " + date.substring(0,4);
+        element['report_date']= date;
     }
-
-    // Grab results
-    $scope.totalRecalls = Storage.getData('results');
 
     // Sort by date
     $scope.totalRecalls.sort(function(a, b) {
-        if (a.report_date > b.report_date) {
-            return -1;
-        }
-        if (a.report_date < b.report_date) {
-            return 1;
-        }
-        // a must be equal to b
+        if (a.report_date > b.report_date) return -1;
+        if (a.report_date < b.report_date) return 1;
         return 0;        
     });
 
     // Convert UTC dates to User-Friendly one
-    $scope.totalRecalls = prettyDates($scope.totalRecalls);
+    $scope.totalRecalls.forEach(prettify);
 
     // Bind Results to front-end HTML elements
-    $scope.state = Storage.getData('state');
-    $scope.quantity = Storage.getData('quantity');
+    $scope.state = $sessionStorage.state;
+    $scope.quantity = $sessionStorage.quantity;
     $scope.orderProp = 'report_date';
 
     // Infinite Scroll
@@ -120,63 +126,62 @@ rdControllers.controller('resultsCtrl', ['$scope', '$sce', 'Storage', 'MonthMap'
 // ------------------------------
 // ----- Form Controller --------
 // ------------------------------
-rdControllers.controller('formCtrl', ['$scope', '$routeParams', '$http', 'Storage', 'ClassMap', function($scope, $routeParams, $http, Storage, ClassMap) {
+rdControllers.controller('formCtrl', ['$scope', '$sessionStorage', '$routeParams', '$http', 'ClassMap', 'Validation', function($scope, $sessionStorage, $routeParams, $http, ClassMap, Validation) {
     $scope.recalls = "";                
     $scope.state = $routeParams.state;
     $scope.stateCode = $routeParams.stateCode;
-    var parms = {};
-    var dataMap = {0: 'food', 1: 'brand', 2: 'all'};
+    var previousParams = $sessionStorage.params;
+    var dataMap = {0: 'food', 1: 'brand', 2: 'all', 3: 'anything'};
     var reference = {
         "food": "product_description",
         "brand": "recalling_firm",
-        "all": "classification"
+        "all": "classification",
+        "anything": "reason_for_recall"
     };
+
+    if (!Validation.isEmpty(previousParams)) {
+        $scope.food = (previousParams['product_description'] ? previousParams['product_description'].join(' and ') : 'food');
+        $scope.brand = (previousParams['recalling_firm'] ? previousParams['recalling_firm'].join(' and ') : 'brand');
+    }  
 
     // Initialize text -> classifications
     var classMap = ClassMap.getData();
 
-    // Highlight Search Keywords
-    var highlight = function(parameters, data) {
-        if ('classification' in parameters) {
-            for(var i=0; i<data['results'].length; i++) {
-                var recall = data['results'][i];
-                recall['classification'] = '<b>'+recall['classification'] + '</b>';
-            }
-        }
-        return data;
+    // Helpful Tooltip displays only if not already seen
+    if (!$sessionStorage.seen) {
+        var button = angular.element(document.querySelector("#hint"));
+        setTimeout(function() {
+            button.popover({
+                "placement":'bottom',
+                html: true
+            }).popover('show');
+        }, 250);
+        setTimeout(function() {
+            button.popover('hide');
+        }, 2500);
     }
 
-    // Check for Empty Object
-    function isEmpty(obj) {
-
-        // null and undefined are "empty"
-        if (obj == null) return true;
-
-        // Assume if it has a length property with a non-zero value
-        // that that property is correct.
-        if (obj.length > 0)    return false;
-        if (obj.length === 0)  return true;
-
-        // Otherwise, does it have any properties of its own?
-        for (var key in obj) {
-            if (hasOwnProperty.call(obj, key)) return false;
-        }
-
-        return true;
-    }
-
+    // PAGE READY
 
     // process the form
     $scope.processForm = function() {
+        // User has figured it out
+        $sessionStorage.seen = true;
+
         // Find the Form elements
+        var parms = {};
         var e = angular.element(document.querySelectorAll(".nl-field-toggle"));
-        var inputs = [e[0].text, e[1].text, e[2].text];
+        var inputs = [e[0].text, e[1].text, e[2].text, e[3].text];
 
         for (var i = 0; i<inputs.length; i++) {
             if (!(inputs[i] in reference)) {
-                parms[reference[dataMap[i]]] = (reference[dataMap[i]] == 'classification') ? classMap[inputs[i]] : inputs[i];
+                parms[reference[dataMap[i]]] = (reference[dataMap[i]] == 'classification') ? classMap[inputs[i]].split(" and ") : inputs[i].split(" and ");
             }
         }
+
+        // Store Parameters   
+        console.log(parms);
+        $sessionStorage.params = parms;
 
         $http.post('/foodQuery', { 
             params: parms,
@@ -186,25 +191,34 @@ rdControllers.controller('formCtrl', ['$scope', '$routeParams', '$http', 'Storag
         .success(function(results) {
             var data = JSON.parse(results);
             
+            // No Results
             if ('error' in data) {
                 // PopOver
                 var button = angular.element(document.querySelector(".Bam"));
-                button.triggerHandler("click");
+                button.popover({
+                    "placement":'top',
+                    html: true
+                }).popover('show');
+                setTimeout(function() {
+                    button.popover('hide');
+                }, 3000);
 
-            } else {
-            
-                // HighLight Results
-                //data = (isEmpty(parms)) ? data : highlight(parms, data);
+            } else {                          
 
-                Storage.setData('state', $scope.state);
-                Storage.setData('results', data['results']);
-                Storage.setData('quantity', data['meta']['results']['total']);
+                // Search Criteria
+                $sessionStorage.state = $scope.state;
+                if ('classification' in parms) $sessionStorage.classification = parms['classification'];                
+                if ('product_description' in parms) $sessionStorage.product_description = parms['product_description'];
+                if ('recalling_firm' in parms) $sessionStorage.recalling_firm = parms['recalling_firm'];
+
+                // Results
+                $sessionStorage.results = data['results'];
+                $sessionStorage.quantity = data['meta']['results']['total'];
                 window.location = '/#/recalls/';
             }
         })
         .error(function(data){
             console.log("Error making request: " + data);       
-            //window.location = '/#/recalls/';
         });
     };
 }]);

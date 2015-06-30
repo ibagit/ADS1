@@ -22,6 +22,34 @@ body {
     margin-bottom: 180px;
 }
 
+
+/* ------------ */
+/* Results Page */
+/* ------------ */
+    B {
+        background-color: #FFFF00
+    }
+
+    .featurette-divider {
+        border-top: 1px solid #ff0000;
+        width: 100%;
+        border-width: 100%;
+    }
+
+    .label {
+        text-align: left;
+        font-size: 1.25em;
+        color: #003366;
+        font-weight: bold;
+    }
+
+    .text {
+        /*#676767*/
+        color: #194775;
+    }
+
+/* End of Results */
+
 .logo {
     width: 12.5%;
     float: left;
