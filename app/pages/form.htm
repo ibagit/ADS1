@@ -8,12 +8,12 @@
 
 
             <form id="nl-form" class="nl-form" ng-submit="processForm()">
-                <p>I am planning on buying some
+                <p id="0">I am planning on buying some
                     <input class="menu" type="text" value="" 
                         placeholder="{{(food) ? food : 'food'}}"
                         data-subline="For example: <em>Cheese</em> or <em>Yogurt</em" 
                         data-aboveline="Search Multiple: <em>Steak  and  Salsa</em>"
-                    /> from
+                    /> <p id='1'> from
                     <input class="menu" type="text" value="" 
                         placeholder="{{(brand) ? brand : 'brand'}}" 
                         data-subline="Examples: <em>Kraft</em> or <em>Del Monte</em>"
@@ -48,8 +48,18 @@
     <script>
         var nlform = new NLForm(document.getElementById('nl-form'));
 
-        // Reset to top of page?
+        // Reset to top of page
         $(document).ready(function(){
+            $(".nl-field-toggle").find('li').find('button').on('click', function() {
+                console.log("Getting clicked");
+                $(this).attr("placeholder", "food");
+            });
+
+            $('.nl-field-go').click(function(){
+                var text = ($(this).parent().parent().parent().parent().attr('id')) === '0' ? 'food' : 'brand';
+                $(this).parent().parent().parent().find('a').text(text);
+            });
+
             $(this).scrollTop(0);                
         });
     </script>
