@@ -99,16 +99,16 @@ hooks:
 # During the AfterInstall deployment lifecycle event, run the commands 
 #   in the script specified in "location".
   AfterInstall:
-     - location: deploy_scripts/npmpkgs.sh    
+    - location: deploy_scripts/npmpkgs.sh    
        #timeout: 300 
      #  runas: root
-     - location: deploy_scripts/bowerpkgs.sh 
+    - location: deploy_scripts/bowerpkgs.sh 
       # timeout:
       # runas:
 # During the ApplicationInstall deployment lifecycle event, run the commands 
 #   in the script specified in "location".
- # ApplicationStart:
-  #  - location: deploy_scripts/npmstart.sh    
+  ApplicationStart:
+    - location: deploy_scripts/npmstart.sh    
    #   timeout: 60 
     #   runas: root
     # - location: 
