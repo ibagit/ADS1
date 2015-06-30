@@ -49,6 +49,7 @@ rdControllers.controller('mapCtrl', ['$scope', 'Map', '$sessionStorage', functio
 
     // Get Browser type
     function isSafari() {
+        console.log("Checking if Safari");
 
         // Detect Browser version
         var nVer = navigator.appVersion;
@@ -57,8 +58,6 @@ rdControllers.controller('mapCtrl', ['$scope', 'Map', '$sessionStorage', functio
         var fullVersion  = ''+parseFloat(navigator.appVersion); 
         var majorVersion = parseInt(navigator.appVersion,10);
         var nameOffset,verOffset,ix;
-
-        console.log("userAgent: " + navigator.userAgent);
 
         // In Opera 15+, the true version is after "OPR/" 
         if ((verOffset=nAgt.indexOf("OPR/"))!=-1) {
@@ -104,6 +103,7 @@ rdControllers.controller('mapCtrl', ['$scope', 'Map', '$sessionStorage', functio
           browserName = navigator.appName;
          }
         }
+        console.log(browserName);
         return browserName === 'Safari';
     }
 
@@ -124,22 +124,25 @@ rdControllers.controller('mapCtrl', ['$scope', 'Map', '$sessionStorage', functio
     }
 
     // Initiate process of receiving user location
-    if (isSafari()=='Safari') error('Safari problems');
-
-    if (navigator.geolocation) {
-        console.log("Getting Location.");
-
-        navigator.geolocation.getCurrentPosition(success, error);
-        console.log("Location got");
-
-        // FailSafe for IE Firefox
-        setTimeout(function(){
-            console.log("Moving along");
-            var body = angular.element(document.querySelector("body"));
-            body.addClass('loaded');           
-        }, 4500);
+    if (isSafari()) {
+        error('Safari problems');
     } else {
-        error('not supported');
+        // Ask for Location
+        if (navigator.geolocation) {
+            console.log("Getting Location.");
+
+            navigator.geolocation.getCurrentPosition(success, error);
+            console.log("Location got");
+
+            // FailSafe for IE Firefox
+            setTimeout(function(){
+                console.log("Moving along");
+                var body = angular.element(document.querySelector("body"));
+                body.addClass('loaded');           
+            }, 4500);
+        } else {
+            error('not supported');
+        }
     }
 }]);
 
