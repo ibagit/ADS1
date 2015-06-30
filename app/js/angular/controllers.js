@@ -20,32 +20,9 @@ rdControllers.controller('tempCtrl', ['$scope', '$sessionStorage', function($sco
 rdControllers.controller('mapCtrl', ['$scope', 'Map', '$sessionStorage', function($scope, Map, $sessionStorage) {
     console.log("Map Controller!");
 
-    // Initiate process of receiving user location
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(success, error);
-    } else {
-        error('not supported');
-    }
-
-    // Get User's Latitude & Longitude
-    function success(position) {
-        var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-        codeLatLng(latlng);
-    }
-
-    // Error Handler
-    function error(msg) {
-        var s = document.querySelector('#status');
-        console.log("Could not gain access to User Location");
-
-            // End Loading animation and render the page 
-            var body = angular.element(document.querySelector("body"));
-            body.addClass('loaded');
-    }
-
     // Covert Lat & Long coordinates into State            
     function codeLatLng(coordinate) {
-    	// Declarations
+        // Declarations
         var geocoder = new google.maps.Geocoder();
         var state = '', address = '', code = '';
         var states = Map.getData();
@@ -53,9 +30,9 @@ rdControllers.controller('mapCtrl', ['$scope', 'Map', '$sessionStorage', functio
         geocoder.geocode({'latLng': coordinate}, function(results, status) {
             if (status == google.maps.GeocoderStatus.OK) {
                 if (results[1]) {
-                	state = results[5].formatted_address.split(",")[0];
-                	address = results[0].formatted_address;
-                	code = states[state];
+                    state = results[5].formatted_address.split(",")[0];
+                    address = results[0].formatted_address;
+                    code = states[state];
                     window.location = '/#/form/'+state + '/' + code;
 
                     // End Loading animation and render the page 
@@ -69,8 +46,128 @@ rdControllers.controller('mapCtrl', ['$scope', 'Map', '$sessionStorage', functio
             }
         });
     }
+
+    // Get Browser type
+    function isSafari() {
+        console.log("Checking if Safari");
+
+        // Detect Browser version
+        var nVer = navigator.appVersion;
+        var nAgt = navigator.userAgent;
+        var browserName  = navigator.appName;
+        var fullVersion  = ''+parseFloat(navigator.appVersion); 
+        var majorVersion = parseInt(navigator.appVersion,10);
+        var nameOffset,verOffset,ix;
+
+        // In Opera 15+, the true version is after "OPR/" 
+        if ((verOffset=nAgt.indexOf("OPR/"))!=-1) {
+            browserName = "Opera";
+            fullVersion = nAgt.substring(verOffset+4);
+        }
+        // In older Opera, the true version is after "Opera" or after "Version"
+        else if ((verOffset=nAgt.indexOf("Opera"))!=-1) {
+         browserName = "Opera";
+         fullVersion = nAgt.substring(verOffset+6);
+         if ((verOffset=nAgt.indexOf("Version"))!=-1) 
+           fullVersion = nAgt.substring(verOffset+8);
+        }
+        // In MSIE, the true version is after "MSIE" in userAgent
+        else if ((verOffset=nAgt.indexOf("MSIE"))!=-1) {
+         browserName = "Microsoft Internet Explorer";
+         fullVersion = nAgt.substring(verOffset+5);
+        }
+        // In Chrome, the true version is after "Chrome" 
+        else if ((verOffset=nAgt.indexOf("Chrome"))!=-1) {
+         browserName = "Chrome";
+         fullVersion = nAgt.substring(verOffset+7);
+        }
+        // In Safari, the true version is after "Safari" or after "Version" 
+        else if ((verOffset=nAgt.indexOf("Safari"))!=-1) {
+         browserName = "Safari";
+         fullVersion = nAgt.substring(verOffset+7);
+         if ((verOffset=nAgt.indexOf("Version"))!=-1) 
+           fullVersion = nAgt.substring(verOffset+8);
+        }
+        // In Firefox, the true version is after "Firefox" 
+        else if ((verOffset=nAgt.indexOf("Firefox"))!=-1) {
+         browserName = "Firefox";
+         fullVersion = nAgt.substring(verOffset+8);
+        }
+        // In most other browsers, "name/version" is at the end of userAgent 
+        else if ( (nameOffset=nAgt.lastIndexOf(' ')+1) < 
+                  (verOffset=nAgt.lastIndexOf('/')) ) 
+        {
+         browserName = nAgt.substring(nameOffset,verOffset);
+         fullVersion = nAgt.substring(verOffset+1);
+         if (browserName.toLowerCase()==browserName.toUpperCase()) {
+          browserName = navigator.appName;
+         }
+        }
+        console.log(browserName);
+        return browserName === 'Safari';
+    }
+
+    // Get User's Latitude & Longitude
+    function success(position) {
+        console.log("Got Location!");
+        var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+        codeLatLng(latlng);
+    }
+
+    function error(msg) {
+        console.log("Could not gain access to User Location: " + msg);
+        var s = document.querySelector('#status');
+
+            // End Loading animation and render the page 
+            var body = angular.element(document.querySelector("body"));
+            body.addClass('loaded');
+    }
+
+    // Initiate process of receiving user location
+    if (isSafari()) {
+        error('Safari problems');
+    } else {
+        // Ask for Location
+        if (navigator.geolocation) {
+            console.log("Getting Location.");
+
+            navigator.geolocation.getCurrentPosition(success, error);
+            console.log("Location got");
+
+            // FailSafe for IE Firefox
+            setTimeout(function(){
+                console.log("Moving along");
+                var body = angular.element(document.querySelector("body"));
+                body.addClass('loaded');           
+            }, 4500);
+        } else {
+            error('not supported');
+        }
+    }
 }]);
 
+// Configure/customize these variables.
+function readMore() {
+    var showChar = 100; // How many characters are shown by default
+    var ellipsestext = "...";
+    var moretext = "Show more >";
+    var lesstext = "Show less";
+
+    document.querySelectorAll('.more').each(function() {
+        console.log("Sup?");
+        var content = $(this).html();
+
+        if(content.length > showChar) {
+
+            var c = content.substr(0, showChar);
+            var h = content.substr(showChar, content.length - showChar);
+
+            var html = c + '<span class="moreellipses">' + ellipsestext+ '&nbsp;</span><span class="morecontent"><span>' + h + '</span>&nbsp;&nbsp;<a href="" class="morelink">' + moretext + '</a></span>';
+
+            $(this).html(html);
+        }
+    });
+}
 
 // ------------------------------
 // ----- Results Controller -----
@@ -158,7 +255,7 @@ rdControllers.controller('formCtrl', ['$scope', '$sessionStorage', '$routeParams
         }, 250);
         setTimeout(function() {
             button.popover('hide');
-        }, 2500);
+        }, 5000);
     }
 
     // PAGE READY
