@@ -16,7 +16,7 @@ rdApp.config(function($routeProvider) {
     $routeProvider
         .when('/', {
             templateUrl : 'pages/default.htm',
-            controller  : 'mapCtrl',
+            controller  : 'tempCtrl',
             title: 'Food Safety Alert >> Home'
         })
         .when('/force', {
