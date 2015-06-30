@@ -48,19 +48,7 @@
     <script>
         var nlform = new NLForm(document.getElementById('nl-form'));
         $(document).ready(function(){
-            // No Results PopOver
-            $( "#submit" ).on( "click", function() {
-                setTimeout(function() {
-                   $('#submit').popover({
-                        "placement":'top',
-                       html: true
-                    }).popover('show');
-                  }, 750);
-                setTimeout(function() {
-                    $('#submit').popover('hide');
-                  }, 3000);
-            });
-
+            // Reset to top of page?
             $(this).scrollTop(0);            
 
             // Visible

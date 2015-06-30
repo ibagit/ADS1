@@ -177,7 +177,13 @@ rdControllers.controller('formCtrl', ['$scope', '$sessionStorage', '$routeParams
             if ('error' in data) {
                 // PopOver
                 var button = angular.element(document.querySelector(".Bam"));
-                button.triggerHandler("click");
+                button.popover({
+                    "placement":'top',
+                    html: true
+                }).popover('show');
+                setTimeout(function() {
+                    button.popover('hide');
+                }, 3000);
 
             } else {                          
 
