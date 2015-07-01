@@ -200,7 +200,6 @@ rdControllers.controller('formCtrl', ['$scope', '$sessionStorage', '$routeParams
         console.log(inputs);
         console.log("Building Parameter object");
         for (var i = 0; i<inputs.length; i++) {
-            console.log("For Loop: ");
             if (!(inputs[i] in reference)) {
                 console.log(inputs[i]);
                 parms[reference[dataMap[i]]] = (reference[dataMap[i]] == 'classification') ? classMap[inputs[i]].split(" and ") : inputs[i].split(" and ");
@@ -215,6 +214,7 @@ rdControllers.controller('formCtrl', ['$scope', '$sessionStorage', '$routeParams
         console.log(parms);
         $sessionStorage.params = parms;
 
+        console.log("Making request...");
         $http.post('/foodQuery', { 
             params: parms,
             'distribution_pattern': $scope.stateCode,
@@ -238,6 +238,7 @@ rdControllers.controller('formCtrl', ['$scope', '$sessionStorage', '$routeParams
                 }, 3000);
 
             } else {                          
+                console.log("Success!");
 
                 // Search Criteria
                 $sessionStorage.state = $scope.state;
