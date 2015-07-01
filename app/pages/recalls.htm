@@ -9,7 +9,7 @@
             </p>
             Search: <input ng-model="query">
             <div infinite-scroll='loadMore()' infinite-scroll-distance='0'>
-                <ul style="clear:both;padding-top:2em; list-style-type:none">
+                <ul class="results">
                     <li ng-repeat="recall in recalls | filter:query">
                        <div class="container">
                             <div class="row sep">
