@@ -27,7 +27,7 @@
 
 You can reference the docker file here:
 
-[DOCKER FILE](/Dockerfile)
+[DOCKER FILE](Dockerfile)
 
 ## Manual installation
 
