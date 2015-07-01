@@ -23,7 +23,11 @@
 * using function specific branches in Git..
 * unit testing
 
-[a link](https://github.com/ibagit/ADS1/tree/development/Dockerfile)
+## Docker installation:
+
+You can reference the docker file here:
+
+[DOCKER FILE](https://github.com/ibagit/ADS1/tree/development/Dockerfile)
 
 [a relative link](/folder/myrelativefile.md)
 
