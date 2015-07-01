@@ -100,6 +100,14 @@ rdControllers.controller('resultsCtrl', ['$scope', '$sessionStorage', 'MonthMap'
     var monthMap = MonthMap.getData();
 
     // Format Output
+    function prettify(element, index, array) {
+        // Make Date pretty
+        var date = element['report_date'];
+        date = monthMap[date.substring(4,6)] + " " + date.substring(6) + ", " + date.substring(0,4);
+        element['view_date']= date;
+    }
+
+    /*
     function prettify(recalls) {
         console.log("Prettying...");
         if (recalls[0]['report_date'].indexOf(',') !== -1) {
@@ -114,18 +122,21 @@ rdControllers.controller('resultsCtrl', ['$scope', '$sessionStorage', 'MonthMap'
             console.log("-----------");
             recalls[i]['report_date']= date;
         }
-    }
+    }*/
+
+
 
     // Sort by date
     $scope.totalRecalls.sort(function(a, b) {
+        console.log("Sorting....");
         if (a.report_date > b.report_date) return -1;
         if (a.report_date < b.report_date) return 1;
         return 0;        
     });
 
     // Convert UTC dates to User-Friendly one (IE doesn't support ForEach loops)
-    //$scope.totalRecalls.forEach(prettify);
-    prettify($scope.totalRecalls);   
+    $scope.totalRecalls.forEach(prettify);
+    //prettify($scope.totalRecalls);   
 
     // Bind Results to front-end HTML elements
     $scope.state = $sessionStorage.state;
