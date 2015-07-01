@@ -1,11 +1,11 @@
 #Installing FoodSafetyAlert
 
 ##install Node modules
-sudo apt-get install nodejs
+sudo apt-get install nodejs<br/>
 sudo apt-get install npm
 
 ##get source from github
-Clone the repository ( https://github.com/ibagit/ADS1/)
+Clone the repository ( https://github.com/ibagit/ADS1/)<br/>
 git clone https://github.com/ibagit/ADS1 --branch master --single-branch
 
 ##go to the ADS1 folder
