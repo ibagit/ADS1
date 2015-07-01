@@ -191,7 +191,7 @@ rdControllers.controller('formCtrl', ['$scope', '$sessionStorage', '$routeParams
         // Find the Form elements
         var parms = {};
         var e = angular.element(document.querySelectorAll(".nl-field-toggle"));
-        var inputs = [e[0].text, e[1].text, e[2].text, e[3].text];
+        var inputs = [e[0].textContent, e[1].textContent, e[2].textContent, e[3].textContent];
 
         console.log(e);
         console.log(e[0].text);
