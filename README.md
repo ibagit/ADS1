@@ -23,6 +23,10 @@
 * using function specific branches in Git..
 * unit testing
 
+[a link](https://github.com/ibagit/ADS1/tree/development/Dockerfile)
+
+[a relative link](/folder/myrelativefile.md)
+
 # Installtion steps below should be moved to another doc and referenced here
 #install NODE modules
 sudo apt-get install nodejs
