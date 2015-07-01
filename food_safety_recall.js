@@ -103,20 +103,22 @@ app.post('/foodQuery', function(req, res) {
     // Declarations
     var limit='100';
     var queryString = '';
-    var base = 'https://api.fda.gov/food/enforcement.json?'
+    var apiKey = 'B9T3uFvDs9jJdTxwJtamRfbOIj1iQnA41k0n91we'
+    var base = 'https://api.fda.gov/food/enforcement.json?api_key='
 
     // Parse Request parameters
     var queryObj = qs.parse(req.body);
 
     // Initialize the query
-    queryString = base + 'limit=' + limit + "&search=report_date=2015+AND+distribution_pattern:" + queryObj['distribution_pattern'] + "+AND+status:"+queryObj['status'];
+    // recalling_firm:("Whole+Foods"+"Goya")
+    queryString = base + apiKey + '&limit=' + limit + "&search=report_date=2015+AND+distribution_pattern:" + queryObj['distribution_pattern'] + "+AND+status:"+queryObj['status'];
 
     // Build QueryString
     for (var key in queryObj['params'])
         queryString += '+AND+' + key + ':'+ "(" + queryObj['params'][key].join("+") + ")";
 
     // Logging
-    console.log('QueryString: ' +queryString);
+    console.log('QueryString: ' + queryString);
 
     request(queryString, function (error, response, body) {
         if (!error && response.statusCode == 200) {

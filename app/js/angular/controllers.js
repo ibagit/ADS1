@@ -100,11 +100,13 @@ rdControllers.controller('resultsCtrl', ['$scope', '$sessionStorage', 'MonthMap'
     var monthMap = MonthMap.getData();
 
     // Format Output
-    function prettify(element, index, array) {
+    function prettify(recalls) {
         // Make Date pretty
-        var date = element['report_date'];
-        date = monthMap[date.substring(4,6)] + " " + date.substring(6) + ", " + date.substring(0,4);
-        element['report_date']= date;
+        for (var i =0; i<recalls.length; i++) {
+            var date = recalls[i]['report_date'];
+            date = monthMap[date.substring(4,6)] + " " + date.substring(6) + ", " + date.substring(0,4);
+            recalls[i]['report_date']= date;
+        }
     }
 
     // Sort by date
@@ -114,8 +116,9 @@ rdControllers.controller('resultsCtrl', ['$scope', '$sessionStorage', 'MonthMap'
         return 0;        
     });
 
-    // Convert UTC dates to User-Friendly one
-    $scope.totalRecalls.forEach(prettify);
+    // Convert UTC dates to User-Friendly one (IE doesn't support ForEach loops)
+    //$scope.totalRecalls.forEach(prettify);
+    prettify($scope.totalRecalls);   
 
     // Bind Results to front-end HTML elements
     $scope.state = $sessionStorage.state;
@@ -178,6 +181,13 @@ rdControllers.controller('formCtrl', ['$scope', '$sessionStorage', '$routeParams
         // User has figured it out
         $sessionStorage.seen = true;
 
+        /*
+        function joinPlus(element, index, array) {
+            console.log(element);
+            console.log(element.split(" ").join("+"));
+            return element.split(" ").join("+")
+        }*/
+
         // Find the Form elements
         var parms = {};
         var e = angular.element(document.querySelectorAll(".nl-field-toggle"));
@@ -188,6 +198,10 @@ rdControllers.controller('formCtrl', ['$scope', '$sessionStorage', '$routeParams
                 parms[reference[dataMap[i]]] = (reference[dataMap[i]] == 'classification') ? classMap[inputs[i]].split(" and ") : inputs[i].split(" and ");
             }
         }
+
+        // FOR EACH
+            // SPLIT ON SPACE
+                // JOIN WITH +
 
         // Store Parameters   
         console.log(parms);
