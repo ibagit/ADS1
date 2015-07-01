@@ -104,7 +104,10 @@ rdControllers.controller('resultsCtrl', ['$scope', '$sessionStorage', 'MonthMap'
         // Make Date pretty
         for (var i =0; i<recalls.length; i++) {
             var date = recalls[i]['report_date'];
+            console.log("Old Date: " + date);
             date = monthMap[date.substring(4,6)] + " " + date.substring(6) + ", " + date.substring(0,4);
+            console.log("New date: " + date);
+            console.log("-----------");
             recalls[i]['report_date']= date;
         }
     }
