@@ -29,7 +29,9 @@ You can reference the docker file here:
 
 [DOCKER FILE](https://github.com/ibagit/ADS1/tree/development/Dockerfile)
 
-[a relative link](/folder/myrelativefile.md)
+## Manual installation
+
+[IBA_FoodSafetyAlert_Manual_Install](/doc/test.txt)
 
 # Installtion steps below should be moved to another doc and referenced here
 #install NODE modules
