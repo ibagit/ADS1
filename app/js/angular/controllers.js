@@ -194,6 +194,9 @@ rdControllers.controller('formCtrl', ['$scope', '$sessionStorage', '$routeParams
         var inputs = [e[0].text, e[1].text, e[2].text, e[3].text];
 
         console.log(e);
+        console.log(e[0].text);
+        console.log(e[0].textContent);
+        console.log(e[0].html);
         console.log(inputs);
         console.log("Building Parameter object");
         for (var i = 0; i<inputs.length; i++) {
