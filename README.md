@@ -1,3 +1,29 @@
+# Food Safety Alert
+
+**Brief Intro**
+
+## Approach
+
+**Why Food Recall**
+
+* Did we use data to drive our decisions?
+* How did we use the data to drive our decisions?
+* Early in the project, spend time with current and prospective users of the service
+
+**Team Structure**
+
+**Agile Process**
+
+**What tech stack and why**
+
+**CI/CD**
+
+* How did we use CI/CD in our agile process
+* Tools and process
+* using function specific branches in Git..
+* unit testing
+
+# Installtion steps below should be moved to another doc and referenced here
 #install NODE modules
 sudo apt-get install nodejs
 sudo apt-get install npm
