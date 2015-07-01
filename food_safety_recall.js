@@ -113,9 +113,16 @@ app.post('/foodQuery', function(req, res) {
     // recalling_firm:("Whole+Foods"+"Goya")
     queryString = base + apiKey + '&limit=' + limit + "&search=report_date=2015+AND+distribution_pattern:" + queryObj['distribution_pattern'] + "+AND+status:"+queryObj['status'];
 
+    /*
+    function joinPlus(element, index, array) {
+        console.log(element);
+        console.log(element.split(" ").join("+"));
+        return element.split(" ").join("+")
+    }*/
+
     // Build QueryString
     for (var key in queryObj['params'])
-        queryString += '+AND+' + key + ':'+ "(" + queryObj['params'][key].join("+") + ")";
+        queryString += '+AND+' + key + ':'+ "(\"" + queryObj['params'][key].join("\"+\"") + "\")";
 
     // Logging
     console.log('QueryString: ' + queryString);
@@ -192,8 +199,8 @@ var httpServer = http.createServer(app);
 //var httpsServer = https.createServer(credentials, app);
 
 //httpServer.listen(5001);
-//httpServer.listen(80);
-//httpsServer.listen(5002);
 httpServer.listen(80);
+//httpsServer.listen(5002);
+//httpServer.listen(80);
 //console.log("App listening on port 5000(http) and 5001(https)");
 console.log("App listening on port 80(http)");
