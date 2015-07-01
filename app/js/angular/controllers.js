@@ -101,6 +101,10 @@ rdControllers.controller('resultsCtrl', ['$scope', '$sessionStorage', 'MonthMap'
 
     // Format Output
     function prettify(recalls) {
+        console.log("Prettying...");
+        if (recalls[0]['report_date'].indexOf(',') !== -1) {
+            return;
+        }
         // Make Date pretty
         for (var i =0; i<recalls.length; i++) {
             var date = recalls[i]['report_date'];
