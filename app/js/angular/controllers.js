@@ -109,7 +109,6 @@ rdControllers.controller('resultsCtrl', ['$scope', '$sessionStorage', 'MonthMap'
 
     // Sort by date
     $scope.totalRecalls.sort(function(a, b) {
-        console.log("Sorting....");
         if (a.report_date > b.report_date) return -1;
         if (a.report_date < b.report_date) return 1;
         return 0;        
@@ -189,15 +188,8 @@ rdControllers.controller('formCtrl', ['$scope', '$sessionStorage', '$routeParams
         var e = angular.element(document.querySelectorAll(".nl-field-toggle"));
         var inputs = [e[0].textContent, e[1].textContent, e[2].textContent, e[3].textContent];
 
-        console.log(e);
-        console.log(e[0].text);
-        console.log(e[0].textContent);
-        console.log(e[0].html);
-        console.log(inputs);
-        console.log("Building Parameter object");
         for (var i = 0; i<inputs.length; i++) {
             if (!(inputs[i] in reference)) {
-                console.log(inputs[i]);
                 parms[reference[dataMap[i]]] = (reference[dataMap[i]] == 'classification') ? classMap[inputs[i]].split(" and ") : inputs[i].split(" and ");
             }
         }
@@ -210,7 +202,6 @@ rdControllers.controller('formCtrl', ['$scope', '$sessionStorage', '$routeParams
         console.log(parms);
         $sessionStorage.params = parms;
 
-        console.log("Making request...");
         $http.post('/foodQuery', { 
             params: parms,
             'distribution_pattern': $scope.stateCode,
@@ -242,13 +233,9 @@ rdControllers.controller('formCtrl', ['$scope', '$sessionStorage', '$routeParams
                 if ('product_description' in parms) $sessionStorage.product_description = parms['product_description'];
                 if ('recalling_firm' in parms) $sessionStorage.recalling_firm = parms['recalling_firm'];
 
-                console.log("Set the search Criteria");
-
                 // Results
                 $sessionStorage.results = data['results'];
                 $sessionStorage.quantity = data['meta']['results']['total'];
-
-                console.log("Results done. Going to the recalls...");
                 window.location = '/#/recalls/';
             }
         })
