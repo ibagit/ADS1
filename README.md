@@ -25,11 +25,9 @@
 
 ## Docker installation:
 
-You can reference the docker file here:
-
-[DOCKER FILE](Dockerfile)
+Click [DOCKER FILE](Dockerfile) to install using Docker
 
 ## Manual installation
 
-[IBA_FoodSafetyAlert_Manual_Install](/doc/IBA_FoodSafetyAlert_Manual_Install.md)
+Click [IManual Install](doc/IBA_FoodSafetyAlert_Manual_Install.md) for manual installation
 
