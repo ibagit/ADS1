@@ -2,8 +2,8 @@
  * Food Safety Recall
  * Powered by IBA
  * http://www.ibacorp.us
- * Version 1.3
- * Last Modified: 2015-06-30
+ * Version 1.4
+ * Last Modified: 2015-07-01
  *
  *
  * Color Palette
@@ -22,6 +22,11 @@ body {
     margin-bottom: 180px;
 }
 
+
+/* 508 skip links */
+.skipnav { text-align: left; }
+.skipnav a { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+.skipnav a:focus, .skipnav a:active { position: static; left: 0; width: auto; height: auto; overflow: visible; text-decoration: underline; }
 
 /* ------------ */
 /* Results Page */
@@ -164,6 +169,7 @@ body {
 .liResults { margin-bottom: 2em; border-bottom: 2px dotted #f00; }
 .classTitle { font-weight: bold; color: #f00; }
 .results { clear:both; padding-top:2em; list-style-type:none; }
+.results li { margin-left: -2.5em; }
 
 /* IBA footer code */
 @import url(http://fonts.googleapis.com/css?family=Open+Sans);
@@ -231,6 +237,8 @@ footer .tagcloud a:hover,
 
 .curPoint { cursor:pointer;}
 
+
+
 /* screen specific queries */
 
 @media (max-width: 449px) {
@@ -259,24 +267,29 @@ footer .tagcloud a:hover,
         position: absolute;
         visibility: hidden;
         background: #76C3BD;
-        left: -120%;
+        left: 50%;
         top: 50%;
+        -ms-transform: translate(-50%,-50%) scale(0.9);
+        -o-transform: translate(-50%,-50%) scale(0.9);
+        -webkit-transform: translate(-50%,-50%) scale(0.9);
+        -moz-transform: translate(-50%,-50%) scale(0.9);
+        transform: translate(-50%,-50%) scale(0.9);
         opacity: 0;
-        -webkit-transform: translateY(-40%) scale(0.9);
-        -moz-transform: translateY(-40%) scale(0.9);
-        transform: translateY(-40%) scale(0.9);
         -webkit-transition: visibility 0s 0.3s, opacity 0.3s, -webkit-transform 0.3s;
         -moz-transition: visibility 0s 0.3s, opacity 0.3s, -moz-transform 0.3s;
         transition: visibility 0s 0.3s, opacity 0.3s, transform 0.3s;
+    }
+    .nl-field.nl-field-open ul {
+        -ms-transform: translate(-50%,-50%) scale(0.9);
+        -o-transform: translate(-50%,-50%) scale(0.9);
+        -webkit-transform: translate(-50%,-50%) scale(0.9);
+        -moz-transform: translate(-50%,-50%) scale(0.9);
+        transform: translate(-50%,-50%) scale(0.9);
     }
     .formy {
         width: 80%;
         margin: 0 auto;
     }
-    #classification ul { left: -200%; }
-    #allergy ul { left: 0; }
-    .results li { margin-left: -2.5em; }
-    
 }
 @media (min-width: 768px) and (max-width: 991px) { 
     #vmap { height: 540px; }
