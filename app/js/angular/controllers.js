@@ -193,6 +193,7 @@ rdControllers.controller('formCtrl', ['$scope', '$sessionStorage', '$routeParams
         var e = angular.element(document.querySelectorAll(".nl-field-toggle"));
         var inputs = [e[0].text, e[1].text, e[2].text, e[3].text];
 
+        console.log(inputs);
         console.log("Building Parameter object");
         for (var i = 0; i<inputs.length; i++) {
             console.log("For Loop: ");
