@@ -104,7 +104,10 @@ rdControllers.controller('resultsCtrl', ['$scope', '$sessionStorage', 'MonthMap'
         // Make Date pretty
         for (var i =0; i<recalls.length; i++) {
             var date = recalls[i]['report_date'];
+            console.log("Old Date: " + date);
             date = monthMap[date.substring(4,6)] + " " + date.substring(6) + ", " + date.substring(0,4);
+            console.log("New date: " + date);
+            console.log("-----------");
             recalls[i]['report_date']= date;
         }
     }
@@ -191,13 +194,15 @@ rdControllers.controller('formCtrl', ['$scope', '$sessionStorage', '$routeParams
         // Find the Form elements
         var parms = {};
         var e = angular.element(document.querySelectorAll(".nl-field-toggle"));
-        var inputs = [e[0].text, e[1].text, e[2].text, e[3].text];
+        var inputs = [e[0].textContent, e[1].textContent, e[2].textContent, e[3].textContent];
 
         console.log(e);
+        console.log(e[0].text);
+        console.log(e[0].textContent);
+        console.log(e[0].html);
         console.log(inputs);
         console.log("Building Parameter object");
         for (var i = 0; i<inputs.length; i++) {
-            console.log("For Loop: ");
             if (!(inputs[i] in reference)) {
                 console.log(inputs[i]);
                 parms[reference[dataMap[i]]] = (reference[dataMap[i]] == 'classification') ? classMap[inputs[i]].split(" and ") : inputs[i].split(" and ");
@@ -212,6 +217,7 @@ rdControllers.controller('formCtrl', ['$scope', '$sessionStorage', '$routeParams
         console.log(parms);
         $sessionStorage.params = parms;
 
+        console.log("Making request...");
         $http.post('/foodQuery', { 
             params: parms,
             'distribution_pattern': $scope.stateCode,
@@ -235,6 +241,7 @@ rdControllers.controller('formCtrl', ['$scope', '$sessionStorage', '$routeParams
                 }, 3000);
 
             } else {                          
+                console.log("Success!");
 
                 // Search Criteria
                 $sessionStorage.state = $scope.state;
@@ -242,9 +249,13 @@ rdControllers.controller('formCtrl', ['$scope', '$sessionStorage', '$routeParams
                 if ('product_description' in parms) $sessionStorage.product_description = parms['product_description'];
                 if ('recalling_firm' in parms) $sessionStorage.recalling_firm = parms['recalling_firm'];
 
+                console.log("Set the search Criteria");
+
                 // Results
                 $sessionStorage.results = data['results'];
                 $sessionStorage.quantity = data['meta']['results']['total'];
+
+                console.log("Results done. Going to the recalls...");
                 window.location = '/#/recalls/';
             }
         })
