@@ -164,6 +164,7 @@ body {
 .liResults { margin-bottom: 2em; border-bottom: 2px dotted #f00; }
 .classTitle { font-weight: bold; color: #f00; }
 .results { clear:both; padding-top:2em; list-style-type:none; }
+.results li { margin-left: -2.5em; }
 
 /* IBA footer code */
 @import url(http://fonts.googleapis.com/css?family=Open+Sans);
@@ -231,6 +232,8 @@ footer .tagcloud a:hover,
 
 .curPoint { cursor:pointer;}
 
+
+
 /* screen specific queries */
 
 @media (max-width: 449px) {
@@ -275,7 +278,6 @@ footer .tagcloud a:hover,
     }
     #classification ul { left: -200%; }
     #allergy ul { left: 0; }
-    .results li { margin-left: -2.5em; }
     
 }
 @media (min-width: 768px) and (max-width: 991px) { 
