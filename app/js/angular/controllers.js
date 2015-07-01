@@ -246,9 +246,13 @@ rdControllers.controller('formCtrl', ['$scope', '$sessionStorage', '$routeParams
                 if ('product_description' in parms) $sessionStorage.product_description = parms['product_description'];
                 if ('recalling_firm' in parms) $sessionStorage.recalling_firm = parms['recalling_firm'];
 
+                console.log("Set the search Criteria");
+
                 // Results
                 $sessionStorage.results = data['results'];
                 $sessionStorage.quantity = data['meta']['results']['total'];
+
+                console.log("Results done. Going to the recalls...");
                 window.location = '/#/recalls/';
             }
         })
