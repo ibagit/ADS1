@@ -1,4 +1,4 @@
-#Installing FoodSafetyAlert
+#Installing FoodSafetyAlert Manually
 
 ##install Node modules
 sudo apt-get install nodejs<br/>
