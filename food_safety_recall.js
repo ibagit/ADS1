@@ -77,20 +77,18 @@ var insert = function(start, length, str) {
 var highlight= function(data, parameters) {
     for (var key in parameters) {
         if (key === 'classification') continue;
+        if (key === 'recalling_firm') continue;
         for (var i =0; i<parameters[key].length; i++) {
             var string = parameters[key][i].toLowerCase();
             if (string.length < 3) continue;
             for (var j=0; j<data.length; j++) {
                 var text = data[j][key];
                 var index = -1;
-                while (true) {
+                index = text.toLowerCase().indexOf(string);
+
+                while (index!==-1) {
+                    text = insert(index, string.length, text);
                     index = text.toLowerCase().indexOf(string, index+4);
-                    if (index === -1) {
-                        break;
-                    }
-                    else {
-                        text = insert(index, string.length, text);
-                    }
                 }
                 data[j][key] = text;
                 data[j]['sort'] = parameters[key][i];
@@ -101,7 +99,6 @@ var highlight= function(data, parameters) {
 
 // JSON API
 app.post('/foodQuery', function(req, res) {
-    console.log("Posting UP");
 
     // Declarations
     var limit='100';
@@ -131,15 +128,12 @@ app.post('/foodQuery', function(req, res) {
             var data = JSON.parse(body);
 
             // Highlight matched terms
-            console.log("Highlighting...");
             highlight(data['results'], queryObj['params']);
 
-            console.log("Returning the response...");
+            // Return response
             res.json(JSON.stringify(data));
-            console.log("Returned");
         } else {
             res.json(body);
-            console.log('QueryString: ' + queryString);            
             console.log("Error: " + error);
         }
     });

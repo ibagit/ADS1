@@ -11,13 +11,12 @@
             <div infinite-scroll='loadMore()' infinite-scroll-distance='0'>
                 <ul style="clear:both;padding-top:2em; list-style-type:none">
                     <li ng-repeat="recall in recalls | filter:query">
+                        <a ng-click='showOrHide()' class="morelink" href='#/force'> Test</a> 
                        <div class="container">
                             <div class="row sep">
                                 <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 label">Product:</div>
-                                <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10 text" id="PD"
-                                    ng-bind-html="recall.product_description | unsafe">
-                                </div>
-
+                                <p  class="col-xs-12 col-sm-10 col-md-10 col-lg-10 text" id="PD"
+                                    dd-text-collapse dd-text-collapse-max-length="110" dd-text-collapse-text="{{recall.product_description}}"></p>
                             </div>
                             <div class="row sep">
                                 <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 label">Company:</div>
@@ -37,7 +36,7 @@
                             </div>
                             <div class="row sep">
                                 <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 label">Date:</div>
-                                <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10 more">{{recall.report_date}}</div>
+                                <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">{{recall.report_date}}</div>
                             </div>
                             <div class="row">
                                 <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 label">Reason:</div>

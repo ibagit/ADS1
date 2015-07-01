@@ -56,11 +56,10 @@ rdControllers.controller('mapCtrl', ['$scope', '$sessionStorage', 'Map', 'Browse
 
     function error(msg) {
         console.log("Could not gain access to User Location: " + msg);
-        var s = document.querySelector('#status');
 
-            // End Loading animation and render the page 
-            var body = angular.element(document.querySelector("body"));
-            body.addClass('loaded');
+        // End Loading animation and render the page 
+        var body = angular.element(document.querySelector("body"));
+        body.addClass('loaded');
     }
 
     // Initiate process of receiving user location
@@ -69,45 +68,19 @@ rdControllers.controller('mapCtrl', ['$scope', '$sessionStorage', 'Map', 'Browse
     } else {
         // Ask for Location
         if (navigator.geolocation) {
-            console.log("Getting Location.");
-
+            // Get user input (Allow || Do not allow)
             navigator.geolocation.getCurrentPosition(success, error);
-            console.log("Location got");
 
             // FailSafe for IE Firefox
             setTimeout(function(){
-                console.log("Moving along");
                 var body = angular.element(document.querySelector("body"));
                 body.addClass('loaded');           
             }, 4500);
         } else {
-            error('not supported');
+            error('Browser does not support geolocation');
         }
     }
 }]);
-
-// Configure/customize these variables.
-function readMore() {
-    var showChar = 100; // How many characters are shown by default
-    var ellipsestext = "...";
-    var moretext = "Show more >";
-    var lesstext = "Show less";
-
-    document.querySelectorAll('.more').each(function() {
-        console.log("Sup?");
-        var content = $(this).html();
-
-        if(content.length > showChar) {
-
-            var c = content.substr(0, showChar);
-            var h = content.substr(showChar, content.length - showChar);
-
-            var html = c + '<span class="moreellipses">' + ellipsestext+ '&nbsp;</span><span class="morecontent"><span>' + h + '</span>&nbsp;&nbsp;<a href="" class="morelink">' + moretext + '</a></span>';
-
-            $(this).html(html);
-        }
-    });
-}
 
 // ------------------------------
 // ----- Results Controller -----
@@ -230,6 +203,8 @@ rdControllers.controller('formCtrl', ['$scope', '$sessionStorage', '$routeParams
             
             // No Results
             if ('error' in data) {
+                console.log("ERROR");
+
                 // PopOver
                 var button = angular.element(document.querySelector(".Bam"));
                 button.popover({

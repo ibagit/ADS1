@@ -30,7 +30,6 @@ rdServices.factory('Validation', function($resource){
 rdServices.factory('Browser', function($resource){
     return {
     	isSafari: function() {
-	        console.log("Checking if Safari");
 
 	        // Detect Browser version
 	        var nVer = navigator.appVersion;
