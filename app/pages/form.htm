@@ -1,4 +1,4 @@
-<div class="container animated slideInRight">
+<div class="container">
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <h1 class="text-center" id="hint" data-toggle="popover" title="Need Help?" data-content="Change the <span style='color:#f00;'>red</span> words to suit your needs.">
@@ -58,11 +58,20 @@
     </div>
     <script src="js/form/nlform.js"></script>
     <script>
+        // Instantiate Form
         var nlform = new NLForm(document.getElementById('nl-form'));
-        $(this).scrollTop(0);        
 
         // Reset to top of page
-        $(document).ready(function(){        
+        $(this).scrollTop(0);        
+
+        $(document).ready(function(){
+
+            // On form submit
+            $('.Bam').click(function(){
+                console.log("CLICKS ON CLICKS");
+                $('body').removeClass("loaded");
+                $('#loader-wrapper').addClass('waiting');
+            })
 
             // Focus in input
             $('.nl-field-toggle').click(function(){

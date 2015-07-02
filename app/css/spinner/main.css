@@ -121,6 +121,11 @@ Enjoy responsibly!
         transform: translateX(0);  /* Firefox 16+, IE 10+, Opera */
     }
 
+    .waiting {
+        background: #000000;
+        opacity:0.9;
+    }
+
     #loader-wrapper .loader-section.section-left {
         left: 0;
     }

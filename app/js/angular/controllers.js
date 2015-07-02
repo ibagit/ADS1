@@ -104,7 +104,6 @@ rdControllers.controller('resultsCtrl', ['$scope', '$sessionStorage', 'MonthMap'
         // Make Date pretty
         var date = element['report_date'];
         date = monthMap[date.substring(4,6)] + " " + date.substring(6) + ", " + date.substring(0,4);
-        console.log(date);
         element['view_date']= date;
     }
 
@@ -188,13 +187,11 @@ rdControllers.controller('formCtrl', ['$scope', '$sessionStorage', '$routeParams
             }
         }
 
-        // FOR EACH
-            // SPLIT ON SPACE
-                // JOIN WITH +
-
         // Store Parameters   
         console.log(parms);
         $sessionStorage.params = parms;
+
+        // START LOADING ANIMATIONS
 
         $http.post('/foodQuery', { 
             params: parms,
@@ -207,6 +204,10 @@ rdControllers.controller('formCtrl', ['$scope', '$sessionStorage', '$routeParams
             // No Results
             if ('error' in data) {
                 console.log("ERROR");
+
+                // End Loading animation and render the page 
+                var body = angular.element(document.querySelector("body"));
+                body.addClass('loaded');
 
                 // PopOver
                 var button = angular.element(document.querySelector(".Bam"));
@@ -229,7 +230,12 @@ rdControllers.controller('formCtrl', ['$scope', '$sessionStorage', '$routeParams
 
                 // Results
                 $sessionStorage.results = data['results'];
-                $sessionStorage.quantity = data['meta']['results']['total'];
+                $sessionStorage.quantity = data['meta']['results']['total'];             
+
+                // End Loading animation and render the page 
+                var body = angular.element(document.querySelector("body"));
+                body.addClass('loaded');
+
                 window.location = '/#/recalls/';
             }
         })

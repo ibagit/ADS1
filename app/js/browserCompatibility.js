@@ -69,6 +69,4 @@ if (isNaN(majorVersion)) {
 
 if((browserName=='Netscape' &&fullVersion<10)|| (browserName=='Opera'&&fullVerson<15)|| (browserName=='Safari'&&fullVersion<4)|| (browserName=='Firefox'&&fullVersion<16)) {
 	window.alert("You are using "+ browserName+" version "+ fullVersion +", which is out of date and unsupported browser version.");
-} else {
-	console.log("Congratz your not a skinny fat beta boy, you are using " + browserName + " version " +fullVersion);
 }
