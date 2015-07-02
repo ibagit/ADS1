@@ -52,7 +52,7 @@ A CI/CD pipeline was established to allow the team to push changes from developm
 
 Angular.js was used for three primary reasons:
 
-**Dynamic Templating**	
+* **Dynamic Templating**	
 Rather then rendering an entire page for every URL a user visits, angular loads a template initially and dynamically swaps content in-and-out as the URL changes. 
 The user goes to the server for data, but only redraws the content that is necessary to be changed. This allows us to provide a smoother, quicker, and more interactive experience.
 
@@ -66,7 +66,7 @@ and services allow us to build, incorporate, and test  reusable components.
 
 While there are other front-end javascript frameworks that provide similar functionality, we decided to use Angular specifically due to its maturity and its large community ( Google ).
 
-* **Node.Js**
+**Node.Js**
 Given our application is a search application using an api on top on an object DB, we used Node.JS for its non-blocking, event-driven I/O capabilities to 
 remain lightweight and efficient with minimal process overhead.
 
