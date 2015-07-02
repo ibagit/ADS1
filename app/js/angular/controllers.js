@@ -63,8 +63,8 @@ rdControllers.controller('mapCtrl', ['$scope', '$sessionStorage', 'Map', 'Browse
     }
 
     // Initiate process of receiving user location
-    if (Browser.type()==='Safari') {
-        error('Safari problems');
+    if (Browser.type()==='Safari' || Browser.type()==='Netscape') {
+        error('Browser problems');
     } else {
         // Ask for Location
         if (navigator.geolocation) {
