@@ -245,10 +245,12 @@ rdControllers.controller('formCtrl', ['$scope', '$sessionStorage', '$routeParams
                 $sessionStorage.quantity = data['meta']['results']['total'];             
 
                 // End Loading animation and render the page 
-                console.log("Removing loading animation");
-                var body = angular.element(document.querySelector("body"));
-                body.addClass('loaded');
-                console.log("Removed!!!!");
+                if (Browser.type() !== 'Netscape') {
+                    console.log("Removing loading animation");
+                    var body = angular.element(document.querySelector("body"));
+                    body.addClass('loaded');
+                    console.log("Removed!!!!");
+                }
 
                 window.location = '/#/recalls/';
             }
