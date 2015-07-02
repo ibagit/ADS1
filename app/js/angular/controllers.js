@@ -252,10 +252,9 @@ rdControllers.controller('formCtrl', ['$scope', '$sessionStorage', '$routeParams
                     console.log("Removed!!!!");
                     window.location = '/#/recalls/';
                 } else {
+                    console.log("Window Time");
                     document.location = '/#/recalls/';
-                }
-
-                
+                }  
             }
         })
         .error(function(data){
