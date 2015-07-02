@@ -36,7 +36,7 @@ rdApp.config(function($routeProvider) {
             controller  : 'tempCtrl',
             title: 'Food Safety Alert >> About'
         })        
-        .when('/form/:state/:stateCode', {
+        .when('/form/:stateCode', {
             templateUrl : 'pages/form.htm',
             controller  : 'formCtrl',
             title: 'Food Safety Alert >> Search'

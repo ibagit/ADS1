@@ -11,6 +11,9 @@
 <script src="js/jquery.vmap.min.js"></script>
 <script src="js/jquery.vmap.usa.js"></script>
 <script>
+    // Reset to top of page
+    $(this).scrollTop(0);
+
     jQuery('#vmap').vectorMap({
         map: 'usa_en',
         backgroundColor: null,
@@ -22,7 +25,8 @@
         showTooltip: true,
         onRegionClick: function(element, code, region) {
           console.log(region + " selected....");
-          window.location = '/#/form/'+region + '/' + code;
+
+          window.location = '/#/form/' + code.toUpperCase();
         }
     });  
     $( ".jqvmap-label" ).remove();

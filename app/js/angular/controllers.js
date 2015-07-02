@@ -17,15 +17,18 @@ rdControllers.controller('tempCtrl', ['$scope', '$sessionStorage', function($sco
 // ------------------------------
 // ------ Map Controller --------
 // ------------------------------
-rdControllers.controller('mapCtrl', ['$scope', '$sessionStorage', 'Map', 'Browser', function($scope, $sessionStorage, Map, Browser) {
+rdControllers.controller('mapCtrl', ['$scope', '$sessionStorage', '$window', 'Map', 'Browser', function($scope, $sessionStorage, $window, Map, Browser) {
     console.log("Map Controller!");
+
+    // Reset page to Top
+    $window.pageYOffset
 
     // Covert Lat & Long coordinates into State            
     function codeLatLng(coordinate) {
         // Declarations
         var geocoder = new google.maps.Geocoder();
         var state = '', address = '', code = '';
-        var states = Map.getData();
+        var states = Map.getStateData();
 
         geocoder.geocode({'latLng': coordinate}, function(results, status) {
             if (status == google.maps.GeocoderStatus.OK) {
@@ -33,7 +36,7 @@ rdControllers.controller('mapCtrl', ['$scope', '$sessionStorage', 'Map', 'Browse
                     state = results[5].formatted_address.split(",")[0];
                     address = results[0].formatted_address;
                     code = states[state];
-                    window.location = '/#/form/'+state + '/' + code;
+                    window.location = '/#/form/' + code;
 
                     // End Loading animation and render the page 
                     var body = angular.element(document.querySelector("body"));
@@ -136,10 +139,12 @@ rdControllers.controller('resultsCtrl', ['$scope', '$sessionStorage', 'MonthMap'
 // ------------------------------
 // ----- Form Controller --------
 // ------------------------------
-rdControllers.controller('formCtrl', ['$scope', '$sessionStorage', '$routeParams', '$http', 'ClassMap', 'Validation', 'Browser', function($scope, $sessionStorage, $routeParams, $http, ClassMap, Validation, Browser) {
+rdControllers.controller('formCtrl', ['$scope', '$sessionStorage', '$routeParams', '$http', 'Map', 'ClassMap', 'Validation', 'Browser', function($scope, $sessionStorage, $routeParams, $http, Map, ClassMap, Validation, Browser) {
     $scope.recalls = "";                
-    $scope.state = $routeParams.state;
     $scope.stateCode = $routeParams.stateCode;
+    console.log($scope.stateCode);
+    $scope.state = Map.getCodeMap()[$routeParams.stateCode];
+    console.log($scope.state);
     var previousParams = $sessionStorage.params;
     var dataMap = {0: 'food', 1: 'brand', 2: 'all', 3: 'anything'};
     var reference = {
