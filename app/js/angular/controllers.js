@@ -244,6 +244,8 @@ rdControllers.controller('formCtrl', ['$scope', '$sessionStorage', '$routeParams
                 $sessionStorage.results = data['results'];
                 $sessionStorage.quantity = data['meta']['results']['total'];             
 
+
+                console.log("Forking on Browser type");
                 // End Loading animation and render the page 
                 if (Browser.type() !== 'Netscape') {
                     console.log("Removing loading animation");
