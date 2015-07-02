@@ -25,6 +25,7 @@ else if ((verOffset=nAgt.indexOf("Opera"))!=-1) {
 else if ((verOffset=nAgt.indexOf("MSIE"))!=-1) {
 	browserName = "Microsoft Internet Explorer";
 	fullVersion = nAgt.substring(verOffset+5);
+	console.log("WE GOT IE " + fullVersion);
 }
 
 // In Chrome, the true version is after "Chrome" 
