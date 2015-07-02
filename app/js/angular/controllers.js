@@ -11,7 +11,7 @@ rdControllers.controller('tempCtrl', ['$scope', '$sessionStorage', function($sco
     console.log("Temp Controller!");
 
     // Clear local Storage
-    $sessionStorage.$reset();
+    delete $sessionStorage.params;
 }]);
 
 // ------------------------------
@@ -206,8 +206,10 @@ rdControllers.controller('formCtrl', ['$scope', '$sessionStorage', '$routeParams
                 console.log("ERROR");
 
                 // End Loading animation and render the page 
+                console.log("Removing loading animation");                
                 var body = angular.element(document.querySelector("body"));
                 body.addClass('loaded');
+                console.log("Removed!!!!");                
 
                 // PopOver
                 var button = angular.element(document.querySelector(".Bam"));
@@ -222,7 +224,7 @@ rdControllers.controller('formCtrl', ['$scope', '$sessionStorage', '$routeParams
             } else {                          
                 console.log("Success!");
 
-                // Search Criteria
+                // Parameters Criteria
                 $sessionStorage.state = $scope.state;
                 if ('classification' in parms) $sessionStorage.classification = parms['classification'];                
                 if ('product_description' in parms) $sessionStorage.product_description = parms['product_description'];
@@ -233,8 +235,10 @@ rdControllers.controller('formCtrl', ['$scope', '$sessionStorage', '$routeParams
                 $sessionStorage.quantity = data['meta']['results']['total'];             
 
                 // End Loading animation and render the page 
+                console.log("Removing loading animation");
                 var body = angular.element(document.querySelector("body"));
                 body.addClass('loaded');
+                console.log("Removed!!!!");
 
                 window.location = '/#/recalls/';
             }
