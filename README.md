@@ -19,7 +19,7 @@ users of this service. The service must be
 
 With these five characteristics in mind the team quickly identified the components necessary for the food recall service prototype to fulfill these characteristics. These components are:
 
-**Map**
+**Map**<br/>
 We decided that location should be the most immediate dimension to search and devised two ways to retrieve this information from the user:
 
 * We are able to immediately load the user's current location into the search criteria so they never have to manually enter their location
@@ -27,14 +27,14 @@ We decided that location should be the most immediate dimension to search and de
 
 This compares to a traditional form that requires the user to manually enter their state through a dropdown menu requiring multiple clicks every time they visit a site.
 
-**Form**
+**Form**<br/>
 Traditional web forms are ugly and not intuitive. Users do not think in terms of query parameters, they think in terms of sentences. A typically user story for our application is someone who thinks: 
 
 “I am going to buy eggs and yogurt and want to know if there are recalls that affect my purchases.”
 
 Our form is designed to translate this search into English. Users are able to spell out, in English, the recalls they are worried about and our application will map this to a search query. 
 
-**Search Result**
+**Search Result**<br/>
 The recalls search result page is a list of the user's relevant recalls. The results are sorted by date, with the most recent at the top. A secondary search is provided 
 to 'drilldown' for even more details.
 
