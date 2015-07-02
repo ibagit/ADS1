@@ -250,9 +250,12 @@ rdControllers.controller('formCtrl', ['$scope', '$sessionStorage', '$routeParams
                     var body = angular.element(document.querySelector("body"));
                     body.addClass('loaded');
                     console.log("Removed!!!!");
+                    window.location = '/#/recalls/';
+                } else {
+                    document.location = '/#/recalls/';
                 }
 
-                window.location = '/#/recalls/';
+                
             }
         })
         .error(function(data){
