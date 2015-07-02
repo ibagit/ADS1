@@ -10,7 +10,8 @@ var rdApp = angular.module('rdApp', [
     'ngSanitize',
     'rdFilters',
     'ngStorage',
-    'rdDirectives'
+    'rdDirectives',
+    'ngAnimate'
 ]);
 
 rdApp.config(function($routeProvider) {
