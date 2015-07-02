@@ -104,6 +104,7 @@ rdControllers.controller('resultsCtrl', ['$scope', '$sessionStorage', 'MonthMap'
         // Make Date pretty
         var date = element['report_date'];
         date = monthMap[date.substring(4,6)] + " " + date.substring(6) + ", " + date.substring(0,4);
+        console.log(date);
         element['view_date']= date;
     }
 
@@ -175,13 +176,6 @@ rdControllers.controller('formCtrl', ['$scope', '$sessionStorage', '$routeParams
     $scope.processForm = function() {
         // User has figured it out
         $sessionStorage.seen = true;
-
-        /*
-        function joinPlus(element, index, array) {
-            console.log(element);
-            console.log(element.split(" ").join("+"));
-            return element.split(" ").join("+")
-        }*/
 
         // Find the Form elements
         var parms = {};

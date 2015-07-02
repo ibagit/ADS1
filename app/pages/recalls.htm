@@ -2,15 +2,9 @@
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <h1 class="text-center">{{quantity}} recalls in {{ state }}</h1>
-            <p>
-                <div class="pull-right">
-                    <a href="javascript:window.history.go(-1);">Go Back</a>
-                </div>
-            </p>
-            Search: <input ng-model="query">
             <div infinite-scroll='loadMore()' infinite-scroll-distance='0'>
                 <ul class="results">
-                    <li ng-repeat="recall in recalls | filter:query">
+                    <li ng-repeat="recall in recalls ">
                        <div class="container">
                             <div class="row sep">
                                 <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 label">Product:</div>
