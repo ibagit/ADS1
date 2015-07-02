@@ -256,6 +256,7 @@ rdControllers.controller('formCtrl', ['$scope', '$sessionStorage', '$routeParams
                 } else {
                     console.log("Window Time");
                     document.location = '/#/recalls/';
+                    console.log("Done");
                 }  
             }
         })
