@@ -56,17 +56,17 @@ Angular.js was used for three primary reasons:
 Rather then rendering an entire page for every URL a user visits, angular loads a template initially and dynamically swaps content in-and-out as the URL changes. 
 The user goes to the server for data, but only redraws the content that is necessary to be changed. This allows us to provide a smoother, quicker, and more interactive experience.
 
-**Data-Binding**
+* **Data-Binding**
 Angular's data-binding is an automatic way of updating the view whenever the model changes, as well as updating the model whenever the view changes. 
 This allows us to dynamically update and manipulate data on the page without have to reload the entire DOM.
 
-**Clean, Modular, Reusable architecture**
+* **Clean, Modular, Reusable architecture**
 Being a framework, Angular helped us to architect our code to stress modularity. This makes the code easier to maintain, extend, and test. Directives, controllers, 
 and services allow us to build, incorporate, and test  reusable components. 
 
 While there are other front-end javascript frameworks that provide similar functionality, we decided to use Angular specifically due to its maturity and its large community ( Google ).
 
-**Node.Js**
+* **Node.Js**
 Given our application is a search application using an api on top on an object DB, we used Node.JS for its non-blocking, event-driven I/O capabilities to 
 remain lightweight and efficient with minimal process overhead.
 
