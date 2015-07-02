@@ -2,20 +2,20 @@
 
 ## Approach
 
-IBA evaluated the three available openFDA datasets (food, drug and device) and determine food recall an ideal selection for this Alpha prototype for a number of reasons:
-    1.  The team needed to start quickly and was familiar with the food recall dataset
-    2.	We could easily find customers to test our food recall prototype
+IBA evaluated the three available openFDA datasets (food, drug and device) and determine food recall an ideal selection for this Alpha prototype for a number of reasons:<br/>
+    1.  The team needed to start quickly and was familiar with the food recall dataset<br/>
+    2.	We could easily find customers to test our food recall prototype<br/>
     3.	A food recall service will appeal to a wide range of food shoppers
 
 ###Brainstorming
 Once the team determined the dataset we will use, the team brainstormed on how a customer will use a food recall service and what characteristics must be met for the 
 users of this service. The service must be
 
-    *Effective
-    *Efficient
-    *Engaging
-    *Error Tolerant
-    *Easy to Learn
+* Effective
+* Efficient
+* Engaging
+* Error Tolerant
+* Easy to Learn
 
 With these five characteristics in mind the team quickly identified the components necessary for the food recall service prototype to fulfill these characteristics. These components are:
 
