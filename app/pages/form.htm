@@ -48,7 +48,7 @@
                     </div>
                 </div>
                 <div class="nl-submit-wrap text-center">
-                    <button class="nl-submit Bam" type="submit" href="#/recalls/" id="submit" data-trigger="focus" data-toggle="popover" title="You're Safe!" data-content="No Results? Update the <span style='color:#f00;'>red</span> fields above and try again.">
+                    <button class="nl-submit Bam" type="submit" href="#/recalls/" ng-click="loading()" data-trigger="focus" data-toggle="popover" title="You're Safe!" data-content="No Results? Update the <span style='color:#f00;'>red</span> fields above and try again.">
                         Show me the Recalls
                     </button>
                 </div>
@@ -67,11 +67,12 @@
         $(document).ready(function(){
 
             // On form submit
+            /*
             $('.Bam').click(function(){
                 console.log("Beginning loading animation...");
                 $('body').removeClass("loaded");
                 $('#loader-wrapper').addClass('waiting');
-            })
+            })*/
 
             // Focus in input
             $('.nl-field-toggle').click(function(){

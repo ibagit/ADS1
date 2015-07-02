@@ -63,7 +63,7 @@ rdControllers.controller('mapCtrl', ['$scope', '$sessionStorage', 'Map', 'Browse
     }
 
     // Initiate process of receiving user location
-    if (Browser.isSafari()) {
+    if (Browser.type()==='Safari') {
         error('Safari problems');
     } else {
         // Ask for Location
@@ -136,7 +136,7 @@ rdControllers.controller('resultsCtrl', ['$scope', '$sessionStorage', 'MonthMap'
 // ------------------------------
 // ----- Form Controller --------
 // ------------------------------
-rdControllers.controller('formCtrl', ['$scope', '$sessionStorage', '$routeParams', '$http', 'ClassMap', 'Validation', function($scope, $sessionStorage, $routeParams, $http, ClassMap, Validation) {
+rdControllers.controller('formCtrl', ['$scope', '$sessionStorage', '$routeParams', '$http', 'ClassMap', 'Validation', 'Browser', function($scope, $sessionStorage, $routeParams, $http, ClassMap, Validation, Browser) {
     $scope.recalls = "";                
     $scope.state = $routeParams.state;
     $scope.stateCode = $routeParams.stateCode;
@@ -148,6 +148,15 @@ rdControllers.controller('formCtrl', ['$scope', '$sessionStorage', '$routeParams
         "all": "classification",
         "anything": "reason_for_recall"
     };
+
+    // START LOADING ANIMATIONS
+    $scope.loading = function () {
+        if (Browser.type() !== 'Netscape') {
+            console.log("Beginning loading animation...");
+            angular.element(document.querySelector('body')).removeClass("loaded");
+            angular.element(document.querySelector('#loader-wrapper')).addClass("waiting");
+        }
+    }
 
     if (!Validation.isEmpty(previousParams)) {
         $scope.food = (previousParams['product_description'] ? previousParams['product_description'].join(' and ') : 'food');
@@ -191,8 +200,9 @@ rdControllers.controller('formCtrl', ['$scope', '$sessionStorage', '$routeParams
         console.log(parms);
         $sessionStorage.params = parms;
 
-        // START LOADING ANIMATIONS
-
+        // ----------------------
+        // --- Submit Request ---
+        // ----------------------
         $http.post('/foodQuery', { 
             params: parms,
             'distribution_pattern': $scope.stateCode,
