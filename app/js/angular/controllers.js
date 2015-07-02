@@ -256,9 +256,10 @@ rdControllers.controller('formCtrl', ['$scope', '$sessionStorage', '$routeParams
                 } else {
                     console.log("Window Time");
                     document.location = '/#/recalls/';
-                    console.log("Done");
                 }  
+                console.log("Done");                
             }
+            console.log("Double done (DD)");
         })
         .error(function(data){
             console.log("Error making request: " + data);       
