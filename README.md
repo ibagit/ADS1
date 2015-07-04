@@ -42,7 +42,7 @@ to 'drilldown' for even more details with search parameters hightlighted within 
 
 ###The Methodology
 
-Once the major components of the application were identified, a one-week sprint was established, stories were created, tasks were assigned and scrum meetings were used to keep activities focused and moving forward.
+Once the major components of the application were identified, a one-week sprint was established, stories were created, tasks were assigned and scrum meetings were used to keep activities focused and moving forward.  See our [Scrum Board](doc/IBA_7_Agile Scrum Board.pdf)
 
 ###The Pipeline
 
