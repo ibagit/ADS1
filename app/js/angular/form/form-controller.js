@@ -28,12 +28,10 @@ formController.controller('formCtrl', ['$scope', '$sessionStorage', '$routeParam
             angular.element(document.querySelector('body')).removeClass("loaded");
             angular.element(document.querySelector('#loader-wrapper')).addClass("waiting");
         } else {
-            console.log("Opening the dialog");
             var d = ngDialog.open({
                 template: 'js/angular/form/ie-popup.html',
                 className: 'ngdialog-theme-default'
             });
-            console.log("Opened the dialog");
         }
     }
 
