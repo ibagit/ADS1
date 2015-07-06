@@ -94,6 +94,29 @@
                     var text = $(this).parent().parent().parent().find('a').text(type);
                 }
             });
+
+            // Loading and Setting Data correctly
+            $('.nl-field-go').on("tap", function(){
+                console.log("CLICKED");
+
+                // Grab text and placeholder values type (Food || Brand)
+                var text = $(this).parent().parent().parent().find('a').text();
+                var placeholder = $(this).parent().find('input');
+                var type = $(this).parent().parent().parent().parent().attr('id');
+
+                // If a change has been made
+                if (placeholder.attr('placeholder') !== text) {
+                    if (type == placeholder.attr('placeholder')) {
+                        console.log("Initial search, not going to do anything");
+                    } else {
+                        console.log("This is a returned search");
+                        placeholder.attr('placeholder', type);
+                    }
+                } else {
+                    placeholder.attr('placeholder', type);
+                    var text = $(this).parent().parent().parent().find('a').text(type);
+                }
+            });
         });
     </script>
 </div>

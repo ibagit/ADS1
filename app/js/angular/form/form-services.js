@@ -82,7 +82,6 @@ formServices.factory('Browser', function($resource){
           			browserName = navigator.appName;
 				}
 			}
-			console.log("Browser is " + browserName);
 	        return browserName;
 	    }
 	};
