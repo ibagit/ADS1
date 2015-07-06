@@ -1,10 +1,10 @@
 /* Directives */
 
-var rdDirectives = angular.module('rdDirectives', ['ngResource']);
+var resultsDirectives = angular.module('resultsDirectives', ['ngResource']);
 
 // a directive to auto-collapse long text
 // in elements with the "dd-text-collapse" attribute
-rdDirectives.directive('ddTextCollapse', ['$compile', function($compile) {
+resultsDirectives.directive('ddTextCollapse', ['$compile', function($compile) {
 
     return {
         restrict: 'A',

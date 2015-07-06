@@ -3,16 +3,16 @@
 /* Modules */
 
 var rdApp = angular.module('rdApp', [
-    'ngRoute',
-    'rdServices',
-    'rdControllers',
+	'rdApp.map', 
+	'rdApp.form', 
+	'rdApp.results',
     'infinite-scroll',
+    'ngRoute',
     'ngSanitize',
-    'rdFilters',
     'ngStorage',
-    'rdDirectives',
     'ngAnimate'
 ]);
+
 
 rdApp.config(function($routeProvider) {
     $routeProvider
@@ -60,4 +60,14 @@ rdApp.run(['$rootScope', '$route', function($rootScope, $route) {
     $rootScope.$on('$routeChangeSuccess', function() {
         document.title = $route.current.title;
     });
+}]);
+
+// ------------------------------
+// ----- Temp Controller --------
+// ------------------------------
+rdApp.controller('tempCtrl', ['$scope', '$sessionStorage', function($scope, $sessionStorage) {
+    console.log("Temp Controller!");
+
+    // Clear local Storage
+    delete $sessionStorage.params;
 }]);

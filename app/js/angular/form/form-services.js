@@ -2,10 +2,11 @@
 
 /* Services */
 
-var rdServices = angular.module('rdServices', ['ngResource']);
+var formServices = angular.module('formServices', ['ngResource']);
+
 
 // For checking if object is empty
-rdServices.factory('Validation', function($resource){
+formServices.factory('Validation', function($resource){
     return {
         isEmpty: function (obj) {
           
@@ -27,7 +28,7 @@ rdServices.factory('Validation', function($resource){
 });
 
 // For checking if browser is Safari
-rdServices.factory('Browser', function($resource){
+formServices.factory('Browser', function($resource){
     return {
     	type: function() {
 
@@ -87,7 +88,7 @@ rdServices.factory('Browser', function($resource){
 });
 
 // State names ---> State Codes
-rdServices.factory('Map', function($resource){
+formServices.factory('Map', function($resource){
     var stateMap = {
 		"Alabama": "AL",
 		"Alaska": "AK",
@@ -225,7 +226,7 @@ rdServices.factory('Map', function($resource){
 });
 
 // Mapping of classifications
-rdServices.factory('ClassMap', function($resource){
+formServices.factory('ClassMap', function($resource){
 	var classifications = {
 		"Severe": "Class I",
 		"Moderate": "Class II",
@@ -234,32 +235,6 @@ rdServices.factory('ClassMap', function($resource){
     return {
         getData: function () {
             return classifications;
-        },
-        setData: function(value) {
-            console.log("Why is someone mutating the map...?");
-        }
-    };
-});
-
-// Month Index ---> Month Name
-rdServices.factory('MonthMap', function($resource){
-	var months = {
-		"01": "January",
-		"02": "February",
-		"03": "March",
-		"04": "April",
-		"05": "May",
-		"06": "June",
-		"07": "July",
-		"08": "August",
-		"09": "September",
-		"10": "October",
-		"11": "November",
-		"12": "December"
-	};
-    return {
-        getData: function () {
-            return months;
         },
         setData: function(value) {
             console.log("Why is someone mutating the map...?");
