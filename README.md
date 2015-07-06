@@ -1,11 +1,11 @@
 # Food Safety Alert
 
-This site was developed by IBA in response to GSA’s RFQ for Agile Delivery Services (ADS I). It was developed as a working prototype using open toolsets and the openFDA (https://open.fda.gov) dataset and Application Programming Interface.
+This site was developed by Irving Burton Associates, Inc. (IBA) in response to GSA’s Request For Quotation (RFQ) Number 4QTFHS150004 for Agile Delivery Services (ADS I). It was developed as a working prototype using open toolsets and the openFDA (https://open.fda.gov) dataset and Application Programming Interface.
 
 ## Approach
 
 IBA evaluated the three available openFDA datasets (food, drug and device) and determined that food recall was an ideal selection for this prototype for a number of reasons:
-* The team needed to start quickly and was the food recall dataset was straight forward<br/>
+* The team needed to start quickly and the food recall dataset was straight forward and provided the most immediate benefit to the customer<br/>
 * We could easily find customers to test our food recall prototype<br/>
 * A food recall service would appeal to a wide range of consumers
 
@@ -19,34 +19,34 @@ users of this service, such as:
 * Fast
 * Available via Mobile phone & Laptop
 
-With these five characteristics in mind the team quickly identified the components necessary for the food recall service prototype. These components are:
+With these five characteristics in mind our team quickly identified the components necessary for the food recall service prototype. These components are:
 
 **Map**<br/>
-We decided that location should be the most immediate dimension to search and devised two ways to retrieve this information from the user:
+It was decided that location should be the most immediate dimension to search and devised two ways to retrieve this information from the user:
 
-* We are able to immediately load the user's current location into the search criteria so they never have to manually enter their location
-* If the user is not comfortable sharing their current location, our map allows the user to immediately click on his/her state
+* The user's current location can be immediately loaded into the search criteria so they never have to manually enter their location
+* If the user is not comfortable sharing their current location, the map allows the user to immediately click on his/her state
 
 This compares to a traditional form that requires the user to manually enter their state through a dropdown menu requiring multiple clicks every time they visit a site.
 
 **Form**<br/>
 Traditional web forms are ugly and not intuitive. Users do not think in terms of query parameters, they think in terms of sentences. A typically user story for our application is someone who thinks: 
 
-I am going to buy eggs and yogurt and want to know if there are recalls that affect my purchases.
+"I am going to buy eggs and yogurt and want to know if there are recalls that affect my purchases"
 
-Our form is designed to translate this search into English. Users are able to spell out, in English, the recalls they are worried about and our application will map this to a search query. 
+Our form is designed to translate this search into English. Users are able to spell out, in everyday language, the recalls they are worried about and our application will map this to a search query. 
 
 **Search Result**<br/>
-The recalls search result page is a list of the user's relevant recalls. The results are sorted by date, with the most recent at the top and limited to the recalls within the last year. A secondary search is provided 
-to 'drilldown' for even more details with search parameters hightlighted within the results page.
+The recalls search result page is a list of the user's relevant recalls. The results are sorted by date, with the most recent at the top. A secondary search is provided 
+to 'drilldown' for even more details with search parameters highlighted within the results page.
 
 ###The Methodology
 
-Once the major components of the application were identified, a one-week sprint was established, stories were created, tasks were assigned and scrum meetings were used to keep activities focused and moving forward.  See our [Scrum Board](doc/IBA_7_Agile Scrum Board.pdf)
+Once the major components of the application were identified, a one-week sprint was established, stories were created, tasks were assigned and scrum meetings were used to keep activities focused and moving forward.
 
 ###The Pipeline
 
-Using a continuous process improvement development method allowed IBA to implement, test and deploy versions within containers for test, stage, and production while end-user feedback for each iteration was incorporated throughout the process to ensure a user focused solution.
+Using a continuous process improvement development method allowed IBA to implement, test and deploy versions within containers for test, stage, and production while end-user feedback for each iteration was incorporated throughout the process to ensure a user focused solution.<br/>See our [Food Safety Alert CI Pipeline](doc/FoodSafetyAlert_CI_Pipeline.pdf)
 
 ###The Technical Approach
 
@@ -65,13 +65,13 @@ Angular's data-binding is an automatic way of updating the view whenever the mod
 * **Clean, Modular, Reusable architecture**
 Being a framework, Angular helped us to architect our code to stress modularity. This makes the code easier to maintain, extend, and test. Directives, controllers, and services allow us to build, incorporate, and test  reusable components. 
 
-While there are other front-end javascript frameworks that provide similar functionality, we decided to use Angular specifically due to its maturity and its large community ( Google ).
+While there are other front-end javascript frameworks that provide similar functionality, we decided to use Angular specifically due to its maturity and its large community (Google).
 
 **Node.Js**
 Given our application is a search application using an API on top of an object database, we used Node.JS for its non-blocking, event-driven I/O capabilities to remain lightweight and efficient with minimal process overhead.
 
 **Express, npm, Bower**
-We used Express for our light-weight web application framework, npm for our server-side package management, and Bower for our client-side package management. We choose these three, as they are the ubiquitous standards for Node.Js and more than suited our requirements .
+We used Express for our light-weight web application framework, npm for our server-side package management, and Bower for our client-side package management. We choose these three, as they are the ubiquitous standards for Node.Js and more than suited our requirements.
 
 **HTML5 & CSS3**
 
