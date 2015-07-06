@@ -1,3 +1,7 @@
+'use strict';
+
+/* Services */
+
 var resultsController = angular.module('resultsController', []);
 
 // ------------------------------
