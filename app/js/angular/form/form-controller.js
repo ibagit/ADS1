@@ -114,14 +114,16 @@ formController.controller('formCtrl', ['$scope', '$sessionStorage', '$routeParam
 
                 // End Loading animation and render the page 
                 //if (Browser.type() !== 'Netscape') {
+                    console.log("Going to recalls");
                     window.location = '/#/recalls/';
+                    console.log("Killing the loading animation");
                     var body = angular.element(document.querySelector("body"));
                     body.addClass('loaded');
                     
                 //} else {
                     // For IE
-                    document.location = '/#/recalls/';
                 //}  
+                console.log("Done");
             }
         })
         .error(function(data){
