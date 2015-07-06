@@ -78,7 +78,7 @@ rdApp.controller('tempCtrl', ['$scope', '$sessionStorage', function($scope, $ses
 // ----------------------------------
 // ------ Exception Handling --------
 // ----------------------------------
-app.config(function($provide){
+rdApp.config(function($provide){
     $provide.decorator("$exceptionHandler", function($delegate, $injector){
         return function(exception, cause){
             var $rootScope = $injector.get("$rootScope");
@@ -88,7 +88,7 @@ app.config(function($provide){
     });
 });
 
-app.factory("errors", function($rootScope){
+rdApp.factory("errors", function($rootScope){
     return {
         catch: function(message){
             return function(reason){
