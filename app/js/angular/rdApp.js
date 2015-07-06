@@ -43,7 +43,7 @@ rdApp.config(function($routeProvider) {
         })        
         .when('/recalls/', {
             templateUrl : 'pages/recalls.htm',
-            controller  : 'resultsCtrl',
+            controller  : 'tempCtrl',
             title: 'Food Safety Alert >> Results'
         })
         .when('/recall/:recallId', {
