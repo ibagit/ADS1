@@ -2,12 +2,14 @@
 
 /* Services */
 
-var formController = angular.module('formController', []);
+var formController = angular.module('formController', [
+    'ngDialog'
+]);
 
 // ------------------------------
 // ----- Form Controller --------
 // ------------------------------
-formController.controller('formCtrl', ['$scope', '$sessionStorage', '$routeParams', '$http', 'Map', 'ClassMap', 'Validation', 'Browser', function($scope, $sessionStorage, $routeParams, $http, Map, ClassMap, Validation, Browser) {
+formController.controller('formCtrl', ['$scope', '$sessionStorage', '$routeParams', '$http', 'ngDialog', 'Map', 'ClassMap', 'Validation', 'Browser', function($scope, $sessionStorage, $routeParams, $http, ngDialog, Map, ClassMap, Validation, Browser) {
     $scope.recalls = "";                
     $scope.stateCode = $routeParams.stateCode;
     $scope.state = Map.getCodeMap()[$routeParams.stateCode];
@@ -22,10 +24,15 @@ formController.controller('formCtrl', ['$scope', '$sessionStorage', '$routeParam
 
     // START LOADING ANIMATIONS
     $scope.loading = function () {
-        //if (Browser.type() !== 'Netscape') {
+        if (Browser.type() !== 'Netscape') {
             angular.element(document.querySelector('body')).removeClass("loaded");
             angular.element(document.querySelector('#loader-wrapper')).addClass("waiting");
-        //}
+        } else {
+            var d = ngDialog.open({
+                template: 'js/angular/form/ie-popup.html',
+                className: 'ngdialog-theme-default'
+            });
+        }
     }
 
     if (!Validation.isEmpty(previousParams)) {
@@ -113,16 +120,15 @@ formController.controller('formCtrl', ['$scope', '$sessionStorage', '$routeParam
                 $sessionStorage.quantity = data['meta']['results']['total'];             
 
                 // End Loading animation and render the page 
-                //if (Browser.type() !== 'Netscape') {
-                    console.log("Going to recalls");
+                if (Browser.type() !== 'Netscape') {
                     window.location = '/#/recalls/';
-                    console.log("Killing the loading animation");
                     var body = angular.element(document.querySelector("body"));
                     body.addClass('loaded');
                     
-                //} else {
-                    // For IE
-                //}  
+                } else {
+                    //For IE
+                    window.location = '/#/recalls/';
+                }  
                 console.log("Done");
             }
         })

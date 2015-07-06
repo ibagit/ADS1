@@ -2,13 +2,18 @@
 
 /* Services */
 
-var resultsController = angular.module('resultsController', []);
+var resultsController = angular.module('resultsController', [
+    'ngDialog'
+]);
 
 // ------------------------------
 // ----- Results Controller -----
 // ------------------------------
-resultsController.controller('resultsCtrl', ['$scope', '$sessionStorage', 'MonthMap', function($scope, $sessionStorage, MonthMap) {
+resultsController.controller('resultsCtrl', ['$scope', '$sessionStorage', 'ngDialog', 'MonthMap', function($scope, $sessionStorage, ngDialog, MonthMap) {
     console.log("Results Controller!");
+    
+    // Close the dialog if IE
+    ngDialog.closeAll();
 
     // Grab Search Parameters
     if ($sessionStorage.classification) $scope.classification = $sessionStorage.classification[0];
