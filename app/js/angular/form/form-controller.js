@@ -22,10 +22,10 @@ formController.controller('formCtrl', ['$scope', '$sessionStorage', '$routeParam
 
     // START LOADING ANIMATIONS
     $scope.loading = function () {
-        if (Browser.type() !== 'Netscape') {
+        //if (Browser.type() !== 'Netscape') {
             angular.element(document.querySelector('body')).removeClass("loaded");
             angular.element(document.querySelector('#loader-wrapper')).addClass("waiting");
-        }
+        //}
     }
 
     if (!Validation.isEmpty(previousParams)) {
