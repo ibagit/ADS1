@@ -56,6 +56,9 @@ rdApp.config(function($routeProvider) {
 		});
 });
 
+// ----------------------------------
+// -------- 508 Compliance ----------
+// ----------------------------------
 rdApp.run(['$rootScope', '$route', function($rootScope, $route) {
     $rootScope.$on('$routeChangeSuccess', function() {
         document.title = $route.current.title;
@@ -71,3 +74,26 @@ rdApp.controller('tempCtrl', ['$scope', '$sessionStorage', function($scope, $ses
     // Clear local Storage
     delete $sessionStorage.params;
 }]);
+
+// ----------------------------------
+// ------ Exception Handling --------
+// ----------------------------------
+app.config(function($provide){
+    $provide.decorator("$exceptionHandler", function($delegate, $injector){
+        return function(exception, cause){
+            var $rootScope = $injector.get("$rootScope");
+            $rootScope.addError({message:"Exception", reason:exception});
+            $delegate(exception, cause);
+        };
+    });
+});
+
+app.factory("errors", function($rootScope){
+    return {
+        catch: function(message){
+            return function(reason){
+                $rootScope.addError({message: message, reason: reason})
+            };
+        }
+    };
+});

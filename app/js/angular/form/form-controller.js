@@ -85,10 +85,6 @@ formController.controller('formCtrl', ['$scope', '$sessionStorage', '$routeParam
             if ('error' in data) {
                 console.log("ERROR");
 
-                // End Loading animation and render the page 
-                var body = angular.element(document.querySelector("body"));
-                body.addClass('loaded');
-
                 // PopOver
                 var button = angular.element(document.querySelector(".Bam"));
                 button.popover({
@@ -98,6 +94,10 @@ formController.controller('formCtrl', ['$scope', '$sessionStorage', '$routeParam
                 setTimeout(function() {
                     button.popover('hide');
                 }, 3500);
+
+                // End Loading animation and render the page 
+                var body = angular.element(document.querySelector("body"));
+                body.addClass('loaded');                
 
             } else {                          
                 console.log("Success!");

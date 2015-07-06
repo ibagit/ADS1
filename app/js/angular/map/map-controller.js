@@ -28,9 +28,9 @@ mapController.controller('mapCtrl', ['$scope', '$sessionStorage', '$window', 'Ma
                     state = results[5].formatted_address.split(",")[0];
                     address = results[0].formatted_address;
                     code = states[state];
-                    window.location = '/#/form/' + code;
 
                     // End Loading animation and render the page 
+                    window.location = '/#/form/' + code;
                     var body = angular.element(document.querySelector("body"));
                     body.addClass('loaded');
                 } else {
