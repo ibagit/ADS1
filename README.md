@@ -46,7 +46,7 @@ Once the major components of the application were identified, a one-week sprint 
 
 ###The Pipeline
 
-Using a continuous process improvement development method allowed IBA to implement, test and deploy versions within containers for test, stage, and production while end-user feedback for each iteration was incorporated throughout the process to ensure a user focused solution.
+Using a continuous process improvement development method allowed IBA to implement, test and deploy versions within containers for test, stage, and production while end-user feedback for each iteration was incorporated throughout the process to ensure a user focused solution.  See our [Food Safety Alert CI Pipeline](doc/FoodSafetyAlert_CI_Pipeline.pdf)
 
 ###The Technical Approach
 
