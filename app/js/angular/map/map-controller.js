@@ -10,7 +10,7 @@ var mapController = angular.module('mapController', []);
 mapController.controller('mapCtrl', ['$scope', '$sessionStorage', '$window', 'Map', 'Browser', function($scope, $sessionStorage, $window, Map, Browser) {
     console.log("Map Controller!");
 
-    if (Browser.type() === 'Netscape') alert("Feel free to continue with Internet Explorer. However, IE is not compatible with the latest web libraries, we would recommend a different Browser.")
+    if (Browser.type() === 'Netscape') alert("Feel free to continue with Internet Explorer. However, since IE is not compatible with the latest web technologies, we would recommend a different Browser.")
 
     // Reset page to Top
     $window.pageYOffset
