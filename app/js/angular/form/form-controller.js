@@ -113,14 +113,14 @@ formController.controller('formCtrl', ['$scope', '$sessionStorage', '$routeParam
                 $sessionStorage.quantity = data['meta']['results']['total'];             
 
                 // End Loading animation and render the page 
-                if (Browser.type() !== 'Netscape') {
+                //if (Browser.type() !== 'Netscape') {
                     var body = angular.element(document.querySelector("body"));
                     body.addClass('loaded');
                     window.location = '/#/recalls/';
-                } else {
+                //} else {
                     // For IE
                     document.location = '/#/recalls/';
-                }  
+                //}  
             }
         })
         .error(function(data){
