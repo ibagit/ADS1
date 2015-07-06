@@ -240,7 +240,7 @@ footer .tagcloud a:hover,
 
 
 /* screen specific queries */
-
+/*
 @media (max-width: 449px) {
     .logo { width: 20%; margin-left: .5em; margin-right: -.5em; }
 }
@@ -304,4 +304,4 @@ footer .tagcloud a:hover,
 }
 @media (min-width: 1200px) { 
     .form-control { max-width: 40%; }
-} 
+} */
