@@ -114,9 +114,10 @@ formController.controller('formCtrl', ['$scope', '$sessionStorage', '$routeParam
 
                 // End Loading animation and render the page 
                 //if (Browser.type() !== 'Netscape') {
+                    window.location = '/#/recalls/';
                     var body = angular.element(document.querySelector("body"));
                     body.addClass('loaded');
-                    window.location = '/#/recalls/';
+                    
                 //} else {
                     // For IE
                     document.location = '/#/recalls/';
