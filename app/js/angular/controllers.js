@@ -142,9 +142,7 @@ rdControllers.controller('resultsCtrl', ['$scope', '$sessionStorage', 'MonthMap'
 rdControllers.controller('formCtrl', ['$scope', '$sessionStorage', '$routeParams', '$http', 'Map', 'ClassMap', 'Validation', 'Browser', function($scope, $sessionStorage, $routeParams, $http, Map, ClassMap, Validation, Browser) {
     $scope.recalls = "";                
     $scope.stateCode = $routeParams.stateCode;
-    console.log($scope.stateCode);
     $scope.state = Map.getCodeMap()[$routeParams.stateCode];
-    console.log($scope.state);
     var previousParams = $sessionStorage.params;
     var dataMap = {0: 'food', 1: 'brand', 2: 'all', 3: 'anything'};
     var reference = {
@@ -157,7 +155,6 @@ rdControllers.controller('formCtrl', ['$scope', '$sessionStorage', '$routeParams
     // START LOADING ANIMATIONS
     $scope.loading = function () {
         if (Browser.type() !== 'Netscape') {
-            console.log("Beginning loading animation...");
             angular.element(document.querySelector('body')).removeClass("loaded");
             angular.element(document.querySelector('#loader-wrapper')).addClass("waiting");
         }
@@ -221,10 +218,8 @@ rdControllers.controller('formCtrl', ['$scope', '$sessionStorage', '$routeParams
                 console.log("ERROR");
 
                 // End Loading animation and render the page 
-                console.log("Removing loading animation");                
                 var body = angular.element(document.querySelector("body"));
                 body.addClass('loaded');
-                console.log("Removed!!!!");                
 
                 // PopOver
                 var button = angular.element(document.querySelector(".Bam"));
@@ -234,7 +229,7 @@ rdControllers.controller('formCtrl', ['$scope', '$sessionStorage', '$routeParams
                 }).popover('show');
                 setTimeout(function() {
                     button.popover('hide');
-                }, 3000);
+                }, 3500);
 
             } else {                          
                 console.log("Success!");
@@ -249,22 +244,16 @@ rdControllers.controller('formCtrl', ['$scope', '$sessionStorage', '$routeParams
                 $sessionStorage.results = data['results'];
                 $sessionStorage.quantity = data['meta']['results']['total'];             
 
-
-                console.log("Forking on Browser type");
                 // End Loading animation and render the page 
                 if (Browser.type() !== 'Netscape') {
-                    console.log("Removing loading animation");
                     var body = angular.element(document.querySelector("body"));
                     body.addClass('loaded');
-                    console.log("Removed!!!!");
                     window.location = '/#/recalls/';
                 } else {
-                    console.log("Window Time");
+                    // For IE
                     document.location = '/#/recalls/';
                 }  
-                console.log("Done");                
             }
-            console.log("Double done (DD)");
         })
         .error(function(data){
             console.log("Error making request: " + data);       
