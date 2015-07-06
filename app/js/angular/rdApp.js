@@ -74,26 +74,3 @@ rdApp.controller('tempCtrl', ['$scope', '$sessionStorage', function($scope, $ses
     // Clear local Storage
     delete $sessionStorage.params;
 }]);
-
-// ----------------------------------
-// ------ Exception Handling --------
-// ----------------------------------
-rdApp.config(function($provide){
-    $provide.decorator("$exceptionHandler", function($delegate, $injector){
-        return function(exception, cause){
-            var $rootScope = $injector.get("$rootScope");
-            $rootScope.addError({message:"Exception", reason:exception});
-            $delegate(exception, cause);
-        };
-    });
-});
-
-rdApp.factory("errors", function($rootScope){
-    return {
-        catch: function(message){
-            return function(reason){
-                $rootScope.addError({message: message, reason: reason})
-            };
-        }
-    };
-});
