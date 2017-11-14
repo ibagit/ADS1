@@ -14,10 +14,10 @@ RUN apt-get -y install git
 ADD / /var/ibagit/ADS1/
 WORKDIR /var/ibagit/ADS1/
 
-EXPOSE 8182
+EXPOSE 80
 
 RUN cd /var/ibagit/ADS1 && npm install
 RUN cd /var/ibagit/ADS1 && sudo ./node_modules/bower/bin/bower install --allow-root
-CMD cd /var/ibagit/ADS1 && npm start
+CMD cd /var/ibagit/ADS1 && npm start --port=8181
 
 
