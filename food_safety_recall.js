@@ -199,7 +199,7 @@ var httpServer = http.createServer(app);
 //var httpsServer = https.createServer(credentials, app);
 
 //httpServer.listen(5001);
-httpServer.listen(80);
+httpServer.listen(8282);
 //httpsServer.listen(5002);
 //httpServer.listen(80);
 //console.log("App listening on port 5000(http) and 5001(https)");
