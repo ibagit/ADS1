@@ -1,6 +1,6 @@
 # Food Safety Alert
 
-This site was developed by Irving Burton Associates, Inc. (IBA) in response to GSA’s Request For Quotation (RFQ) Number 4QTFHS150004 for Agile Delivery Services (ADS I). It was developed as a working prototype using open toolsets and the openFDA (https://open.fda.gov) dataset and Application Programming Interface.
+This site was developed by Irving Burton Associates, Inc. (IBA) in response to GSA’s Request For Quotation (RFQ) Number 4QTFHS150004_1 for Agile Delivery Services (ADS I). It was developed as a working prototype using open toolsets and the openFDA (https://open.fda.gov) dataset and Application Programming Interface.
 
 ## Approach
 
